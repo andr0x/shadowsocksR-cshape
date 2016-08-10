@@ -1,2 +1,4 @@
-# shadowsocksR-c-
-shadowsocksR-c# code
+# shadowsocksR-cshape
+基于逆向工程复现的ssr-3.8.4.2源代码
+改动：修改了旧版图标
+由于个人能力有限，代码难免有错误，敬请指正
