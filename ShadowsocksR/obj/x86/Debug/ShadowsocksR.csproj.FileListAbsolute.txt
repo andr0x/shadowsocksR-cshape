@@ -1,0 +1,16 @@
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\ShadowsocksR.csprojResolveAssemblyReference.cache
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\ShadowsocksR.Shadowsocks.Properties.Resources.resources
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\Shadowsocks.View.ConfigForm.resources
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\Shadowsocks.View.QRCodeForm.resources
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\Shadowsocks.View.ServerLogForm.resources
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\Shadowsocks.View.SettingsForm.resources
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\ShadowsocksR.csproj.GenerateResource.Cache
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\ShadowsocksR.exe.config
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\ShadowsocksR.exe
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\ShadowsocksR.pdb
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\EntityFramework.dll
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\EntityFramework.SqlServer.dll
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\EntityFramework.xml
+D:\onedrive\cshape\ssr384\ShadowsocksR\bin\Debug\EntityFramework.SqlServer.xml
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\ShadowsocksR.exe
+D:\onedrive\cshape\ssr384\ShadowsocksR\obj\x86\Debug\ShadowsocksR.pdb

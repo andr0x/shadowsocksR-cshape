@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D90EE0BE-5C2B-4850-8CD4-5F9F335E4624}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShadowsocksR</RootNamespace>
+    <AssemblyName>ShadowsocksR</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>ShadowsocksR.ico</ApplicationIcon>
+    <StartupObject>Shadowsocks.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing">
+      <HintPath>..\packages\ZXing.2.1.1\lib\net20\zxing.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OpenDNS\Address.cs" />
+    <Compile Include="OpenDNS\Classes.cs" />
+    <Compile Include="OpenDNS\DnsQuery.cs" />
+    <Compile Include="OpenDNS\DnsResponse.cs" />
+    <Compile Include="OpenDNS\MX.cs" />
+    <Compile Include="OpenDNS\ResourceRecord.cs" />
+    <Compile Include="OpenDNS\ResourceRecordCollection.cs" />
+    <Compile Include="OpenDNS\ResponseCodes.cs" />
+    <Compile Include="OpenDNS\SOA.cs" />
+    <Compile Include="OpenDNS\Types.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shadowsocks\Controller\APIServer.cs" />
+    <Compile Include="Shadowsocks\Controller\AutoStartup.cs" />
+    <Compile Include="Shadowsocks\Controller\CallbackStatus.cs" />
+    <Compile Include="Shadowsocks\Controller\FileManager.cs" />
+    <Compile Include="Shadowsocks\Controller\GFWListUpdater.cs" />
+    <Compile Include="Shadowsocks\Controller\Handler.cs" />
+    <Compile Include="Shadowsocks\Controller\HttpPortForwarder.cs" />
+    <Compile Include="Shadowsocks\Controller\HttpPraser.cs" />
+    <Compile Include="Shadowsocks\Controller\HttpProxyRunner.cs" />
+    <Compile Include="Shadowsocks\Controller\I18N.cs" />
+    <Compile Include="Shadowsocks\Controller\Listener.cs" />
+    <Compile Include="Shadowsocks\Controller\Local.cs" />
+    <Compile Include="Shadowsocks\Controller\Logging.cs" />
+    <Compile Include="Shadowsocks\Controller\LogLevel.cs" />
+    <Compile Include="Shadowsocks\Controller\PACServer.cs" />
+    <Compile Include="Shadowsocks\Controller\PortForwarder.cs" />
+    <Compile Include="Shadowsocks\Controller\ProtocolException.cs" />
+    <Compile Include="Shadowsocks\Controller\ProtocolResponseDetector.cs" />
+    <Compile Include="Shadowsocks\Controller\ShadowsocksController.cs" />
+    <Compile Include="Shadowsocks\Controller\SpeedTester.cs" />
+    <Compile Include="Shadowsocks\Controller\StreamWriterWithTimestamp.cs" />
+    <Compile Include="Shadowsocks\Controller\SystemProxy.cs" />
+    <Compile Include="Shadowsocks\Controller\UpdateChecker.cs" />
+    <Compile Include="Shadowsocks\Encryption\EncryptorBase.cs" />
+    <Compile Include="Shadowsocks\Encryption\EncryptorFactory.cs" />
+    <Compile Include="Shadowsocks\Encryption\IEncryptor.cs" />
+    <Compile Include="Shadowsocks\Encryption\IVEncryptor.cs" />
+    <Compile Include="Shadowsocks\Encryption\Libcrypto.cs" />
+    <Compile Include="Shadowsocks\Encryption\LibcryptoEncryptor.cs" />
+    <Compile Include="Shadowsocks\Encryption\MbedTLS.cs" />
+    <Compile Include="Shadowsocks\Encryption\PolarSSL.cs" />
+    <Compile Include="Shadowsocks\Encryption\PolarSSLEncryptor.cs" />
+    <Compile Include="Shadowsocks\Encryption\Sodium.cs" />
+    <Compile Include="Shadowsocks\Encryption\SodiumEncryptor.cs" />
+    <Compile Include="Shadowsocks\Model\Configuration.cs" />
+    <Compile Include="Shadowsocks\Model\Connections.cs" />
+    <Compile Include="Shadowsocks\Model\DnsBuffer.cs" />
+    <Compile Include="Shadowsocks\Model\ErrorLog.cs" />
+    <Compile Include="Shadowsocks\Model\PortMapConfig.cs" />
+    <Compile Include="Shadowsocks\Model\PortMapConfigCache.cs" />
+    <Compile Include="Shadowsocks\Model\Server.cs" />
+    <Compile Include="Shadowsocks\Model\ServerSelectStrategy.cs" />
+    <Compile Include="Shadowsocks\Model\ServerSpeedLog.cs" />
+    <Compile Include="Shadowsocks\Model\ServerSpeedLogShow.cs" />
+    <Compile Include="Shadowsocks\Model\ServerTrans.cs" />
+    <Compile Include="Shadowsocks\Model\ServerTransferTotal.cs" />
+    <Compile Include="Shadowsocks\Model\TransLog.cs" />
+    <Compile Include="Shadowsocks\Model\UriVisitTime.cs" />
+    <Compile Include="Shadowsocks\Obfs\AuthData.cs" />
+    <Compile Include="Shadowsocks\Obfs\AuthSHA1.cs" />
+    <Compile Include="Shadowsocks\Obfs\AuthSHA1V2.cs" />
+    <Compile Include="Shadowsocks\Obfs\AuthSimple.cs" />
+    <Compile Include="Shadowsocks\Obfs\HttpSimpleObfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\IObfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\ObfsBase.cs" />
+    <Compile Include="Shadowsocks\Obfs\ObfsException.cs" />
+    <Compile Include="Shadowsocks\Obfs\ObfsFactory.cs" />
+    <Compile Include="Shadowsocks\Obfs\Plain.cs" />
+    <Compile Include="Shadowsocks\Obfs\ServerInfo.cs" />
+    <Compile Include="Shadowsocks\Obfs\TlsAuthData.cs" />
+    <Compile Include="Shadowsocks\Obfs\TlsAuthObfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\TlsTicketAuthObfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\VerifyData.cs" />
+    <Compile Include="Shadowsocks\Obfs\VerifyDeflateObfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\VerifySHA1Obfs.cs" />
+    <Compile Include="Shadowsocks\Obfs\VerifySimpleBase.cs" />
+    <Compile Include="Shadowsocks\Obfs\VerifySimpleObfs.cs" />
+    <Compile Include="Shadowsocks\Program.cs" />
+    <Compile Include="Shadowsocks\Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Shadowsocks\Util\Adler32.cs" />
+    <Compile Include="Shadowsocks\Util\CRC32.cs" />
+    <Compile Include="Shadowsocks\Util\Utils.cs" />
+    <Compile Include="Shadowsocks\View\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shadowsocks\View\MenuViewController.cs" />
+    <Compile Include="Shadowsocks\View\PerPixelAlphaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\QRCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\QRCodeForm.Designer.cs">
+      <DependentUpon>QRCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shadowsocks\View\QRCodeSplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\ServerLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\ServerLogForm.Designer.cs">
+      <DependentUpon>ServerLogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shadowsocks\View\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shadowsocks\View\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shadowsocks\View\Win32.cs" />
+    <Compile Include="SimpleJson.cs" />
+    <Compile Include="SimpleJson\IJsonSerializerStrategy.cs" />
+    <Compile Include="SimpleJson\JsonArray.cs" />
+    <Compile Include="SimpleJson\JsonObject.cs" />
+    <Compile Include="SimpleJson\PocoJsonSerializerStrategy.cs" />
+    <Compile Include="SimpleJson\Reflection\CacheResolver.cs" />
+    <Compile Include="SimpleJson\Reflection\GetHandler.cs" />
+    <Compile Include="SimpleJson\Reflection\MemberMapLoader.cs" />
+    <Compile Include="SimpleJson\Reflection\ReflectionUtils.cs" />
+    <Compile Include="SimpleJson\Reflection\SafeDictionary.cs" />
+    <Compile Include="SimpleJson\Reflection\SetHandler.cs" />
+    <Compile Include="SimpleJson\SimpleJson.cs" />
+    <Compile Include="ZXing\BarcodeFormat.cs" />
+    <Compile Include="ZXing\BaseLuminanceSource.cs" />
+    <Compile Include="ZXing\Binarizer.cs" />
+    <Compile Include="ZXing\BinaryBitmap.cs" />
+    <Compile Include="ZXing\BitmapLuminanceSource.cs" />
+    <Compile Include="ZXing\Common\BitArray.cs" />
+    <Compile Include="ZXing\Common\BitMatrix.cs" />
+    <Compile Include="ZXing\Common\BitSource.cs" />
+    <Compile Include="ZXing\Common\DecoderResult.cs" />
+    <Compile Include="ZXing\Common\DefaultGridSampler.cs" />
+    <Compile Include="ZXing\Common\DetectorResult.cs" />
+    <Compile Include="ZXing\Common\Detector\MathUtils.cs" />
+    <Compile Include="ZXing\Common\GlobalHistogramBinarizer.cs" />
+    <Compile Include="ZXing\Common\GridSampler.cs" />
+    <Compile Include="ZXing\Common\HybridBinarizer.cs" />
+    <Compile Include="ZXing\Common\PerspectiveTransform.cs" />
+    <Compile Include="ZXing\Common\ReedSolomon\GenericGF.cs" />
+    <Compile Include="ZXing\Common\ReedSolomon\GenericGFPoly.cs" />
+    <Compile Include="ZXing\Common\ReedSolomon\ReedSolomonDecoder.cs" />
+    <Compile Include="ZXing\Common\ReedSolomon\ReedSolomonEncoder.cs" />
+    <Compile Include="ZXing\Common\StringUtils.cs" />
+    <Compile Include="ZXing\DecodeHintType.cs" />
+    <Compile Include="ZXing\EncodeHintType.cs" />
+    <Compile Include="ZXing\LuminanceSource.cs" />
+    <Compile Include="ZXing\QrCode\Internal\AlignmentPattern.cs" />
+    <Compile Include="ZXing\QrCode\Internal\AlignmentPatternFinder.cs" />
+    <Compile Include="ZXing\QrCode\Internal\BitMatrixParser.cs" />
+    <Compile Include="ZXing\QrCode\Internal\BlockPair.cs" />
+    <Compile Include="ZXing\QrCode\Internal\ByteMatrix.cs" />
+    <Compile Include="ZXing\QrCode\Internal\DataBlock.cs" />
+    <Compile Include="ZXing\QrCode\Internal\DataMask.cs" />
+    <Compile Include="ZXing\QrCode\Internal\DecodedBitStreamParser.cs" />
+    <Compile Include="ZXing\QrCode\Internal\Decoder.cs" />
+    <Compile Include="ZXing\QrCode\Internal\Detector.cs" />
+    <Compile Include="ZXing\QrCode\Internal\Encoder.cs" />
+    <Compile Include="ZXing\QrCode\Internal\ErrorCorrectionLevel.cs" />
+    <Compile Include="ZXing\QrCode\Internal\FinderPattern.cs" />
+    <Compile Include="ZXing\QrCode\Internal\FinderPatternFinder.cs" />
+    <Compile Include="ZXing\QrCode\Internal\FinderPatternInfo.cs" />
+    <Compile Include="ZXing\QrCode\Internal\FormatInformation.cs" />
+    <Compile Include="ZXing\QrCode\Internal\MaskUtil.cs" />
+    <Compile Include="ZXing\QrCode\Internal\MatrixUtil.cs" />
+    <Compile Include="ZXing\QrCode\Internal\Mode.cs" />
+    <Compile Include="ZXing\QrCode\Internal\QRCode.cs" />
+    <Compile Include="ZXing\QrCode\Internal\QRCodeDecoderMetaData.cs" />
+    <Compile Include="ZXing\QrCode\Internal\Version.cs" />
+    <Compile Include="ZXing\QrCode\QRCodeReader.cs" />
+    <Compile Include="ZXing\Result.cs" />
+    <Compile Include="ZXing\ResultMetadataType.cs" />
+    <Compile Include="ZXing\ResultPoint.cs" />
+    <Compile Include="ZXing\ResultPointCallback.cs" />
+    <Compile Include="ZXing\WriterException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Shadowsocks\Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shadowsocks\View\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shadowsocks\View\QRCodeForm.resx">
+      <DependentUpon>QRCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shadowsocks\View\ServerLogForm.resx">
+      <DependentUpon>ServerLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shadowsocks\View\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Resources\cn" />
+    <None Include="Resources\libsscrypto_dll" />
+    <None Include="Resources\mgwz_dll" />
+    <None Include="Resources\privoxy_conf" />
+    <None Include="Resources\privoxy_exe" />
+    <None Include="Resources\proxy_pac_txt" />
+    <None Include="Resources\user_rule" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shadowsocks.ico" />
+    <Content Include="Resources\ss16.png" />
+    <Content Include="Resources\ss20.png" />
+    <Content Include="Resources\ss24.png" />
+    <Content Include="Resources\ssw128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shadowsocks\123\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
