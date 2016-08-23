@@ -5,16 +5,16 @@ using ZXing.Common.ReedSolomon;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200006F RID: 111
+	// Token: 0x02000071 RID: 113
 	public sealed class Decoder
 	{
-		// Token: 0x060003F8 RID: 1016 RVA: 0x00022439 File Offset: 0x00020639
+		// Token: 0x06000401 RID: 1025 RVA: 0x00021681 File Offset: 0x0001F881
 		public Decoder()
 		{
 			this.rsDecoder = new ReedSolomonDecoder(GenericGF.QR_CODE_FIELD_256);
 		}
 
-		// Token: 0x060003FC RID: 1020 RVA: 0x000225E4 File Offset: 0x000207E4
+		// Token: 0x06000405 RID: 1029 RVA: 0x0002182C File Offset: 0x0001FA2C
 		private bool correctErrors(byte[] codewordBytes, int numDataCodewords)
 		{
 			int num = codewordBytes.Length;
@@ -35,7 +35,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F9 RID: 1017 RVA: 0x00022454 File Offset: 0x00020654
+		// Token: 0x06000402 RID: 1026 RVA: 0x0002169C File Offset: 0x0001F89C
 		public DecoderResult decode(bool[][] image, IDictionary<DecodeHintType, object> hints)
 		{
 			int num = image.Length;
@@ -50,7 +50,7 @@ namespace ZXing.QrCode.Internal
 			return this.decode(bitMatrix, hints);
 		}
 
-		// Token: 0x060003FA RID: 1018 RVA: 0x0002249C File Offset: 0x0002069C
+		// Token: 0x06000403 RID: 1027 RVA: 0x000216E4 File Offset: 0x0001F8E4
 		public DecoderResult decode(BitMatrix bits, IDictionary<DecodeHintType, object> hints)
 		{
 			BitMatrixParser bitMatrixParser = BitMatrixParser.createBitMatrixParser(bits);
@@ -81,7 +81,7 @@ namespace ZXing.QrCode.Internal
 			return decoderResult;
 		}
 
-		// Token: 0x060003FB RID: 1019 RVA: 0x00022504 File Offset: 0x00020704
+		// Token: 0x06000404 RID: 1028 RVA: 0x0002174C File Offset: 0x0001F94C
 		private DecoderResult decode(BitMatrixParser parser, IDictionary<DecodeHintType, object> hints)
 		{
 			Version version = parser.readVersion();
@@ -91,10 +91,6 @@ namespace ZXing.QrCode.Internal
 			}
 			FormatInformation formatInformation = parser.readFormatInformation();
 			if (formatInformation == null)
-			{
-				return null;
-			}
-			if(formatInformation.ErrorCorrectionLevel==null)
 			{
 				return null;
 			}
@@ -132,7 +128,7 @@ namespace ZXing.QrCode.Internal
 			return DecodedBitStreamParser.decode(array3, version, errorCorrectionLevel, hints);
 		}
 
-		// Token: 0x040002DF RID: 735
+		// Token: 0x040002DC RID: 732
 		private readonly ReedSolomonDecoder rsDecoder;
 	}
 }

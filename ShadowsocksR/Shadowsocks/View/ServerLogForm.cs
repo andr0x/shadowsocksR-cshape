@@ -13,7 +13,7 @@ namespace Shadowsocks.View
 	// Token: 0x02000009 RID: 9
 	public partial class ServerLogForm : Form
 	{
-		// Token: 0x0600006C RID: 108 RVA: 0x00007878 File Offset: 0x00005A78
+		// Token: 0x0600006C RID: 108 RVA: 0x000079D0 File Offset: 0x00005BD0
 		public ServerLogForm(ShadowsocksController controller)
 		{
 			this.controller = controller;
@@ -57,7 +57,7 @@ namespace Shadowsocks.View
 			this.ServerDataGrid.AutoResizeColumnHeadersHeight();
 		}
 
-		// Token: 0x0600007B RID: 123 RVA: 0x00008C44 File Offset: 0x00006E44
+		// Token: 0x0600007B RID: 123 RVA: 0x00008DF4 File Offset: 0x00006FF4
 		private void autosizeColumns()
 		{
 			for (int i = 0; i < this.ServerDataGrid.Columns.Count; i++)
@@ -84,13 +84,13 @@ namespace Shadowsocks.View
 			this.ServerDataGrid.AutoResizeColumnHeadersHeight();
 		}
 
-		// Token: 0x0600007C RID: 124 RVA: 0x00008E80 File Offset: 0x00007080
+		// Token: 0x0600007C RID: 124 RVA: 0x00009030 File Offset: 0x00007230
 		private void autosizeItem_Click(object sender, EventArgs e)
 		{
 			this.autosizeColumns();
 		}
 
-		// Token: 0x0600007F RID: 127 RVA: 0x00008F14 File Offset: 0x00007114
+		// Token: 0x0600007F RID: 127 RVA: 0x000090C4 File Offset: 0x000072C4
 		private void ClearItem_Click(object sender, EventArgs e)
 		{
 			using (List<Server>.Enumerator enumerator = this.controller.GetCurrentConfiguration().configs.GetEnumerator())
@@ -102,7 +102,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600007E RID: 126 RVA: 0x00008EB4 File Offset: 0x000070B4
+		// Token: 0x0600007E RID: 126 RVA: 0x00009064 File Offset: 0x00007264
 		private void ClearMaxSpeed_Click(object sender, EventArgs e)
 		{
 			using (List<Server>.Enumerator enumerator = this.controller.GetCurrentConfiguration().configs.GetEnumerator())
@@ -114,61 +114,69 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000076 RID: 118 RVA: 0x00007D33 File Offset: 0x00005F33
+		// Token: 0x06000076 RID: 118 RVA: 0x00007EE5 File Offset: 0x000060E5
 		private byte ColorMix(byte a, byte b, double alpha)
 		{
 			return (byte)((double)b * alpha + (double)a * (1.0 - alpha));
 		}
 
-		// Token: 0x06000077 RID: 119 RVA: 0x00007D4C File Offset: 0x00005F4C
+		// Token: 0x06000077 RID: 119 RVA: 0x00007EFC File Offset: 0x000060FC
 		private Color ColorMix(Color a, Color b, double alpha)
 		{
 			return Color.FromArgb((int)this.ColorMix(a.R, b.R, alpha), (int)this.ColorMix(a.G, b.G, alpha), (int)this.ColorMix(a.B, b.B, alpha));
 		}
 
-		// Token: 0x06000070 RID: 112 RVA: 0x00007B5B File Offset: 0x00005D5B
+		// Token: 0x06000070 RID: 112 RVA: 0x00007CB3 File Offset: 0x00005EB3
 		private void controller_ConfigChanged(object sender, EventArgs e)
 		{
 			this.UpdateTitle();
 		}
 
-		// Token: 0x0600006D RID: 109 RVA: 0x00005BFC File Offset: 0x00003DFC
+		// Token: 0x0600006D RID: 109 RVA: 0x00005D3C File Offset: 0x00003F3C
 		private MenuItem CreateMenuItem(string text, EventHandler click)
 		{
 			return new MenuItem(I18N.GetString(text), click);
 		}
 
-		// Token: 0x06000071 RID: 113 RVA: 0x00007B64 File Offset: 0x00005D64
+		// Token: 0x06000071 RID: 113 RVA: 0x00007CBC File Offset: 0x00005EBC
 		private string FormatBytes(long bytes)
 		{
-			if (bytes >= 2305843009213693952L)
+			if (bytes >= 1114640907774197760L)
 			{
 				return ((double)bytes / 1.152921504606847E+18).ToString("F5") + "E";
 			}
-			if (bytes >= 2251799813685248L)
+			if (bytes >= 1088516511498240L)
 			{
 				return ((double)bytes / 1125899906842624.0).ToString("F5") + "P";
 			}
-			if (bytes >= 2199023255552L)
+			if (bytes >= 1063004405760L)
 			{
 				return ((double)bytes / 1099511627776.0).ToString("F5") + "T";
 			}
-			if (bytes >= unchecked((long)(unchecked ((ulong)-2147483648))))
+			if (bytes >= 1038090240L)
 			{
 				return ((double)bytes / 1073741824.0).ToString("F4") + "G";
 			}
+			if (bytes >= 104857600L)
+			{
+				return ((double)bytes / 1048576.0).ToString("F1") + "M";
+			}
+			if (bytes >= 10485760L)
+			{
+				return ((double)bytes / 1048576.0).ToString("F2") + "M";
+			}
 			if (bytes >= 1013760L)
 			{
-				return ((double)bytes / 1048576.0).ToString("F4") + "M";
+				return ((double)bytes / 1048576.0).ToString("F3") + "M";
 			}
 			if (bytes > 2048L)
 			{
-				return ((double)bytes / 1024.0).ToString("F3") + "K";
+				return ((double)bytes / 1024.0).ToString("F1") + "K";
 			}
 			return bytes.ToString();
 		}
 
-		// Token: 0x0600007A RID: 122 RVA: 0x00007E50 File Offset: 0x00006050
+		// Token: 0x0600007A RID: 122 RVA: 0x00008000 File Offset: 0x00006200
 		public void RefreshLog()
 		{
 			if (this.ServerSpeedLogList == null)
@@ -568,7 +576,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000082 RID: 130 RVA: 0x0000903C File Offset: 0x0000723C
+		// Token: 0x06000082 RID: 130 RVA: 0x000091EC File Offset: 0x000073EC
 		private void ServerDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex >= 0)
@@ -608,7 +616,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000083 RID: 131 RVA: 0x00009200 File Offset: 0x00007400
+		// Token: 0x06000083 RID: 131 RVA: 0x000093B0 File Offset: 0x000075B0
 		private void ServerDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.RowIndex >= 0)
@@ -642,7 +650,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600008A RID: 138 RVA: 0x00009A64 File Offset: 0x00007C64
+		// Token: 0x0600008A RID: 138 RVA: 0x00009C14 File Offset: 0x00007E14
 		private void ServerDataGrid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
 		{
 			int num = 0;
@@ -657,7 +665,7 @@ namespace Shadowsocks.View
 			this.ServerDataGrid.AutoResizeColumnHeadersHeight();
 		}
 
-		// Token: 0x06000081 RID: 129 RVA: 0x00009009 File Offset: 0x00007209
+		// Token: 0x06000081 RID: 129 RVA: 0x000091B9 File Offset: 0x000073B9
 		private void ServerDataGrid_MouseUp(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Right)
@@ -666,7 +674,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000086 RID: 134 RVA: 0x000095FC File Offset: 0x000077FC
+		// Token: 0x06000086 RID: 134 RVA: 0x000097AC File Offset: 0x000079AC
 		private void ServerDataGrid_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
 		{
 			if (e.Column.Name == "Server" || e.Column.Name == "Group")
@@ -712,12 +720,12 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600008B RID: 139 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x0600008B RID: 139 RVA: 0x00009C9F File Offset: 0x00007E9F
 		private void ServerLogForm_Activated(object sender, EventArgs e)
 		{
 		}
 
-		// Token: 0x06000084 RID: 132 RVA: 0x00009484 File Offset: 0x00007684
+		// Token: 0x06000084 RID: 132 RVA: 0x00009634 File Offset: 0x00007834
 		private void ServerLogForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.controller.ConfigChanged -= new EventHandler(this.controller_ConfigChanged);
@@ -730,13 +738,13 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000087 RID: 135 RVA: 0x0000997F File Offset: 0x00007B7F
+		// Token: 0x06000087 RID: 135 RVA: 0x00009B2F File Offset: 0x00007D2F
 		private void ServerLogForm_Move(object sender, EventArgs e)
 		{
 			this.updatePause = 0;
 		}
 
-		// Token: 0x06000089 RID: 137 RVA: 0x000099BC File Offset: 0x00007BBC
+		// Token: 0x06000089 RID: 137 RVA: 0x00009B6C File Offset: 0x00007D6C
 		private void ServerLogForm_ResizeEnd(object sender, EventArgs e)
 		{
 			this.updatePause = 0;
@@ -752,7 +760,7 @@ namespace Shadowsocks.View
 			this.ServerDataGrid.Columns[2].Width += base.Width - num;
 		}
 
-		// Token: 0x06000072 RID: 114 RVA: 0x00007C8F File Offset: 0x00005E8F
+		// Token: 0x06000072 RID: 114 RVA: 0x00007E41 File Offset: 0x00006041
 		public bool SetBackColor(DataGridViewCell cell, Color newColor)
 		{
 			if (cell.Style.BackColor != newColor)
@@ -764,7 +772,7 @@ namespace Shadowsocks.View
 			return false;
 		}
 
-		// Token: 0x06000074 RID: 116 RVA: 0x00007CDB File Offset: 0x00005EDB
+		// Token: 0x06000074 RID: 116 RVA: 0x00007E8D File Offset: 0x0000608D
 		public bool SetCellText(DataGridViewCell cell, string newString)
 		{
 			if ((string)cell.Value != newString)
@@ -776,7 +784,7 @@ namespace Shadowsocks.View
 			return false;
 		}
 
-		// Token: 0x06000075 RID: 117 RVA: 0x00007D01 File Offset: 0x00005F01
+		// Token: 0x06000075 RID: 117 RVA: 0x00007EB3 File Offset: 0x000060B3
 		public bool SetCellText(DataGridViewCell cell, long newInteger)
 		{
 			if ((string)cell.Value != newInteger.ToString())
@@ -788,7 +796,7 @@ namespace Shadowsocks.View
 			return false;
 		}
 
-		// Token: 0x06000073 RID: 115 RVA: 0x00007CBA File Offset: 0x00005EBA
+		// Token: 0x06000073 RID: 115 RVA: 0x00007E6C File Offset: 0x0000606C
 		public bool SetCellToolTipText(DataGridViewCell cell, string newString)
 		{
 			if (cell.ToolTipText != newString)
@@ -800,7 +808,7 @@ namespace Shadowsocks.View
 			return false;
 		}
 
-		// Token: 0x06000085 RID: 133 RVA: 0x000094D4 File Offset: 0x000076D4
+		// Token: 0x06000085 RID: 133 RVA: 0x00009684 File Offset: 0x00007884
 		private long Str2Long(string str)
 		{
 			if (str == "-")
@@ -835,7 +843,7 @@ namespace Shadowsocks.View
 			return result;
 		}
 
-		// Token: 0x06000080 RID: 128 RVA: 0x00008F74 File Offset: 0x00007174
+		// Token: 0x06000080 RID: 128 RVA: 0x00009124 File Offset: 0x00007324
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			if (this.updatePause > 0)
@@ -869,14 +877,14 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600007D RID: 125 RVA: 0x00008E88 File Offset: 0x00007088
+		// Token: 0x0600007D RID: 125 RVA: 0x00009038 File Offset: 0x00007238
 		private void topmostItem_Click(object sender, EventArgs e)
 		{
 			this.topmostItem.Checked = !this.topmostItem.Checked;
 			base.TopMost = this.topmostItem.Checked;
 		}
 
-		// Token: 0x06000079 RID: 121 RVA: 0x00007E16 File Offset: 0x00006016
+		// Token: 0x06000079 RID: 121 RVA: 0x00007FC6 File Offset: 0x000061C6
 		public void UpdateLog()
 		{
 			if (this.workerThread == null)
@@ -888,7 +896,7 @@ namespace Shadowsocks.View
 			this.workerEvent.Set();
 		}
 
-		// Token: 0x06000078 RID: 120 RVA: 0x00007DA0 File Offset: 0x00005FA0
+		// Token: 0x06000078 RID: 120 RVA: 0x00007F50 File Offset: 0x00006150
 		public void UpdateLogThread()
 		{
 			while (this.workerThread != null)
@@ -904,7 +912,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600006F RID: 111 RVA: 0x00007AFC File Offset: 0x00005CFC
+		// Token: 0x0600006F RID: 111 RVA: 0x00007C54 File Offset: 0x00005E54
 		private void UpdateTexts()
 		{
 			this.UpdateTitle();
@@ -914,7 +922,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600006E RID: 110 RVA: 0x00007A70 File Offset: 0x00005C70
+		// Token: 0x0600006E RID: 110 RVA: 0x00007BC8 File Offset: 0x00005DC8
 		private void UpdateTitle()
 		{
 			this.Text = string.Concat(new string[]
@@ -925,11 +933,11 @@ namespace Shadowsocks.View
 				":",
 				this.controller.GetCurrentConfiguration().localPort.ToString(),
 				I18N.GetString(" Version"),
-				"3.8.4.2 blue)"
+				"3.8.5.0 Beta)"
 			});
 		}
 
-		// Token: 0x06000088 RID: 136 RVA: 0x00009988 File Offset: 0x00007B88
+		// Token: 0x06000088 RID: 136 RVA: 0x00009B38 File Offset: 0x00007D38
 		protected override void WndProc(ref Message message)
 		{
 			int msg = message.Msg;

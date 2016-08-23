@@ -5,16 +5,16 @@ using System.Text;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000032 RID: 50
+	// Token: 0x02000030 RID: 48
 	public abstract class IVEncryptor : EncryptorBase
 	{
-		// Token: 0x060001B9 RID: 441 RVA: 0x000138E1 File Offset: 0x00011AE1
+		// Token: 0x060001A5 RID: 421 RVA: 0x00013071 File Offset: 0x00011271
 		public IVEncryptor(string method, string password) : base(method, password)
 		{
 			this.InitKey(method, password);
 		}
 
-		// Token: 0x060001BE RID: 446 RVA: 0x00013A88 File Offset: 0x00011C88
+		// Token: 0x060001AA RID: 426 RVA: 0x00013218 File Offset: 0x00011418
 		protected void bytesToKey(byte[] password, byte[] key)
 		{
 			byte[] array = new byte[password.Length + 16];
@@ -37,10 +37,10 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001C1 RID: 449
+		// Token: 0x060001AD RID: 429
 		protected abstract void cipherUpdate(bool isCipher, int length, byte[] buf, byte[] outbuf);
 
-		// Token: 0x060001C3 RID: 451 RVA: 0x00013C14 File Offset: 0x00011E14
+		// Token: 0x060001AF RID: 431 RVA: 0x000133A4 File Offset: 0x000115A4
 		public override void Decrypt(byte[] buf, int length, byte[] outbuf, out int outlength)
 		{
 			if (this._decryptIVReceived < this.ivLen)
@@ -88,7 +88,7 @@ namespace Shadowsocks.Encryption
 			this.cipherUpdate(false, length, buf, outbuf);
 		}
 
-		// Token: 0x060001C2 RID: 450 RVA: 0x00013B68 File Offset: 0x00011D68
+		// Token: 0x060001AE RID: 430 RVA: 0x000132F8 File Offset: 0x000114F8
 		public override void Encrypt(byte[] buf, int length, byte[] outbuf, out int outlength)
 		{
 			if (!this._encryptIVSent)
@@ -110,16 +110,16 @@ namespace Shadowsocks.Encryption
 			this.cipherUpdate(true, length, buf, outbuf);
 		}
 
-		// Token: 0x060001BA RID: 442
+		// Token: 0x060001A6 RID: 422
 		protected abstract Dictionary<string, int[]> getCiphers();
 
-		// Token: 0x060001BB RID: 443 RVA: 0x000138F3 File Offset: 0x00011AF3
+		// Token: 0x060001A7 RID: 423 RVA: 0x00013083 File Offset: 0x00011283
 		public override byte[] getIV()
 		{
 			return this._iv;
 		}
 
-		// Token: 0x060001BC RID: 444 RVA: 0x000138FC File Offset: 0x00011AFC
+		// Token: 0x060001A8 RID: 424 RVA: 0x0001308C File Offset: 0x0001128C
 		public override byte[] getKey()
 		{
 			byte[] result = (byte[])this._key.Clone();
@@ -127,7 +127,7 @@ namespace Shadowsocks.Encryption
 			return result;
 		}
 
-		// Token: 0x060001C0 RID: 448 RVA: 0x00013B08 File Offset: 0x00011D08
+		// Token: 0x060001AC RID: 428 RVA: 0x00013298 File Offset: 0x00011498
 		protected virtual void initCipher(byte[] iv, bool isCipher)
 		{
 			if (this.ivLen > 0)
@@ -143,7 +143,7 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001BD RID: 445 RVA: 0x00013928 File Offset: 0x00011B28
+		// Token: 0x060001A9 RID: 425 RVA: 0x000130B8 File Offset: 0x000112B8
 		protected void InitKey(string method, string password)
 		{
 			method = method.ToLower();
@@ -181,7 +181,7 @@ namespace Shadowsocks.Encryption
 			IVEncryptor.randBytes(this._iv, this.ivLen);
 		}
 
-		// Token: 0x060001BF RID: 447 RVA: 0x00013AE0 File Offset: 0x00011CE0
+		// Token: 0x060001AB RID: 427 RVA: 0x00013270 File Offset: 0x00011470
 		protected static void randBytes(byte[] buf, int length)
 		{
 			byte[] array = new byte[length];
@@ -189,14 +189,14 @@ namespace Shadowsocks.Encryption
 			array.CopyTo(buf, 0);
 		}
 
-		// Token: 0x060001C5 RID: 453 RVA: 0x00013D91 File Offset: 0x00011F91
+		// Token: 0x060001B1 RID: 433 RVA: 0x00013521 File Offset: 0x00011721
 		public override void ResetDecrypt()
 		{
 			this._decryptIVReceived = 0;
 			this._decryptIVOffset = 0;
 		}
 
-		// Token: 0x060001C4 RID: 452 RVA: 0x00013D70 File Offset: 0x00011F70
+		// Token: 0x060001B0 RID: 432 RVA: 0x00013500 File Offset: 0x00011700
 		public override void ResetEncrypt()
 		{
 			this._encryptIVSent = false;
@@ -204,52 +204,52 @@ namespace Shadowsocks.Encryption
 			IVEncryptor.randBytes(this._iv, this.ivLen);
 		}
 
-		// Token: 0x04000175 RID: 373
+		// Token: 0x0400016B RID: 363
 		private static readonly Dictionary<string, byte[]> CachedKeys = new Dictionary<string, byte[]>();
 
-		// Token: 0x04000174 RID: 372
+		// Token: 0x0400016A RID: 362
 		protected Dictionary<string, int[]> ciphers;
 
-		// Token: 0x04000182 RID: 386
+		// Token: 0x04000178 RID: 376
 		protected int ivLen;
 
-		// Token: 0x04000180 RID: 384
+		// Token: 0x04000176 RID: 374
 		protected int keyLen;
 
-		// Token: 0x04000173 RID: 371
+		// Token: 0x04000169 RID: 361
 		protected static byte[] tempbuf = new byte[65536];
 
-		// Token: 0x0400017D RID: 381
+		// Token: 0x04000173 RID: 371
 		protected int _cipher;
 
-		// Token: 0x0400017E RID: 382
+		// Token: 0x04000174 RID: 372
 		protected int[] _cipherInfo;
 
-		// Token: 0x04000177 RID: 375
+		// Token: 0x0400016D RID: 365
 		protected byte[] _decryptIV;
 
-		// Token: 0x0400017B RID: 379
+		// Token: 0x04000171 RID: 369
 		protected int _decryptIVOffset;
 
-		// Token: 0x04000178 RID: 376
+		// Token: 0x0400016E RID: 366
 		protected int _decryptIVReceived;
 
-		// Token: 0x04000176 RID: 374
+		// Token: 0x0400016C RID: 364
 		protected byte[] _encryptIV;
 
-		// Token: 0x0400017A RID: 378
+		// Token: 0x04000170 RID: 368
 		protected int _encryptIVOffset;
 
-		// Token: 0x04000179 RID: 377
+		// Token: 0x0400016F RID: 367
 		protected bool _encryptIVSent;
 
-		// Token: 0x04000181 RID: 385
+		// Token: 0x04000177 RID: 375
 		protected byte[] _iv;
 
-		// Token: 0x0400017F RID: 383
+		// Token: 0x04000175 RID: 373
 		protected byte[] _key;
 
-		// Token: 0x0400017C RID: 380
+		// Token: 0x04000172 RID: 370
 		protected string _method;
 	}
 }

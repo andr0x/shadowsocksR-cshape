@@ -4,10 +4,10 @@ using Shadowsocks.Model;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000048 RID: 72
+	// Token: 0x0200004A RID: 74
 	internal class SpeedTester
 	{
-		// Token: 0x06000275 RID: 629 RVA: 0x00017A00 File Offset: 0x00015C00
+		// Token: 0x06000294 RID: 660 RVA: 0x00018FDC File Offset: 0x000171DC
 		public void AddDownloadSize(int size)
 		{
 			if (this.sizeDownloadList.Count == 2)
@@ -25,13 +25,13 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000276 RID: 630 RVA: 0x00017A7C File Offset: 0x00015C7C
+		// Token: 0x06000295 RID: 661 RVA: 0x00019058 File Offset: 0x00017258
 		public void AddRecvSize(int size)
 		{
 			this.sizeRecv += (long)size;
 		}
 
-		// Token: 0x06000277 RID: 631 RVA: 0x00017A8D File Offset: 0x00015C8D
+		// Token: 0x06000296 RID: 662 RVA: 0x00019069 File Offset: 0x00017269
 		public void AddUploadSize(int size)
 		{
 			this.sizeUpload += (long)size;
@@ -41,13 +41,13 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000271 RID: 625 RVA: 0x000179A3 File Offset: 0x00015BA3
+		// Token: 0x06000290 RID: 656 RVA: 0x00018F80 File Offset: 0x00017180
 		public void BeginConnect()
 		{
 			this.timeConnectBegin = DateTime.Now;
 		}
 
-		// Token: 0x06000274 RID: 628 RVA: 0x000179CC File Offset: 0x00015BCC
+		// Token: 0x06000293 RID: 659 RVA: 0x00018FA8 File Offset: 0x000171A8
 		public bool BeginDownload()
 		{
 			if (this.timeBeginDownload == default(DateTime))
@@ -58,19 +58,19 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x06000273 RID: 627 RVA: 0x000179BD File Offset: 0x00015BBD
+		// Token: 0x06000292 RID: 658 RVA: 0x00018F9A File Offset: 0x0001719A
 		public void BeginUpload()
 		{
 			this.timeBeginUpload = DateTime.Now;
 		}
 
-		// Token: 0x06000272 RID: 626 RVA: 0x000179B0 File Offset: 0x00015BB0
+		// Token: 0x06000291 RID: 657 RVA: 0x00018F8D File Offset: 0x0001718D
 		public void EndConnect()
 		{
 			this.timeConnectEnd = DateTime.Now;
 		}
 
-		// Token: 0x06000279 RID: 633 RVA: 0x00017B88 File Offset: 0x00015D88
+		// Token: 0x06000298 RID: 664 RVA: 0x00019164 File Offset: 0x00017364
 		public int GetActionType()
 		{
 			int num = 0;
@@ -90,7 +90,7 @@ namespace Shadowsocks.Controller
 			return num;
 		}
 
-		// Token: 0x06000278 RID: 632 RVA: 0x00017AC4 File Offset: 0x00015CC4
+		// Token: 0x06000297 RID: 663 RVA: 0x000190A0 File Offset: 0x000172A0
 		public long GetAvgDownloadSpeed()
 		{
 			if (this.sizeDownloadList == null || this.sizeDownloadList.Count < 2 || (this.sizeDownloadList[this.sizeDownloadList.Count - 1].recvTime - this.sizeDownloadList[0].recvTime).TotalSeconds <= 0.001)
@@ -100,34 +100,34 @@ namespace Shadowsocks.Controller
 			return (long)((double)(this.sizeDownload - (long)this.sizeDownloadList[0].size) / (this.sizeDownloadList[this.sizeDownloadList.Count - 1].recvTime - this.sizeDownloadList[0].recvTime).TotalSeconds);
 		}
 
-		// Token: 0x040001E9 RID: 489
+		// Token: 0x040001F9 RID: 505
 		public string server;
 
-		// Token: 0x040001E6 RID: 486
+		// Token: 0x040001F6 RID: 502
 		public long sizeDownload;
 
-		// Token: 0x040001E8 RID: 488
+		// Token: 0x040001F8 RID: 504
 		private List<TransLog> sizeDownloadList = new List<TransLog>();
 
-		// Token: 0x040001E7 RID: 487
+		// Token: 0x040001F7 RID: 503
 		public long sizeRecv;
 
-		// Token: 0x040001E5 RID: 485
+		// Token: 0x040001F5 RID: 501
 		public long sizeUpload;
 
-		// Token: 0x040001E4 RID: 484
+		// Token: 0x040001F4 RID: 500
 		public DateTime timeBeginDownload;
 
-		// Token: 0x040001E3 RID: 483
+		// Token: 0x040001F3 RID: 499
 		public DateTime timeBeginUpload;
 
-		// Token: 0x040001E1 RID: 481
+		// Token: 0x040001F1 RID: 497
 		public DateTime timeConnectBegin;
 
-		// Token: 0x040001E2 RID: 482
+		// Token: 0x040001F2 RID: 498
 		public DateTime timeConnectEnd;
 
-		// Token: 0x040001EA RID: 490
+		// Token: 0x040001FA RID: 506
 		public ServerTransferTotal transfer;
 	}
 }

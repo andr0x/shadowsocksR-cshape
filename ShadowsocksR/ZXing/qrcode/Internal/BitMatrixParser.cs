@@ -3,16 +3,16 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200006B RID: 107
+	// Token: 0x0200006D RID: 109
 	internal sealed class BitMatrixParser
 	{
-		// Token: 0x060003DE RID: 990 RVA: 0x0002176B File Offset: 0x0001F96B
+		// Token: 0x060003E7 RID: 999 RVA: 0x000209B3 File Offset: 0x0001EBB3
 		private BitMatrixParser(BitMatrix bitMatrix)
 		{
 			this.bitMatrix = bitMatrix;
 		}
 
-		// Token: 0x060003E1 RID: 993 RVA: 0x0002194C File Offset: 0x0001FB4C
+		// Token: 0x060003EA RID: 1002 RVA: 0x00020B94 File Offset: 0x0001ED94
 		private int copyBit(int i, int j, int versionBits)
 		{
 			if (!(this.mirrored ? this.bitMatrix[j, i] : this.bitMatrix[i, j]))
@@ -22,7 +22,7 @@ namespace ZXing.QrCode.Internal
 			return versionBits << 1 | 1;
 		}
 
-		// Token: 0x060003DD RID: 989 RVA: 0x00021744 File Offset: 0x0001F944
+		// Token: 0x060003E6 RID: 998 RVA: 0x0002098C File Offset: 0x0001EB8C
 		internal static BitMatrixParser createBitMatrixParser(BitMatrix bitMatrix)
 		{
 			int height = bitMatrix.Height;
@@ -33,7 +33,7 @@ namespace ZXing.QrCode.Internal
 			return new BitMatrixParser(bitMatrix);
 		}
 
-		// Token: 0x060003E5 RID: 997 RVA: 0x00021AF8 File Offset: 0x0001FCF8
+		// Token: 0x060003EE RID: 1006 RVA: 0x00020D40 File Offset: 0x0001EF40
 		internal void mirror()
 		{
 			for (int i = 0; i < this.bitMatrix.Width; i++)
@@ -49,7 +49,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x060003E2 RID: 994 RVA: 0x00021980 File Offset: 0x0001FB80
+		// Token: 0x060003EB RID: 1003 RVA: 0x00020BC8 File Offset: 0x0001EDC8
 		internal byte[] readCodewords()
 		{
 			FormatInformation formatInformation = this.readFormatInformation();
@@ -108,8 +108,8 @@ namespace ZXing.QrCode.Internal
 			return array;
 		}
 
-		// Token: 0x060003DF RID: 991 RVA: 0x0002177C File Offset: 0x0001F97C
-		internal FormatInformation  readFormatInformation()
+		// Token: 0x060003E8 RID: 1000 RVA: 0x000209C4 File Offset: 0x0001EBC4
+		internal FormatInformation readFormatInformation()
 		{
 			if (this.parsedFormatInfo != null)
 			{
@@ -146,7 +146,7 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x060003E0 RID: 992 RVA: 0x00021858 File Offset: 0x0001FA58
+		// Token: 0x060003E9 RID: 1001 RVA: 0x00020AA0 File Offset: 0x0001ECA0
 		internal Version readVersion()
 		{
 			if (this.parsedVersion != null)
@@ -189,7 +189,7 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x060003E3 RID: 995 RVA: 0x00021AA0 File Offset: 0x0001FCA0
+		// Token: 0x060003EC RID: 1004 RVA: 0x00020CE8 File Offset: 0x0001EEE8
 		internal void remask()
 		{
 			if (this.parsedFormatInfo == null)
@@ -201,7 +201,7 @@ namespace ZXing.QrCode.Internal
 			arg_2C_0.unmaskBitMatrix(this.bitMatrix, height);
 		}
 
-		// Token: 0x060003E4 RID: 996 RVA: 0x00021ADE File Offset: 0x0001FCDE
+		// Token: 0x060003ED RID: 1005 RVA: 0x00020D26 File Offset: 0x0001EF26
 		internal void setMirror(bool mirror)
 		{
 			this.parsedVersion = null;
@@ -209,16 +209,16 @@ namespace ZXing.QrCode.Internal
 			this.mirrored = mirror;
 		}
 
-		// Token: 0x040002D6 RID: 726
+		// Token: 0x040002D3 RID: 723
 		private readonly BitMatrix bitMatrix;
 
-		// Token: 0x040002D9 RID: 729
+		// Token: 0x040002D6 RID: 726
 		private bool mirrored;
 
-		// Token: 0x040002D8 RID: 728
+		// Token: 0x040002D5 RID: 725
 		private FormatInformation parsedFormatInfo;
 
-		// Token: 0x040002D7 RID: 727
+		// Token: 0x040002D4 RID: 724
 		private Version parsedVersion;
 	}
 }

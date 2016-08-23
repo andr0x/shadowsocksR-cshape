@@ -9,17 +9,17 @@ using SimpleJson;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200003B RID: 59
+	// Token: 0x02000039 RID: 57
 	internal class APIServer : Listener.Service
 	{
-		// Token: 0x0600021D RID: 541 RVA: 0x00014CE9 File Offset: 0x00012EE9
+		// Token: 0x06000208 RID: 520 RVA: 0x00014459 File Offset: 0x00012659
 		public APIServer(ShadowsocksController controller, Configuration config)
 		{
 			this._controller = controller;
 			this._config = config;
 		}
 
-		// Token: 0x0600021F RID: 543 RVA: 0x00014EA0 File Offset: 0x000130A0
+		// Token: 0x0600020A RID: 522 RVA: 0x00014610 File Offset: 0x00012810
 		private bool CheckEnd(string request)
 		{
 			int num = request.IndexOf("\r\n\r\n");
@@ -61,7 +61,7 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x0600021E RID: 542 RVA: 0x00014D10 File Offset: 0x00012F10
+		// Token: 0x06000209 RID: 521 RVA: 0x00014480 File Offset: 0x00012680
 		public bool Handle(byte[] firstPacket, int length, Socket socket)
 		{
 			bool result;
@@ -128,7 +128,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x06000220 RID: 544 RVA: 0x00014F60 File Offset: 0x00013160
+		// Token: 0x0600020B RID: 523 RVA: 0x000146D0 File Offset: 0x000128D0
 		private void HttpHandshakeRecv(IAsyncResult ar)
 		{
 			try
@@ -168,7 +168,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000221 RID: 545 RVA: 0x0001504C File Offset: 0x0001324C
+		// Token: 0x0600020C RID: 524 RVA: 0x000147BC File Offset: 0x000129BC
 		protected string process(string request)
 		{
 			string text = request.Substring(0, request.IndexOf("\r\n"));
@@ -258,7 +258,7 @@ namespace Shadowsocks.Controller
 			return "";
 		}
 
-		// Token: 0x06000222 RID: 546 RVA: 0x00015484 File Offset: 0x00013684
+		// Token: 0x0600020D RID: 525 RVA: 0x00014BF4 File Offset: 0x00012DF4
 		private void SendCallback(IAsyncResult ar)
 		{
 			Socket socket = (Socket)ar.AsyncState;
@@ -272,22 +272,22 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x040001AA RID: 426
+		// Token: 0x040001A0 RID: 416
 		private string connection_request;
 
-		// Token: 0x040001A9 RID: 425
+		// Token: 0x0400019F RID: 415
 		private byte[] connetionRecvBuffer = new byte[16384];
 
-		// Token: 0x040001A8 RID: 424
+		// Token: 0x0400019E RID: 414
 		public const int RecvSize = 16384;
 
-		// Token: 0x040001A7 RID: 423
+		// Token: 0x0400019D RID: 413
 		private Configuration _config;
 
-		// Token: 0x040001A6 RID: 422
+		// Token: 0x0400019C RID: 412
 		private ShadowsocksController _controller;
 
-		// Token: 0x040001AB RID: 427
+		// Token: 0x040001A1 RID: 417
 		private Socket _local;
 	}
 }

@@ -6,16 +6,16 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x02000016 RID: 22
+	// Token: 0x02000014 RID: 20
 	internal class TlsTicketAuthObfs : ObfsBase
 	{
-		// Token: 0x060000F6 RID: 246 RVA: 0x0000F0BC File Offset: 0x0000D2BC
+		// Token: 0x060000E2 RID: 226 RVA: 0x0000E712 File Offset: 0x0000C912
 		public TlsTicketAuthObfs(string method) : base(method)
 		{
 			this.handshake_status = 0;
 		}
 
-		// Token: 0x06000100 RID: 256 RVA: 0x0000F7B4 File Offset: 0x0000D9B4
+		// Token: 0x060000EC RID: 236 RVA: 0x0000EE10 File Offset: 0x0000D010
 		public override byte[] ClientDecode(byte[] encryptdata, int datalength, out int outlength, out bool needsendback)
 		{
 			if (this.handshake_status == -1)
@@ -71,7 +71,7 @@ namespace Shadowsocks.Obfs
 			return encryptdata;
 		}
 
-		// Token: 0x060000FF RID: 255 RVA: 0x0000F328 File Offset: 0x0000D528
+		// Token: 0x060000EB RID: 235 RVA: 0x0000E984 File Offset: 0x0000CB84
 		public override byte[] ClientEncode(byte[] encryptdata, int datalength, out int outlength)
 		{
 			if (this.handshake_status == -1)
@@ -206,18 +206,18 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x06000101 RID: 257 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x060000ED RID: 237 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public override void Dispose()
 		{
 		}
 
-		// Token: 0x060000F8 RID: 248 RVA: 0x0000F0FF File Offset: 0x0000D2FF
+		// Token: 0x060000E4 RID: 228 RVA: 0x0000E755 File Offset: 0x0000C955
 		public override Dictionary<string, int[]> GetObfs()
 		{
 			return TlsTicketAuthObfs._obfs;
 		}
 
-		// Token: 0x060000FD RID: 253 RVA: 0x0000F1D8 File Offset: 0x0000D3D8
+		// Token: 0x060000E9 RID: 233 RVA: 0x0000E834 File Offset: 0x0000CA34
 		protected void hmac_sha1(byte[] data, int length)
 		{
 			byte[] array = new byte[this.Server.key.Length + 32];
@@ -226,13 +226,13 @@ namespace Shadowsocks.Obfs
 			Array.Copy(new HMACSHA1(array).ComputeHash(data, 0, length - 10), 0, data, length - 10, 10);
 		}
 
-		// Token: 0x060000F9 RID: 249 RVA: 0x0000EB77 File Offset: 0x0000CD77
+		// Token: 0x060000E5 RID: 229 RVA: 0x0000E75C File Offset: 0x0000C95C
 		public override object InitData()
 		{
 			return new TlsAuthData();
 		}
 
-		// Token: 0x060000FE RID: 254 RVA: 0x0000F254 File Offset: 0x0000D454
+		// Token: 0x060000EA RID: 234 RVA: 0x0000E8B0 File Offset: 0x0000CAB0
 		public void PackAuthData(byte[] outdata)
 		{
 			int length = 32;
@@ -255,7 +255,7 @@ namespace Shadowsocks.Obfs
 			this.hmac_sha1(outdata, length);
 		}
 
-		// Token: 0x060000FA RID: 250 RVA: 0x0000F108 File Offset: 0x0000D308
+		// Token: 0x060000E6 RID: 230 RVA: 0x0000E764 File Offset: 0x0000C964
 		protected byte[] sni(string url)
 		{
 			if (url == null)
@@ -277,13 +277,13 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x060000F7 RID: 247 RVA: 0x0000F0EE File Offset: 0x0000D2EE
+		// Token: 0x060000E3 RID: 227 RVA: 0x0000E744 File Offset: 0x0000C944
 		public static List<string> SupportedObfs()
 		{
 			return new List<string>(TlsTicketAuthObfs._obfs.Keys);
 		}
 
-		// Token: 0x060000FC RID: 252 RVA: 0x0000F184 File Offset: 0x0000D384
+		// Token: 0x060000E8 RID: 232 RVA: 0x0000E7E0 File Offset: 0x0000C9E0
 		protected byte[] to_bin(string str)
 		{
 			byte[] array = new byte[str.Length / 2];
@@ -294,7 +294,7 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x060000FB RID: 251 RVA: 0x0000F16F File Offset: 0x0000D36F
+		// Token: 0x060000E7 RID: 231 RVA: 0x0000E7CB File Offset: 0x0000C9CB
 		protected byte to_val(char c)
 		{
 			if (c > '9')
@@ -304,22 +304,22 @@ namespace Shadowsocks.Obfs
 			return (byte)(c - '0');
 		}
 
-		// Token: 0x040000DD RID: 221
+		// Token: 0x040000D2 RID: 210
 		private byte[] data_recv_buffer = new byte[0];
 
-		// Token: 0x040000DC RID: 220
+		// Token: 0x040000D1 RID: 209
 		private List<byte[]> data_sent_buffer = new List<byte[]>();
 
-		// Token: 0x040000DE RID: 222
+		// Token: 0x040000D3 RID: 211
 		protected static RNGCryptoServiceProvider g_random = new RNGCryptoServiceProvider();
 
-		// Token: 0x040000DB RID: 219
+		// Token: 0x040000D0 RID: 208
 		private int handshake_status;
 
-		// Token: 0x040000DF RID: 223
+		// Token: 0x040000D4 RID: 212
 		private Random random = new Random();
 
-		// Token: 0x040000DA RID: 218
+		// Token: 0x040000CF RID: 207
 		private static Dictionary<string, int[]> _obfs = new Dictionary<string, int[]>
 		{
 			{

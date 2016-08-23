@@ -2,16 +2,16 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000073 RID: 115
+	// Token: 0x02000075 RID: 117
 	public sealed class QRCodeDecoderMetaData
 	{
-		// Token: 0x06000414 RID: 1044 RVA: 0x00022DDB File Offset: 0x00020FDB
+		// Token: 0x0600041D RID: 1053 RVA: 0x00022023 File Offset: 0x00020223
 		public QRCodeDecoderMetaData(bool mirrored)
 		{
 			this.mirrored = mirrored;
 		}
 
-		// Token: 0x06000416 RID: 1046 RVA: 0x00022DF4 File Offset: 0x00020FF4
+		// Token: 0x0600041F RID: 1055 RVA: 0x0002203C File Offset: 0x0002023C
 		public void applyMirroredCorrection(ResultPoint[] points)
 		{
 			if (!this.mirrored || points == null || points.Length < 3)
@@ -23,17 +23,17 @@ namespace ZXing.QrCode.Internal
 			points[2] = resultPoint;
 		}
 
-		// Token: 0x1700004B RID: 75
+		// Token: 0x1700004E RID: 78
 		public bool IsMirrored
 		{
-			// Token: 0x06000415 RID: 1045 RVA: 0x00022DEA File Offset: 0x00020FEA
+			// Token: 0x0600041E RID: 1054 RVA: 0x00022032 File Offset: 0x00020232
 			get
 			{
 				return this.mirrored;
 			}
 		}
 
-		// Token: 0x040002FA RID: 762
+		// Token: 0x040002F7 RID: 759
 		private readonly bool mirrored;
 	}
 }

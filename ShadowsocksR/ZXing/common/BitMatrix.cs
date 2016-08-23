@@ -1,259 +1,202 @@
-/*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 
 namespace ZXing.Common
 {
-   /// <summary>
-   ///   <p>Represents a 2D matrix of bits. In function arguments below, and throughout the common
-   /// module, x is the column position, and y is the row position. The ordering is always x, y.
-   /// The origin is at the top-left.</p>
-   ///   <p>Internally the bits are represented in a 1-D array of 32-bit ints. However, each row begins
-   /// with a new int. This is done intentionally so that we can copy out a row into a BitArray very
-   /// efficiently.</p>
-   ///   <p>The ordering of bits is row-major. Within each int, the least significant bits are used first,
-   /// meaning they represent lower x values. This is compatible with BitArray's implementation.</p>
-   /// </summary>
-   /// <author>Sean Owen</author>
-   /// <author>dswitkin@google.com (Daniel Switkin)</author>
-   public sealed partial class BitMatrix
-   {
-      private readonly int width;
-      private readonly int height;
-      private readonly int rowSize;
-      private readonly int[] bits;
+	// Token: 0x02000084 RID: 132
+	public sealed class BitMatrix
+	{
+		// Token: 0x060004BE RID: 1214 RVA: 0x000276C1 File Offset: 0x000258C1
+		public BitMatrix(int dimension) : this(dimension, dimension)
+		{
+		}
 
-      /// <returns> The width of the matrix
-      /// </returns>
-      public int Width
-      {
-         get
-         {
-            return width;
-         }
+		// Token: 0x060004BF RID: 1215 RVA: 0x000276CC File Offset: 0x000258CC
+		public BitMatrix(int width, int height)
+		{
+			if (width < 1 || height < 1)
+			{
+				throw new ArgumentException("Both dimensions must be greater than 0");
+			}
+			this.width = width;
+			this.height = height;
+			this.rowSize = width + 31 >> 5;
+			this.bits = new int[this.rowSize * height];
+		}
 
-      }
-      /// <returns> The height of the matrix
-      /// </returns>
-      public int Height
-      {
-         get
-         {
-            return height;
-         }
+		// Token: 0x060004C0 RID: 1216 RVA: 0x0002771F File Offset: 0x0002591F
+		private BitMatrix(int width, int height, int rowSize, int[] bits)
+		{
+			this.width = width;
+			this.height = height;
+			this.rowSize = rowSize;
+			this.bits = bits;
+		}
 
-      }
+		// Token: 0x060004C3 RID: 1219 RVA: 0x000277AC File Offset: 0x000259AC
+		public void flip(int x, int y)
+		{
+			int num = y * this.rowSize + (x >> 5);
+			this.bits[num] ^= 1 << x;
+		}
 
-      // A helper to construct a square matrix.
-      public BitMatrix(int dimension)
-         : this(dimension, dimension)
-      {
-      }
+		// Token: 0x060004C8 RID: 1224 RVA: 0x00027984 File Offset: 0x00025B84
+		public int[] getBottomRightOnBit()
+		{
+			int num = this.bits.Length - 1;
+			while (num >= 0 && this.bits[num] == 0)
+			{
+				num--;
+			}
+			if (num < 0)
+			{
+				return null;
+			}
+			int num2 = num / this.rowSize;
+			int num3 = num % this.rowSize << 5;
+			int num4 = this.bits[num];
+			int num5 = 31;
+			while ((uint)num4 >> num5 == 0u)
+			{
+				num5--;
+			}
+			num3 += num5;
+			return new int[]
+			{
+				num3,
+				num2
+			};
+		}
 
-      public BitMatrix(int width, int height)
-      {
-         if (width < 1 || height < 1)
-         {
-            throw new System.ArgumentException("Both dimensions must be greater than 0");
-         }
-         this.width = width;
-         this.height = height;
-         this.rowSize = (width + 31) >> 5;
-         bits = new int[rowSize * height];
-      }
+		// Token: 0x060004C5 RID: 1221 RVA: 0x00027880 File Offset: 0x00025A80
+		public BitArray getRow(int y, BitArray row)
+		{
+			if (row == null || row.Size < this.width)
+			{
+				row = new BitArray(this.width);
+			}
+			else
+			{
+				row.clear();
+			}
+			int num = y * this.rowSize;
+			for (int i = 0; i < this.rowSize; i++)
+			{
+				row.setBulk(i << 5, this.bits[num + i]);
+			}
+			return row;
+		}
 
-      private BitMatrix(int width, int height, int rowSize, int[] bits)
-      {
-         this.width = width;
-         this.height = height;
-         this.rowSize = rowSize;
-         this.bits = bits;
-      }
+		// Token: 0x060004C7 RID: 1223 RVA: 0x00027904 File Offset: 0x00025B04
+		public int[] getTopLeftOnBit()
+		{
+			int num = 0;
+			while (num < this.bits.Length && this.bits[num] == 0)
+			{
+				num++;
+			}
+			if (num == this.bits.Length)
+			{
+				return null;
+			}
+			int num2 = num / this.rowSize;
+			int num3 = num % this.rowSize << 5;
+			int num4 = this.bits[num];
+			int num5 = 0;
+			while (num4 << 31 - num5 == 0)
+			{
+				num5++;
+			}
+			num3 += num5;
+			return new int[]
+			{
+				num3,
+				num2
+			};
+		}
 
-      /// <summary> <p>Gets the requested bit, where true means black.</p>
-      /// 
-      /// </summary>
-      /// <param name="x">The horizontal component (i.e. which column)
-      /// </param>
-      /// <param name="y">The vertical component (i.e. which row)
-      /// </param>
-      /// <returns> value of given bit in matrix
-      /// </returns>
-      public bool this[int x, int y]
-      {
-         get
-         {
-            int offset = y * rowSize + (x >> 5);
-            return (((int)((uint)(bits[offset]) >> (x & 0x1f))) & 1) != 0;
-         }
-         set
-         {
-            if (value)
-            {
-               int offset = y * rowSize + (x >> 5);
-               bits[offset] |= 1 << (x & 0x1f);
-            }
-         }
-      }
+		// Token: 0x060004C4 RID: 1220 RVA: 0x000277E0 File Offset: 0x000259E0
+		public void setRegion(int left, int top, int width, int height)
+		{
+			if (top < 0 || left < 0)
+			{
+				throw new ArgumentException("Left and top must be nonnegative");
+			}
+			if (height < 1 || width < 1)
+			{
+				throw new ArgumentException("Height and width must be at least 1");
+			}
+			int num = left + width;
+			int num2 = top + height;
+			if (num2 > this.height || num > this.width)
+			{
+				throw new ArgumentException("The region must fit inside the matrix");
+			}
+			for (int i = top; i < num2; i++)
+			{
+				int num3 = i * this.rowSize;
+				for (int j = left; j < num; j++)
+				{
+					this.bits[num3 + (j >> 5)] |= 1 << j;
+				}
+			}
+		}
 
-      /// <summary> <p>Flips the given bit.</p>
-      /// 
-      /// </summary>
-      /// <param name="x">The horizontal component (i.e. which column)
-      /// </param>
-      /// <param name="y">The vertical component (i.e. which row)
-      /// </param>
-      public void flip(int x, int y)
-      {
-         int offset = y * rowSize + (x >> 5);
-         bits[offset] ^= 1 << (x & 0x1f);
-      }
+		// Token: 0x060004C6 RID: 1222 RVA: 0x000278E1 File Offset: 0x00025AE1
+		public void setRow(int y, BitArray row)
+		{
+			Array.Copy(row.Array, 0, this.bits, y * this.rowSize, this.rowSize);
+		}
 
+		// Token: 0x1700006D RID: 109
+		public int Height
+		{
+			// Token: 0x060004BD RID: 1213 RVA: 0x000276B9 File Offset: 0x000258B9
+			get
+			{
+				return this.height;
+			}
+		}
 
-      /// <summary> <p>Sets a square region of the bit matrix to true.</p>
-      /// 
-      /// </summary>
-      /// <param name="left">The horizontal position to begin at (inclusive)
-      /// </param>
-      /// <param name="top">The vertical position to begin at (inclusive)
-      /// </param>
-      /// <param name="width">The width of the region
-      /// </param>
-      /// <param name="height">The height of the region
-      /// </param>
-      public void setRegion(int left, int top, int width, int height)
-      {
-         if (top < 0 || left < 0)
-         {
-            throw new System.ArgumentException("Left and top must be nonnegative");
-         }
-         if (height < 1 || width < 1)
-         {
-            throw new System.ArgumentException("Height and width must be at least 1");
-         }
-         int right = left + width;
-         int bottom = top + height;
-         if (bottom > this.height || right > this.width)
-         {
-            throw new System.ArgumentException("The region must fit inside the matrix");
-         }
-         for (int y = top; y < bottom; y++)
-         {
-            int offset = y * rowSize;
-            for (int x = left; x < right; x++)
-            {
-               bits[offset + (x >> 5)] |= 1 << (x & 0x1f);
-            }
-         }
-      }
+		// Token: 0x1700006E RID: 110
+		public bool this[int x, int y]
+		{
+			// Token: 0x060004C1 RID: 1217 RVA: 0x00027744 File Offset: 0x00025944
+			get
+			{
+				int num = y * this.rowSize + (x >> 5);
+				return ((uint)this.bits[num] >> x & 1u) > 0u;
+			}
+			// Token: 0x060004C2 RID: 1218 RVA: 0x00027774 File Offset: 0x00025974
+			set
+			{
+				if (value)
+				{
+					int num = y * this.rowSize + (x >> 5);
+					this.bits[num] |= 1 << x;
+				}
+			}
+		}
 
-      /// <summary> A fast method to retrieve one row of data from the matrix as a BitArray.
-      /// 
-      /// </summary>
-      /// <param name="y">The row to retrieve
-      /// </param>
-      /// <param name="row">An optional caller-allocated BitArray, will be allocated if null or too small
-      /// </param>
-      /// <returns> The resulting BitArray - this reference should always be used even when passing
-      /// your own row
-      /// </returns>
-      public BitArray getRow(int y, BitArray row)
-      {
-         if (row == null || row.Size < width)
-         {
-            row = new BitArray(width);
-         }
-         else
-         {
-            row.clear();
-         }
-         int offset = y * rowSize;
-         for (int x = 0; x < rowSize; x++)
-         {
-            row.setBulk(x << 5, bits[offset + x]);
-         }
-         return row;
-      }
+		// Token: 0x1700006C RID: 108
+		public int Width
+		{
+			// Token: 0x060004BC RID: 1212 RVA: 0x000276B1 File Offset: 0x000258B1
+			get
+			{
+				return this.width;
+			}
+		}
 
-      /// <summary>
-      /// Sets the row.
-      /// </summary>
-      /// <param name="y">row to set</param>
-      /// <param name="row">{@link BitArray} to copy from</param>
-      public void setRow(int y, BitArray row)
-      {
-         Array.Copy(row.Array, 0, bits, y * rowSize, rowSize);
-      }
+		// Token: 0x04000336 RID: 822
+		private readonly int[] bits;
 
+		// Token: 0x04000334 RID: 820
+		private readonly int height;
 
-      /// <summary>
-      /// This is useful in detecting a corner of a 'pure' barcode.
-      /// </summary>
-      /// <returns>{x,y} coordinate of top-left-most 1 bit, or null if it is all white</returns>
-      public int[] getTopLeftOnBit()
-      {
-         int bitsOffset = 0;
-         while (bitsOffset < bits.Length && bits[bitsOffset] == 0)
-         {
-            bitsOffset++;
-         }
-         if (bitsOffset == bits.Length)
-         {
-            return null;
-         }
-         int y = bitsOffset / rowSize;
-         int x = (bitsOffset % rowSize) << 5;
+		// Token: 0x04000335 RID: 821
+		private readonly int rowSize;
 
-         int theBits = bits[bitsOffset];
-         int bit = 0;
-         while ((theBits << (31 - bit)) == 0)
-         {
-            bit++;
-         }
-         x += bit;
-         return new[] { x, y };
-      }
-
-      public int[] getBottomRightOnBit()
-      {
-         int bitsOffset = bits.Length - 1;
-         while (bitsOffset >= 0 && bits[bitsOffset] == 0)
-         {
-            bitsOffset--;
-         }
-         if (bitsOffset < 0)
-         {
-            return null;
-         }
-
-         int y = bitsOffset / rowSize;
-         int x = (bitsOffset % rowSize) << 5;
-
-         int theBits = bits[bitsOffset];
-         int bit = 31;
-
-         while (((int)((uint)theBits >> bit)) == 0) // (theBits >>> bit)
-         {
-            bit--;
-         }
-         x += bit;
-
-         return new int[] { x, y };
-      }
-
-   }
+		// Token: 0x04000333 RID: 819
+		private readonly int width;
+	}
 }

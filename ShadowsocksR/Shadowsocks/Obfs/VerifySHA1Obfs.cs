@@ -4,24 +4,24 @@ using System.Security.Cryptography;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x02000021 RID: 33
+	// Token: 0x0200001F RID: 31
 	public class VerifySHA1Obfs : VerifySimpleBase
 	{
-		// Token: 0x0600013F RID: 319 RVA: 0x000103FA File Offset: 0x0000E5FA
+		// Token: 0x0600012B RID: 299 RVA: 0x0000F9B6 File Offset: 0x0000DBB6
 		public VerifySHA1Obfs(string method) : base(method)
 		{
 			this.has_sent_header = false;
 			this.pack_id = 0u;
 		}
 
-		// Token: 0x06000145 RID: 325 RVA: 0x0000F9D0 File Offset: 0x0000DBD0
+		// Token: 0x06000131 RID: 305 RVA: 0x0000F02C File Offset: 0x0000D22C
 		public override byte[] ClientPostDecrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			outlength = datalength;
 			return plaindata;
 		}
 
-		// Token: 0x06000144 RID: 324 RVA: 0x00010568 File Offset: 0x0000E768
+		// Token: 0x06000130 RID: 304 RVA: 0x0000FB24 File Offset: 0x0000DD24
 		public override byte[] ClientPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			int expr_01 = datalength;
@@ -75,7 +75,7 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x06000146 RID: 326 RVA: 0x000106A8 File Offset: 0x0000E8A8
+		// Token: 0x06000132 RID: 306 RVA: 0x0000FC64 File Offset: 0x0000DE64
 		public override byte[] ClientUdpPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			byte[] array = new byte[datalength + 10];
@@ -85,18 +85,18 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x06000147 RID: 327 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x06000133 RID: 307 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public override void Dispose()
 		{
 		}
 
-		// Token: 0x06000141 RID: 321 RVA: 0x00010422 File Offset: 0x0000E622
+		// Token: 0x0600012D RID: 301 RVA: 0x0000F9DE File Offset: 0x0000DBDE
 		public override Dictionary<string, int[]> GetObfs()
 		{
 			return VerifySHA1Obfs._obfs;
 		}
 
-		// Token: 0x06000143 RID: 323 RVA: 0x000104D0 File Offset: 0x0000E6D0
+		// Token: 0x0600012F RID: 303 RVA: 0x0000FA8C File Offset: 0x0000DC8C
 		public void PackAuthData(byte[] data, int datalength, byte[] outdata, out int outlength)
 		{
 			byte[] array = new byte[this.Server.iv.Length + this.Server.key.Length];
@@ -109,7 +109,7 @@ namespace Shadowsocks.Obfs
 			outlength = datalength + 10;
 		}
 
-		// Token: 0x06000142 RID: 322 RVA: 0x0001042C File Offset: 0x0000E62C
+		// Token: 0x0600012E RID: 302 RVA: 0x0000F9E8 File Offset: 0x0000DBE8
 		public void PackData(byte[] data, int datalength, byte[] outdata, out int outlength)
 		{
 			byte[] array = new byte[this.Server.iv.Length + 4];
@@ -125,19 +125,19 @@ namespace Shadowsocks.Obfs
 			outlength = datalength + 12;
 		}
 
-		// Token: 0x06000140 RID: 320 RVA: 0x00010411 File Offset: 0x0000E611
+		// Token: 0x0600012C RID: 300 RVA: 0x0000F9CD File Offset: 0x0000DBCD
 		public static List<string> SupportedObfs()
 		{
 			return new List<string>(VerifySHA1Obfs._obfs.Keys);
 		}
 
-		// Token: 0x040000F5 RID: 245
+		// Token: 0x040000EA RID: 234
 		private bool has_sent_header;
 
-		// Token: 0x040000F6 RID: 246
+		// Token: 0x040000EB RID: 235
 		private uint pack_id;
 
-		// Token: 0x040000F4 RID: 244
+		// Token: 0x040000E9 RID: 233
 		private static Dictionary<string, int[]> _obfs = new Dictionary<string, int[]>
 		{
 			{

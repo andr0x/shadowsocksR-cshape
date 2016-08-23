@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000031 RID: 49
+	// Token: 0x0200002F RID: 47
 	public static class EncryptorFactory
 	{
-		// Token: 0x060001B6 RID: 438 RVA: 0x00013724 File Offset: 0x00011924
+		// Token: 0x060001A2 RID: 418 RVA: 0x00012EB4 File Offset: 0x000110B4
 		static EncryptorFactory()
 		{
 			EncryptorFactory._constructorTypes = new Type[]
@@ -43,13 +43,13 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001B7 RID: 439 RVA: 0x00013888 File Offset: 0x00011A88
+		// Token: 0x060001A3 RID: 419 RVA: 0x00013018 File Offset: 0x00011218
 		public static List<string> GetEncryptor()
 		{
 			return EncryptorFactory._registeredEncryptorNames;
 		}
 
-		// Token: 0x060001B8 RID: 440 RVA: 0x00013890 File Offset: 0x00011A90
+		// Token: 0x060001A4 RID: 420 RVA: 0x00013020 File Offset: 0x00011220
 		public static IEncryptor GetEncryptor(string method, string password)
 		{
 			if (string.IsNullOrEmpty(method))
@@ -64,13 +64,13 @@ namespace Shadowsocks.Encryption
 			});
 		}
 
-		// Token: 0x04000172 RID: 370
+		// Token: 0x04000168 RID: 360
 		private static Type[] _constructorTypes;
 
-		// Token: 0x04000171 RID: 369
+		// Token: 0x04000167 RID: 359
 		private static List<string> _registeredEncryptorNames;
 
-		// Token: 0x04000170 RID: 368
+		// Token: 0x04000166 RID: 358
 		private static Dictionary<string, Type> _registeredEncryptors;
 	}
 }

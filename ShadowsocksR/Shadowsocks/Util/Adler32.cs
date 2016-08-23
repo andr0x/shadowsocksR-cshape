@@ -5,7 +5,7 @@ namespace Shadowsocks.Util
 	// Token: 0x0200000C RID: 12
 	internal class Adler32
 	{
-		// Token: 0x060000A3 RID: 163 RVA: 0x0000CC68 File Offset: 0x0000AE68
+		// Token: 0x060000A3 RID: 163 RVA: 0x0000CE9C File Offset: 0x0000B09C
 		public static ulong CalcAdler32(byte[] input, int len)
 		{
 			ulong num = 1uL;
@@ -20,7 +20,7 @@ namespace Shadowsocks.Util
 			return (num2 << 16) + num;
 		}
 
-		// Token: 0x060000A4 RID: 164 RVA: 0x0000CCAC File Offset: 0x0000AEAC
+		// Token: 0x060000A4 RID: 164 RVA: 0x0000CEE0 File Offset: 0x0000B0E0
 		public static bool CheckAdler32(byte[] input, int len)
 		{
 			int arg_29_0 = (int)Adler32.CalcAdler32(input, len - 4);

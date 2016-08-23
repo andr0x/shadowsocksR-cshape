@@ -6,11 +6,11 @@ using SimpleJson;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000029 RID: 41
+	// Token: 0x02000027 RID: 39
 	[Serializable]
 	public class Configuration
 	{
-		// Token: 0x06000177 RID: 375 RVA: 0x00011E0C File Offset: 0x0001000C
+		// Token: 0x06000163 RID: 355 RVA: 0x0001147C File Offset: 0x0000F67C
 		public Configuration()
 		{
 			this.index = 0;
@@ -24,7 +24,7 @@ namespace Shadowsocks.Model
 			};
 		}
 
-		// Token: 0x0600017D RID: 381 RVA: 0x000121A9 File Offset: 0x000103A9
+		// Token: 0x06000169 RID: 361 RVA: 0x00011819 File Offset: 0x0000FA19
 		private static void Assert(bool condition)
 		{
 			if (!condition)
@@ -33,7 +33,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600017F RID: 383 RVA: 0x000121DC File Offset: 0x000103DC
+		// Token: 0x0600016B RID: 363 RVA: 0x0001184C File Offset: 0x0000FA4C
 		private static void CheckPassword(string password)
 		{
 			if (string.IsNullOrEmpty(password))
@@ -42,7 +42,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600017E RID: 382 RVA: 0x000121BE File Offset: 0x000103BE
+		// Token: 0x0600016A RID: 362 RVA: 0x0001182E File Offset: 0x0000FA2E
 		public static void CheckPort(int port)
 		{
 			if (port <= 0 || port > 65535)
@@ -51,7 +51,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000176 RID: 374 RVA: 0x00011DD4 File Offset: 0x0000FFD4
+		// Token: 0x06000162 RID: 354 RVA: 0x00011444 File Offset: 0x0000F644
 		public static void CheckServer(Server server)
 		{
 			Configuration.CheckPort(server.server_port);
@@ -63,7 +63,7 @@ namespace Shadowsocks.Model
 			Configuration.CheckServer(server.server);
 		}
 
-		// Token: 0x06000180 RID: 384 RVA: 0x000121F6 File Offset: 0x000103F6
+		// Token: 0x0600016C RID: 364 RVA: 0x00011866 File Offset: 0x0000FA66
 		private static void CheckServer(string server)
 		{
 			if (string.IsNullOrEmpty(server))
@@ -72,7 +72,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000174 RID: 372 RVA: 0x00011C54 File Offset: 0x0000FE54
+		// Token: 0x06000160 RID: 352 RVA: 0x000112C4 File Offset: 0x0000F4C4
 		public void FlushPortMapCache()
 		{
 			this.portMapCache = new Dictionary<int, PortMapConfigCache>();
@@ -104,7 +104,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000173 RID: 371 RVA: 0x000118CC File Offset: 0x0000FACC
+		// Token: 0x0600015F RID: 351 RVA: 0x00010F3C File Offset: 0x0000F13C
 		public Server GetCurrentServer(string targetAddr = null, bool usingRandom = false, bool forceRandom = false)
 		{
 			ServerSelectStrategy obj = this.serverStrategy;
@@ -208,13 +208,13 @@ namespace Shadowsocks.Model
 			return result;
 		}
 
-		// Token: 0x0600017B RID: 379 RVA: 0x00012190 File Offset: 0x00010390
+		// Token: 0x06000167 RID: 359 RVA: 0x00011800 File Offset: 0x0000FA00
 		public static Server GetDefaultServer()
 		{
 			return new Server();
 		}
 
-		// Token: 0x0600017C RID: 380 RVA: 0x00012197 File Offset: 0x00010397
+		// Token: 0x06000168 RID: 360 RVA: 0x00011807 File Offset: 0x0000FA07
 		public static Server GetErrorServer()
 		{
 			return new Server
@@ -223,14 +223,14 @@ namespace Shadowsocks.Model
 			};
 		}
 
-		// Token: 0x06000175 RID: 373 RVA: 0x00011DCC File Offset: 0x0000FFCC
+		// Token: 0x06000161 RID: 353 RVA: 0x0001143C File Offset: 0x0000F63C
 		public Dictionary<int, PortMapConfigCache> GetPortMapCache()
 		{
 			return this.portMapCache;
 		}
 
-		// Token: 0x06000172 RID: 370 RVA: 0x00011800 File Offset: 0x0000FA00
-		public bool KeepCurrentServer(string targetAddr)
+		// Token: 0x0600015E RID: 350 RVA: 0x00010E3C File Offset: 0x0000F03C
+		public bool KeepCurrentServer(string targetAddr, string id)
 		{
 			if (this.sameHostForSameTarget && targetAddr != null)
 			{
@@ -240,9 +240,19 @@ namespace Shadowsocks.Model
 					if (this.uri2time.ContainsKey(targetAddr))
 					{
 						UriVisitTime uriVisitTime = this.uri2time[targetAddr];
-						if (uriVisitTime.index < this.configs.Count && this.configs[uriVisitTime.index].enable)
+						int num = -1;
+						for (int i = 0; i < this.configs.Count; i++)
+						{
+							if (this.configs[i].id == id)
+							{
+								num = i;
+								break;
+							}
+						}
+						if (num >= 0 && this.configs[num].enable)
 						{
 							this.time2uri.Remove(uriVisitTime);
+							uriVisitTime.index = num;
 							uriVisitTime.visitTime = DateTime.Now;
 							this.uri2time[targetAddr] = uriVisitTime;
 							this.time2uri[uriVisitTime] = targetAddr;
@@ -255,7 +265,7 @@ namespace Shadowsocks.Model
 			return false;
 		}
 
-		// Token: 0x06000178 RID: 376 RVA: 0x00011EA4 File Offset: 0x000100A4
+		// Token: 0x06000164 RID: 356 RVA: 0x00011514 File Offset: 0x0000F714
 		public static Configuration Load()
 		{
 			Configuration result;
@@ -332,7 +342,7 @@ namespace Shadowsocks.Model
 			return result;
 		}
 
-		// Token: 0x0600017A RID: 378 RVA: 0x00012158 File Offset: 0x00010358
+		// Token: 0x06000166 RID: 358 RVA: 0x000117C8 File Offset: 0x0000F9C8
 		public Configuration Load(string config_str)
 		{
 			try
@@ -347,7 +357,7 @@ namespace Shadowsocks.Model
 			return null;
 		}
 
-		// Token: 0x06000179 RID: 377 RVA: 0x000120B0 File Offset: 0x000102B0
+		// Token: 0x06000165 RID: 357 RVA: 0x00011720 File Offset: 0x0000F920
 		public static void Save(Configuration config)
 		{
 			if (config.index >= config.configs.Count)
@@ -374,109 +384,109 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x04000133 RID: 307
+		// Token: 0x04000128 RID: 296
 		public string authPass;
 
-		// Token: 0x04000132 RID: 306
+		// Token: 0x04000127 RID: 295
 		public string authUser;
 
-		// Token: 0x04000134 RID: 308
+		// Token: 0x04000129 RID: 297
 		public bool autoBan;
 
-		// Token: 0x04000125 RID: 293
+		// Token: 0x0400011A RID: 282
 		public bool bypassWhiteList;
 
-		// Token: 0x0400011E RID: 286
+		// Token: 0x04000113 RID: 275
 		public List<Server> configs;
 
-		// Token: 0x0400013E RID: 318
+		// Token: 0x04000133 RID: 307
 		private static string CONFIG_FILE = "gui-config.json";
 
-		// Token: 0x04000137 RID: 311
+		// Token: 0x0400012C RID: 300
 		public string dns_server;
 
-		// Token: 0x04000122 RID: 290
+		// Token: 0x04000117 RID: 279
 		public bool enabled;
 
-		// Token: 0x04000121 RID: 289
+		// Token: 0x04000116 RID: 278
 		public bool global;
 
-		// Token: 0x0400011F RID: 287
+		// Token: 0x04000114 RID: 276
 		public int index;
 
-		// Token: 0x04000124 RID: 292
+		// Token: 0x04000119 RID: 281
 		public bool isDefault;
 
-		// Token: 0x04000136 RID: 310
+		// Token: 0x0400012B RID: 299
 		public int keepVisitTime;
 
-		// Token: 0x04000126 RID: 294
+		// Token: 0x0400011B RID: 283
 		public int localPort;
 
-		// Token: 0x0400012B RID: 299
+		// Token: 0x04000120 RID: 288
 		public bool pacDirectGoProxy;
 
-		// Token: 0x04000139 RID: 313
+		// Token: 0x0400012E RID: 302
 		public Dictionary<string, object> portMap = new Dictionary<string, object>();
 
-		// Token: 0x0400013D RID: 317
+		// Token: 0x04000132 RID: 306
 		private Dictionary<int, PortMapConfigCache> portMapCache = new Dictionary<int, PortMapConfigCache>();
 
-		// Token: 0x04000130 RID: 304
+		// Token: 0x04000125 RID: 293
 		public string proxyAuthPass;
 
-		// Token: 0x0400012F RID: 303
+		// Token: 0x04000124 RID: 292
 		public string proxyAuthUser;
 
-		// Token: 0x0400012A RID: 298
+		// Token: 0x0400011F RID: 287
 		public bool proxyEnable;
 
-		// Token: 0x0400012D RID: 301
+		// Token: 0x04000122 RID: 290
 		public string proxyHost;
 
-		// Token: 0x0400012E RID: 302
+		// Token: 0x04000123 RID: 291
 		public int proxyPort;
 
-		// Token: 0x0400012C RID: 300
+		// Token: 0x04000121 RID: 289
 		public int proxyType;
 
-		// Token: 0x04000131 RID: 305
+		// Token: 0x04000126 RID: 294
 		public string proxyUserAgent;
 
-		// Token: 0x04000120 RID: 288
+		// Token: 0x04000115 RID: 277
 		public bool random;
 
-		// Token: 0x04000128 RID: 296
+		// Token: 0x0400011D RID: 285
 		public int randomAlgorithm;
 
-		// Token: 0x04000127 RID: 295
+		// Token: 0x0400011C RID: 284
 		public int reconnectTimes;
 
-		// Token: 0x04000135 RID: 309
+		// Token: 0x0400012A RID: 298
 		public bool sameHostForSameTarget;
 
-		// Token: 0x0400013A RID: 314
+		// Token: 0x0400012F RID: 303
 		private ServerSelectStrategy serverStrategy = new ServerSelectStrategy();
 
-		// Token: 0x04000123 RID: 291
+		// Token: 0x04000118 RID: 280
 		public bool shareOverLan;
 
-		// Token: 0x0400013C RID: 316
+		// Token: 0x04000131 RID: 305
 		private SortedDictionary<UriVisitTime, string> time2uri = new SortedDictionary<UriVisitTime, string>();
 
-		// Token: 0x04000138 RID: 312
+		// Token: 0x0400012D RID: 301
 		public Dictionary<string, string> token = new Dictionary<string, string>();
 
-		// Token: 0x04000129 RID: 297
+		// Token: 0x0400011E RID: 286
 		public int TTL;
 
-		// Token: 0x0400013B RID: 315
+		// Token: 0x04000130 RID: 304
 		private Dictionary<string, UriVisitTime> uri2time = new Dictionary<string, UriVisitTime>();
 
-		// Token: 0x020000A3 RID: 163
+		// Token: 0x020000A5 RID: 165
 		private class JsonSerializerStrategy : PocoJsonSerializerStrategy
 		{
-			// Token: 0x0600054F RID: 1359 RVA: 0x0002BBCC File Offset: 0x00029DCC
+			// Token: 0x06000558 RID: 1368 RVA: 0x0002AE14 File Offset: 0x00029014
 			public override object DeserializeObject(object value, Type type)
 			{
 				if (type == typeof(int) && value.GetType() == typeof(string))

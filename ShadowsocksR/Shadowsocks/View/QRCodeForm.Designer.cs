@@ -3,7 +3,7 @@
 	// Token: 0x02000005 RID: 5
 	public partial class QRCodeForm : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000059 RID: 89 RVA: 0x00007022 File Offset: 0x00005222
+		// Token: 0x06000059 RID: 89 RVA: 0x0000717A File Offset: 0x0000537A
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +13,7 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600005A RID: 90 RVA: 0x00007044 File Offset: 0x00005244
+		// Token: 0x0600005A RID: 90 RVA: 0x0000719C File Offset: 0x0000539C
 		private void InitializeComponent()
 		{
 			this.pictureBox1 = new global::System.Windows.Forms.PictureBox();

@@ -4,15 +4,15 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000079 RID: 121
+	// Token: 0x0200007B RID: 123
 	public class FinderPatternFinder
 	{
-		// Token: 0x06000441 RID: 1089 RVA: 0x000258E1 File Offset: 0x00023AE1
+		// Token: 0x0600044A RID: 1098 RVA: 0x00024B29 File Offset: 0x00022D29
 		public FinderPatternFinder(BitMatrix image) : this(image, null)
 		{
 		}
 
-		// Token: 0x06000442 RID: 1090 RVA: 0x000258EB File Offset: 0x00023AEB
+		// Token: 0x0600044B RID: 1099 RVA: 0x00024B33 File Offset: 0x00022D33
 		public FinderPatternFinder(BitMatrix image, ResultPointCallback resultPointCallback)
 		{
 			this.image = image;
@@ -21,7 +21,7 @@ namespace ZXing.QrCode.Internal
 			this.resultPointCallback = resultPointCallback;
 		}
 
-		// Token: 0x06000446 RID: 1094 RVA: 0x00025B4C File Offset: 0x00023D4C
+		// Token: 0x0600044F RID: 1103 RVA: 0x00024D94 File Offset: 0x00022F94
 		private static float? centerFromEnd(int[] stateCount, int end)
 		{
 			float num = (float)(end - stateCount[4] - stateCount[3]) - (float)stateCount[2] / 2f;
@@ -32,7 +32,7 @@ namespace ZXing.QrCode.Internal
 			return new float?(num);
 		}
 
-		// Token: 0x06000449 RID: 1097 RVA: 0x00025C4C File Offset: 0x00023E4C
+		// Token: 0x06000452 RID: 1106 RVA: 0x00024E94 File Offset: 0x00023094
 		private bool crossCheckDiagonal(int startI, int centerJ, int maxCount, int originalStateCountTotal)
 		{
 			int height = this.image.Height;
@@ -93,7 +93,7 @@ namespace ZXing.QrCode.Internal
 			return array[4] < maxCount && Math.Abs(array[0] + array[1] + array[2] + array[3] + array[4] - originalStateCountTotal) < 2 * originalStateCountTotal && FinderPatternFinder.foundPatternCross(array);
 		}
 
-		// Token: 0x0600044B RID: 1099 RVA: 0x00025FF4 File Offset: 0x000241F4
+		// Token: 0x06000454 RID: 1108 RVA: 0x0002523C File Offset: 0x0002343C
 		private float? crossCheckHorizontal(int startJ, int centerI, int maxCount, int originalStateCountTotal)
 		{
 			int width = this.image.Width;
@@ -166,7 +166,7 @@ namespace ZXing.QrCode.Internal
 			return FinderPatternFinder.centerFromEnd(array, num);
 		}
 
-		// Token: 0x0600044A RID: 1098 RVA: 0x00025E2C File Offset: 0x0002402C
+		// Token: 0x06000453 RID: 1107 RVA: 0x00025074 File Offset: 0x00023274
 		private float? crossCheckVertical(int startI, int centerJ, int maxCount, int originalStateCountTotal)
 		{
 			int height = this.image.Height;
@@ -239,7 +239,7 @@ namespace ZXing.QrCode.Internal
 			return FinderPatternFinder.centerFromEnd(array, num);
 		}
 
-		// Token: 0x06000445 RID: 1093 RVA: 0x00025928 File Offset: 0x00023B28
+		// Token: 0x0600044E RID: 1102 RVA: 0x00024B70 File Offset: 0x00022D70
 		internal virtual FinderPatternInfo find(IDictionary<DecodeHintType, object> hints)
 		{
 			bool flag = hints != null && hints.ContainsKey(DecodeHintType.TRY_HARDER);
@@ -350,7 +350,7 @@ namespace ZXing.QrCode.Internal
 			return new FinderPatternInfo(array2);
 		}
 
-		// Token: 0x0600044D RID: 1101 RVA: 0x0002631C File Offset: 0x0002451C
+		// Token: 0x06000456 RID: 1110 RVA: 0x00025564 File Offset: 0x00023764
 		private int findRowSkip()
 		{
 			if (this.possibleCenters.Count <= 1)
@@ -373,7 +373,7 @@ namespace ZXing.QrCode.Internal
 			return 0;
 		}
 
-		// Token: 0x06000447 RID: 1095 RVA: 0x00025B88 File Offset: 0x00023D88
+		// Token: 0x06000450 RID: 1104 RVA: 0x00024DD0 File Offset: 0x00022FD0
 		protected internal static bool foundPatternCross(int[] stateCount)
 		{
 			int num = 0;
@@ -395,7 +395,7 @@ namespace ZXing.QrCode.Internal
 			return Math.Abs(num3 - (stateCount[0] << 8)) < num4 && Math.Abs(num3 - (stateCount[1] << 8)) < num4 && Math.Abs(3 * num3 - (stateCount[2] << 8)) < 3 * num4 && Math.Abs(num3 - (stateCount[3] << 8)) < num4 && Math.Abs(num3 - (stateCount[4] << 8)) < num4;
 		}
 
-		// Token: 0x0600044C RID: 1100 RVA: 0x000261BC File Offset: 0x000243BC
+		// Token: 0x06000455 RID: 1109 RVA: 0x00025404 File Offset: 0x00023604
 		protected bool handlePossibleCenter(int[] stateCount, int i, int j, bool pureBarcode)
 		{
 			int num = stateCount[0] + stateCount[1] + stateCount[2] + stateCount[3] + stateCount[4];
@@ -438,7 +438,7 @@ namespace ZXing.QrCode.Internal
 			return false;
 		}
 
-		// Token: 0x0600044E RID: 1102 RVA: 0x000263C0 File Offset: 0x000245C0
+		// Token: 0x06000457 RID: 1111 RVA: 0x00025608 File Offset: 0x00023808
 		private bool haveMultiplyConfirmedCenters()
 		{
 			int num = 0;
@@ -466,7 +466,7 @@ namespace ZXing.QrCode.Internal
 			return num4 <= 0.05f * num2;
 		}
 
-		// Token: 0x0600044F RID: 1103 RVA: 0x0002648C File Offset: 0x0002468C
+		// Token: 0x06000458 RID: 1112 RVA: 0x000256D4 File Offset: 0x000238D4
 		private FinderPattern[] selectBestPatterns()
 		{
 			int count = this.possibleCenters.Count;
@@ -525,10 +525,10 @@ namespace ZXing.QrCode.Internal
 			};
 		}
 
-		// Token: 0x17000056 RID: 86
+		// Token: 0x17000059 RID: 89
 		private int[] CrossCheckStateCount
 		{
-			// Token: 0x06000448 RID: 1096 RVA: 0x00025C14 File Offset: 0x00023E14
+			// Token: 0x06000451 RID: 1105 RVA: 0x00024E5C File Offset: 0x0002305C
 			get
 			{
 				this.crossCheckStateCount[0] = 0;
@@ -540,63 +540,63 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x17000054 RID: 84
+		// Token: 0x17000057 RID: 87
 		protected internal virtual BitMatrix Image
 		{
-			// Token: 0x06000443 RID: 1091 RVA: 0x00025918 File Offset: 0x00023B18
+			// Token: 0x0600044C RID: 1100 RVA: 0x00024B60 File Offset: 0x00022D60
 			get
 			{
 				return this.image;
 			}
 		}
 
-		// Token: 0x17000055 RID: 85
+		// Token: 0x17000058 RID: 88
 		protected internal virtual List<FinderPattern> PossibleCenters
 		{
-			// Token: 0x06000444 RID: 1092 RVA: 0x00025920 File Offset: 0x00023B20
+			// Token: 0x0600044D RID: 1101 RVA: 0x00024B68 File Offset: 0x00022D68
 			get
 			{
 				return this.possibleCenters;
 			}
 		}
 
-		// Token: 0x0400030F RID: 783
+		// Token: 0x0400030C RID: 780
 		private const int CENTER_QUORUM = 2;
 
-		// Token: 0x04000316 RID: 790
+		// Token: 0x04000313 RID: 787
 		private readonly int[] crossCheckStateCount;
 
-		// Token: 0x04000315 RID: 789
+		// Token: 0x04000312 RID: 786
 		private bool hasSkipped;
 
-		// Token: 0x04000313 RID: 787
+		// Token: 0x04000310 RID: 784
 		private readonly BitMatrix image;
 
-		// Token: 0x04000312 RID: 786
+		// Token: 0x0400030F RID: 783
 		private const int INTEGER_MATH_SHIFT = 8;
 
-		// Token: 0x04000311 RID: 785
+		// Token: 0x0400030E RID: 782
 		protected internal const int MAX_MODULES = 57;
 
-		// Token: 0x04000310 RID: 784
+		// Token: 0x0400030D RID: 781
 		protected internal const int MIN_SKIP = 3;
 
-		// Token: 0x04000314 RID: 788
+		// Token: 0x04000311 RID: 785
 		private List<FinderPattern> possibleCenters;
 
-		// Token: 0x04000317 RID: 791
+		// Token: 0x04000314 RID: 788
 		private readonly ResultPointCallback resultPointCallback;
 
-		// Token: 0x020000C6 RID: 198
+		// Token: 0x020000C7 RID: 199
 		private sealed class CenterComparator : IComparer<FinderPattern>
 		{
-			// Token: 0x060005B4 RID: 1460 RVA: 0x0002CB84 File Offset: 0x0002AD84
+			// Token: 0x060005B9 RID: 1465 RVA: 0x0002BDCC File Offset: 0x00029FCC
 			public CenterComparator(float f)
 			{
 				this.average = f;
 			}
 
-			// Token: 0x060005B5 RID: 1461 RVA: 0x0002CB94 File Offset: 0x0002AD94
+			// Token: 0x060005BA RID: 1466 RVA: 0x0002BDDC File Offset: 0x00029FDC
 			public int Compare(FinderPattern x, FinderPattern y)
 			{
 				if (y.Count != x.Count)
@@ -616,20 +616,20 @@ namespace ZXing.QrCode.Internal
 				return 0;
 			}
 
-			// Token: 0x04000478 RID: 1144
+			// Token: 0x04000475 RID: 1141
 			private readonly float average;
 		}
 
-		// Token: 0x020000C5 RID: 197
+		// Token: 0x020000C6 RID: 198
 		private sealed class FurthestFromAverageComparator : IComparer<FinderPattern>
 		{
-			// Token: 0x060005B2 RID: 1458 RVA: 0x0002CB33 File Offset: 0x0002AD33
+			// Token: 0x060005B7 RID: 1463 RVA: 0x0002BD7B File Offset: 0x00029F7B
 			public FurthestFromAverageComparator(float f)
 			{
 				this.average = f;
 			}
 
-			// Token: 0x060005B3 RID: 1459 RVA: 0x0002CB44 File Offset: 0x0002AD44
+			// Token: 0x060005B8 RID: 1464 RVA: 0x0002BD8C File Offset: 0x00029F8C
 			public int Compare(FinderPattern x, FinderPattern y)
 			{
 				float num = Math.Abs(y.EstimatedModuleSize - this.average);
@@ -645,7 +645,7 @@ namespace ZXing.QrCode.Internal
 				return 0;
 			}
 
-			// Token: 0x04000477 RID: 1143
+			// Token: 0x04000474 RID: 1140
 			private readonly float average;
 		}
 	}

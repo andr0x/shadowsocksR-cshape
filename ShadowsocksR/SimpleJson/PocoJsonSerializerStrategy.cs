@@ -7,16 +7,16 @@ using SimpleJson.Reflection;
 
 namespace SimpleJson
 {
-	// Token: 0x02000056 RID: 86
+	// Token: 0x02000058 RID: 88
 	public class PocoJsonSerializerStrategy : IJsonSerializerStrategy
 	{
-		// Token: 0x0600035C RID: 860 RVA: 0x0001FCBC File Offset: 0x0001DEBC
+		// Token: 0x06000365 RID: 869 RVA: 0x0001EF04 File Offset: 0x0001D104
 		public PocoJsonSerializerStrategy()
 		{
 			this.CacheResolver = new CacheResolver(new MemberMapLoader(this.BuildMap));
 		}
 
-		// Token: 0x0600035D RID: 861 RVA: 0x0001FCDC File Offset: 0x0001DEDC
+		// Token: 0x06000366 RID: 870 RVA: 0x0001EF24 File Offset: 0x0001D124
 		protected virtual void BuildMap(Type type, SafeDictionary<string, CacheResolver.MemberMap> memberMaps)
 		{
 			PropertyInfo[] properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -33,7 +33,7 @@ namespace SimpleJson
 			}
 		}
 
-		// Token: 0x0600035F RID: 863 RVA: 0x0001FD5C File Offset: 0x0001DF5C
+		// Token: 0x06000368 RID: 872 RVA: 0x0001EFA4 File Offset: 0x0001D1A4
 		public virtual object DeserializeObject(object value, Type type)
 		{
 			object obj = null;
@@ -180,19 +180,19 @@ namespace SimpleJson
 			return obj;
 		}
 
-		// Token: 0x06000360 RID: 864 RVA: 0x000201E8 File Offset: 0x0001E3E8
+		// Token: 0x06000369 RID: 873 RVA: 0x0001F430 File Offset: 0x0001D630
 		protected virtual object SerializeEnum(Enum p)
 		{
 			return Convert.ToDouble(p, CultureInfo.InvariantCulture);
 		}
 
-		// Token: 0x0600035E RID: 862 RVA: 0x0001FD46 File Offset: 0x0001DF46
+		// Token: 0x06000367 RID: 871 RVA: 0x0001EF8E File Offset: 0x0001D18E
 		public virtual bool SerializeNonPrimitiveObject(object input, out object output)
 		{
 			return this.TrySerializeKnownTypes(input, out output) || this.TrySerializeUnknownTypes(input, out output);
 		}
 
-		// Token: 0x06000361 RID: 865 RVA: 0x000201FC File Offset: 0x0001E3FC
+		// Token: 0x0600036A RID: 874 RVA: 0x0001F444 File Offset: 0x0001D644
 		protected virtual bool TrySerializeKnownTypes(object input, out object output)
 		{
 			bool result = true;
@@ -220,7 +220,7 @@ namespace SimpleJson
 			return result;
 		}
 
-		// Token: 0x06000362 RID: 866 RVA: 0x00020288 File Offset: 0x0001E488
+		// Token: 0x0600036B RID: 875 RVA: 0x0001F4D0 File Offset: 0x0001D6D0
 		protected virtual bool TrySerializeUnknownTypes(object input, out object output)
 		{
 			output = null;
@@ -241,10 +241,10 @@ namespace SimpleJson
 			return true;
 		}
 
-		// Token: 0x04000275 RID: 629
+		// Token: 0x04000272 RID: 626
 		internal CacheResolver CacheResolver;
 
-		// Token: 0x04000276 RID: 630
+		// Token: 0x04000273 RID: 627
 		private static readonly string[] Iso8601Format = new string[]
 		{
 			"yyyy-MM-dd\\THH:mm:ss.FFFFFFF\\Z",

@@ -7,15 +7,15 @@ using Shadowsocks.Obfs;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000045 RID: 69
+	// Token: 0x02000043 RID: 67
 	public class Logging
 	{
-		// Token: 0x06000264 RID: 612 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x0600024F RID: 591 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public static void Debug(object o)
 		{
 		}
 
-		// Token: 0x06000268 RID: 616 RVA: 0x000178C8 File Offset: 0x00015AC8
+		// Token: 0x06000253 RID: 595 RVA: 0x0001704C File Offset: 0x0001524C
 		public static void Log(LogLevel level, string s)
 		{
 			string[] array = new string[]
@@ -29,12 +29,12 @@ namespace Shadowsocks.Controller
 			Console.WriteLine("[" + array[(int)level] + "]" + s);
 		}
 
-		// Token: 0x06000269 RID: 617 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x06000254 RID: 596 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public static void LogBin(LogLevel level, string info, byte[] data, int length)
 		{
 		}
 
-		// Token: 0x06000267 RID: 615 RVA: 0x0001765C File Offset: 0x0001585C
+		// Token: 0x06000252 RID: 594 RVA: 0x00016DE0 File Offset: 0x00014FE0
 		public static bool LogSocketException(string remarks, string server, Exception e)
 		{
 			if (DateTime.Now.ToString("yyyy-MM") != Logging.date)
@@ -146,7 +146,7 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x06000266 RID: 614 RVA: 0x000175A4 File Offset: 0x000157A4
+		// Token: 0x06000251 RID: 593 RVA: 0x00016D28 File Offset: 0x00014F28
 		public static void LogUsefulException(Exception e)
 		{
 			if (DateTime.Now.ToString("yyyy-MM") != Logging.date)
@@ -170,7 +170,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000263 RID: 611 RVA: 0x000174A8 File Offset: 0x000156A8
+		// Token: 0x0600024E RID: 590 RVA: 0x00016C2C File Offset: 0x00014E2C
 		public static bool OpenLogFile()
 		{
 			bool result;
@@ -199,7 +199,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x06000265 RID: 613 RVA: 0x00017560 File Offset: 0x00015760
+		// Token: 0x06000250 RID: 592 RVA: 0x00016CE4 File Offset: 0x00014EE4
 		private static string ToString(StackFrame[] stacks)
 		{
 			string text = string.Empty;
@@ -211,16 +211,16 @@ namespace Shadowsocks.Controller
 			return text;
 		}
 
-		// Token: 0x040001DF RID: 479
+		// Token: 0x040001D5 RID: 469
 		protected static string date;
 
-		// Token: 0x040001DC RID: 476
+		// Token: 0x040001D2 RID: 466
 		public static string LogFile;
 
-		// Token: 0x040001DE RID: 478
+		// Token: 0x040001D4 RID: 468
 		public static string LogFileName;
 
-		// Token: 0x040001DD RID: 477
+		// Token: 0x040001D3 RID: 467
 		public static string LogFilePath;
 	}
 }

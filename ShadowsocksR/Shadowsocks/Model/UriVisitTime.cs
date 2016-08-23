@@ -2,10 +2,10 @@
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000026 RID: 38
+	// Token: 0x02000024 RID: 36
 	public class UriVisitTime : IComparable
 	{
-		// Token: 0x0600016D RID: 365 RVA: 0x000117C0 File Offset: 0x0000F9C0
+		// Token: 0x06000159 RID: 345 RVA: 0x00010DFC File Offset: 0x0000EFFC
 		public int CompareTo(object other)
 		{
 			if (!(other is UriVisitTime))
@@ -19,13 +19,13 @@ namespace Shadowsocks.Model
 			return this.visitTime.CompareTo(((UriVisitTime)other).visitTime);
 		}
 
-		// Token: 0x04000114 RID: 276
+		// Token: 0x04000109 RID: 265
 		public int index;
 
-		// Token: 0x04000113 RID: 275
+		// Token: 0x04000108 RID: 264
 		public string uri;
 
-		// Token: 0x04000112 RID: 274
+		// Token: 0x04000107 RID: 263
 		public DateTime visitTime;
 	}
 }

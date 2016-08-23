@@ -1,161 +1,138 @@
-/*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ZXing
 {
-   /// <summary>
-   /// Encapsulates the result of decoding a barcode within an image.
-   /// </summary>
-   public sealed class Result
-   {
-      /// <returns>raw text encoded by the barcode, if applicable, otherwise <code>null</code></returns>
-      public String Text { get; private set; }
+	// Token: 0x02000067 RID: 103
+	public sealed class Result
+	{
+		// Token: 0x060003C7 RID: 967 RVA: 0x000202A8 File Offset: 0x0001E4A8
+		public Result(string text, byte[] rawBytes, ResultPoint[] resultPoints, BarcodeFormat format) : this(text, rawBytes, resultPoints, format, DateTime.Now.Ticks)
+		{
+		}
 
-      /// <returns>raw bytes encoded by the barcode, if applicable, otherwise <code>null</code></returns>
-      public byte[] RawBytes { get; private set; }
+		// Token: 0x060003C8 RID: 968 RVA: 0x000202D0 File Offset: 0x0001E4D0
+		public Result(string text, byte[] rawBytes, ResultPoint[] resultPoints, BarcodeFormat format, long timestamp)
+		{
+			if (text == null && rawBytes == null)
+			{
+				throw new ArgumentException("Text and bytes are null");
+			}
+			this.Text = text;
+			this.RawBytes = rawBytes;
+			this.ResultPoints = resultPoints;
+			this.BarcodeFormat = format;
+			this.ResultMetadata = null;
+			this.Timestamp = timestamp;
+		}
 
-      /// <returns>
-      /// points related to the barcode in the image. These are typically points
-      /// identifying finder patterns or the corners of the barcode. The exact meaning is
-      /// specific to the type of barcode that was decoded.
-      /// </returns>
-      public ResultPoint[] ResultPoints { get; private set; }
+		// Token: 0x060003CB RID: 971 RVA: 0x000203B4 File Offset: 0x0001E5B4
+		public void addResultPoints(ResultPoint[] newPoints)
+		{
+			ResultPoint[] resultPoints = this.ResultPoints;
+			if (resultPoints == null)
+			{
+				this.ResultPoints = newPoints;
+				return;
+			}
+			if (newPoints != null && newPoints.Length != 0)
+			{
+				ResultPoint[] array = new ResultPoint[resultPoints.Length + newPoints.Length];
+				Array.Copy(resultPoints, 0, array, 0, resultPoints.Length);
+				Array.Copy(newPoints, 0, array, resultPoints.Length, newPoints.Length);
+				this.ResultPoints = array;
+			}
+		}
 
-      /// <returns>{@link BarcodeFormat} representing the format of the barcode that was decoded</returns>
-      public BarcodeFormat BarcodeFormat { get; private set; }
+		// Token: 0x060003CA RID: 970 RVA: 0x00020344 File Offset: 0x0001E544
+		public void putAllMetadata(IDictionary<ResultMetadataType, object> metadata)
+		{
+			if (metadata != null)
+			{
+				if (this.ResultMetadata == null)
+				{
+					this.ResultMetadata = metadata;
+					return;
+				}
+				foreach (KeyValuePair<ResultMetadataType, object> current in metadata)
+				{
+					this.ResultMetadata[current.Key] = current.Value;
+				}
+			}
+		}
 
-      /// <returns>
-      /// {@link Hashtable} mapping {@link ResultMetadataType} keys to values. May be
-      /// <code>null</code>. This contains optional metadata about what was detected about the barcode,
-      /// like orientation.
-      /// </returns>
-      public IDictionary<ResultMetadataType, object> ResultMetadata { get; private set; }
+		// Token: 0x060003C9 RID: 969 RVA: 0x00020320 File Offset: 0x0001E520
+		public void putMetadata(ResultMetadataType type, object value)
+		{
+			if (this.ResultMetadata == null)
+			{
+				this.ResultMetadata = new Dictionary<ResultMetadataType, object>();
+			}
+			this.ResultMetadata[type] = value;
+		}
 
-      /// <summary>
-      /// Gets the timestamp.
-      /// </summary>
-      public long Timestamp { get; private set; }
+		// Token: 0x060003CC RID: 972 RVA: 0x00020408 File Offset: 0x0001E608
+		public override string ToString()
+		{
+			if (this.Text == null)
+			{
+				return "[" + this.RawBytes.Length + " bytes]";
+			}
+			return this.Text;
+		}
 
-      /// <summary>
-      /// Initializes a new instance of the <see cref="Result"/> class.
-      /// </summary>
-      /// <param name="text">The text.</param>
-      /// <param name="rawBytes">The raw bytes.</param>
-      /// <param name="resultPoints">The result points.</param>
-      /// <param name="format">The format.</param>
-      public Result(String text,
-                    byte[] rawBytes,
-                    ResultPoint[] resultPoints,
-                    BarcodeFormat format)
-         : this(text, rawBytes, resultPoints, format, DateTime.Now.Ticks)
-      {
-      }
+		// Token: 0x17000041 RID: 65
+		public BarcodeFormat BarcodeFormat
+		{
+			// Token: 0x060003C1 RID: 961 RVA: 0x00020275 File Offset: 0x0001E475
+			get;
+			// Token: 0x060003C2 RID: 962 RVA: 0x0002027D File Offset: 0x0001E47D
+			private set;
+		}
 
-      /// <summary>
-      /// Initializes a new instance of the <see cref="Result"/> class.
-      /// </summary>
-      /// <param name="text">The text.</param>
-      /// <param name="rawBytes">The raw bytes.</param>
-      /// <param name="resultPoints">The result points.</param>
-      /// <param name="format">The format.</param>
-      /// <param name="timestamp">The timestamp.</param>
-      public Result(String text, byte[] rawBytes, ResultPoint[] resultPoints, BarcodeFormat format, long timestamp)
-      {
-         if (text == null && rawBytes == null)
-         {
-            throw new ArgumentException("Text and bytes are null");
-         }
-         Text = text;
-         RawBytes = rawBytes;
-         ResultPoints = resultPoints;
-         BarcodeFormat = format;
-         ResultMetadata = null;
-         Timestamp = timestamp;
-      }
+		// Token: 0x1700003F RID: 63
+		public byte[] RawBytes
+		{
+			// Token: 0x060003BD RID: 957 RVA: 0x00020253 File Offset: 0x0001E453
+			get;
+			// Token: 0x060003BE RID: 958 RVA: 0x0002025B File Offset: 0x0001E45B
+			private set;
+		}
 
-      /// <summary>
-      /// Adds one metadata to the result
-      /// </summary>
-      /// <param name="type">The type.</param>
-      /// <param name="value">The value.</param>
-      public void putMetadata(ResultMetadataType type, Object value)
-      {
-         if (ResultMetadata == null)
-         {
-            ResultMetadata = new Dictionary<ResultMetadataType, object>();
-         }
-         ResultMetadata[type] = value;
-      }
+		// Token: 0x17000042 RID: 66
+		public IDictionary<ResultMetadataType, object> ResultMetadata
+		{
+			// Token: 0x060003C3 RID: 963 RVA: 0x00020286 File Offset: 0x0001E486
+			get;
+			// Token: 0x060003C4 RID: 964 RVA: 0x0002028E File Offset: 0x0001E48E
+			private set;
+		}
 
-      /// <summary>
-      /// Adds a list of metadata to the result
-      /// </summary>
-      /// <param name="metadata">The metadata.</param>
-      public void putAllMetadata(IDictionary<ResultMetadataType, object> metadata)
-      {
-         if (metadata != null)
-         {
-            if (ResultMetadata == null)
-            {
-               ResultMetadata = metadata;
-            }
-            else
-            {
-               foreach (var entry in metadata)
-                  ResultMetadata[entry.Key] = entry.Value;
-            }
-         }
-      }
+		// Token: 0x17000040 RID: 64
+		public ResultPoint[] ResultPoints
+		{
+			// Token: 0x060003BF RID: 959 RVA: 0x00020264 File Offset: 0x0001E464
+			get;
+			// Token: 0x060003C0 RID: 960 RVA: 0x0002026C File Offset: 0x0001E46C
+			private set;
+		}
 
-      /// <summary>
-      /// Adds the result points.
-      /// </summary>
-      /// <param name="newPoints">The new points.</param>
-      public void addResultPoints(ResultPoint[] newPoints)
-      {
-         var oldPoints = ResultPoints;
-         if (oldPoints == null)
-         {
-            ResultPoints = newPoints;
-         }
-         else if (newPoints != null && newPoints.Length > 0)
-         {
-            var allPoints = new ResultPoint[oldPoints.Length + newPoints.Length];
-            Array.Copy(oldPoints, 0, allPoints, 0, oldPoints.Length);
-            Array.Copy(newPoints, 0, allPoints, oldPoints.Length, newPoints.Length);
-            ResultPoints = allPoints;
-         }
-      }
+		// Token: 0x1700003E RID: 62
+		public string Text
+		{
+			// Token: 0x060003BB RID: 955 RVA: 0x00020242 File Offset: 0x0001E442
+			get;
+			// Token: 0x060003BC RID: 956 RVA: 0x0002024A File Offset: 0x0001E44A
+			private set;
+		}
 
-      /// <summary>
-      /// Returns a <see cref="System.String"/> that represents this instance.
-      /// </summary>
-      /// <returns>
-      /// A <see cref="System.String"/> that represents this instance.
-      /// </returns>
-      public override String ToString()
-      {
-         if (Text == null)
-         {
-            return "[" + RawBytes.Length + " bytes]";
-         }
-         return Text;
-      }
-   }
+		// Token: 0x17000043 RID: 67
+		public long Timestamp
+		{
+			// Token: 0x060003C5 RID: 965 RVA: 0x00020297 File Offset: 0x0001E497
+			get;
+			// Token: 0x060003C6 RID: 966 RVA: 0x0002029F File Offset: 0x0001E49F
+			private set;
+		}
+	}
 }

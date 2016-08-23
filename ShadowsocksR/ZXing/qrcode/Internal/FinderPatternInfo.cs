@@ -2,10 +2,10 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200007A RID: 122
+	// Token: 0x0200007C RID: 124
 	public sealed class FinderPatternInfo
 	{
-		// Token: 0x06000450 RID: 1104 RVA: 0x00026668 File Offset: 0x00024868
+		// Token: 0x06000459 RID: 1113 RVA: 0x000258B0 File Offset: 0x00023AB0
 		public FinderPatternInfo(FinderPattern[] patternCenters)
 		{
 			this.bottomLeft = patternCenters[0];
@@ -13,43 +13,43 @@ namespace ZXing.QrCode.Internal
 			this.topRight = patternCenters[2];
 		}
 
-		// Token: 0x17000057 RID: 87
+		// Token: 0x1700005A RID: 90
 		public FinderPattern BottomLeft
 		{
-			// Token: 0x06000451 RID: 1105 RVA: 0x0002668B File Offset: 0x0002488B
+			// Token: 0x0600045A RID: 1114 RVA: 0x000258D3 File Offset: 0x00023AD3
 			get
 			{
 				return this.bottomLeft;
 			}
 		}
 
-		// Token: 0x17000058 RID: 88
+		// Token: 0x1700005B RID: 91
 		public FinderPattern TopLeft
 		{
-			// Token: 0x06000452 RID: 1106 RVA: 0x00026693 File Offset: 0x00024893
+			// Token: 0x0600045B RID: 1115 RVA: 0x000258DB File Offset: 0x00023ADB
 			get
 			{
 				return this.topLeft;
 			}
 		}
 
-		// Token: 0x17000059 RID: 89
+		// Token: 0x1700005C RID: 92
 		public FinderPattern TopRight
 		{
-			// Token: 0x06000453 RID: 1107 RVA: 0x0002669B File Offset: 0x0002489B
+			// Token: 0x0600045C RID: 1116 RVA: 0x000258E3 File Offset: 0x00023AE3
 			get
 			{
 				return this.topRight;
 			}
 		}
 
-		// Token: 0x04000318 RID: 792
+		// Token: 0x04000315 RID: 789
 		private readonly FinderPattern bottomLeft;
 
-		// Token: 0x04000319 RID: 793
+		// Token: 0x04000316 RID: 790
 		private readonly FinderPattern topLeft;
 
-		// Token: 0x0400031A RID: 794
+		// Token: 0x04000317 RID: 791
 		private readonly FinderPattern topRight;
 	}
 }

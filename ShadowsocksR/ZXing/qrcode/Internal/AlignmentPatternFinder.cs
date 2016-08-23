@@ -4,10 +4,10 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000076 RID: 118
+	// Token: 0x02000078 RID: 120
 	internal sealed class AlignmentPatternFinder
 	{
-		// Token: 0x06000427 RID: 1063 RVA: 0x00024D4C File Offset: 0x00022F4C
+		// Token: 0x06000430 RID: 1072 RVA: 0x00023F94 File Offset: 0x00022194
 		internal AlignmentPatternFinder(BitMatrix image, int startX, int startY, int width, int height, float moduleSize, ResultPointCallback resultPointCallback)
 		{
 			this.image = image;
@@ -21,7 +21,7 @@ namespace ZXing.QrCode.Internal
 			this.resultPointCallback = resultPointCallback;
 		}
 
-		// Token: 0x06000429 RID: 1065 RVA: 0x00024F20 File Offset: 0x00023120
+		// Token: 0x06000432 RID: 1074 RVA: 0x00024168 File Offset: 0x00022368
 		private static float? centerFromEnd(int[] stateCount, int end)
 		{
 			float num = (float)(end - stateCount[2]) - (float)stateCount[1] / 2f;
@@ -32,7 +32,7 @@ namespace ZXing.QrCode.Internal
 			return new float?(num);
 		}
 
-		// Token: 0x0600042B RID: 1067 RVA: 0x00024F94 File Offset: 0x00023194
+		// Token: 0x06000434 RID: 1076 RVA: 0x000241DC File Offset: 0x000223DC
 		private float? crossCheckVertical(int startI, int centerJ, int maxCount, int originalStateCountTotal)
 		{
 			int num = this.image.Height;
@@ -90,7 +90,7 @@ namespace ZXing.QrCode.Internal
 			return AlignmentPatternFinder.centerFromEnd(array, num2);
 		}
 
-		// Token: 0x06000428 RID: 1064 RVA: 0x00024DAC File Offset: 0x00022FAC
+		// Token: 0x06000431 RID: 1073 RVA: 0x00023FF4 File Offset: 0x000221F4
 		internal AlignmentPattern find()
 		{
 			int num = this.startX;
@@ -164,7 +164,7 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x0600042A RID: 1066 RVA: 0x00024F58 File Offset: 0x00023158
+		// Token: 0x06000433 RID: 1075 RVA: 0x000241A0 File Offset: 0x000223A0
 		private bool foundPatternCross(int[] stateCount)
 		{
 			float num = this.moduleSize / 2f;
@@ -178,7 +178,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x0600042C RID: 1068 RVA: 0x00025100 File Offset: 0x00023300
+		// Token: 0x06000435 RID: 1077 RVA: 0x00024348 File Offset: 0x00022548
 		private AlignmentPattern handlePossibleCenter(int[] stateCount, int i, int j)
 		{
 			int originalStateCountTotal = stateCount[0] + stateCount[1] + stateCount[2];
@@ -209,31 +209,31 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x04000309 RID: 777
+		// Token: 0x04000306 RID: 774
 		private readonly int[] crossCheckStateCount;
 
-		// Token: 0x04000307 RID: 775
+		// Token: 0x04000304 RID: 772
 		private readonly int height;
 
-		// Token: 0x04000302 RID: 770
+		// Token: 0x040002FF RID: 767
 		private readonly BitMatrix image;
 
-		// Token: 0x04000308 RID: 776
+		// Token: 0x04000305 RID: 773
 		private readonly float moduleSize;
 
-		// Token: 0x04000303 RID: 771
+		// Token: 0x04000300 RID: 768
 		private readonly IList<AlignmentPattern> possibleCenters;
 
-		// Token: 0x0400030A RID: 778
+		// Token: 0x04000307 RID: 775
 		private readonly ResultPointCallback resultPointCallback;
 
-		// Token: 0x04000304 RID: 772
+		// Token: 0x04000301 RID: 769
 		private readonly int startX;
 
-		// Token: 0x04000305 RID: 773
+		// Token: 0x04000302 RID: 770
 		private readonly int startY;
 
-		// Token: 0x04000306 RID: 774
+		// Token: 0x04000303 RID: 771
 		private readonly int width;
 	}
 }

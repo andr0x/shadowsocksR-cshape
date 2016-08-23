@@ -2,16 +2,16 @@
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200004C RID: 76
+	// Token: 0x0200004E RID: 78
 	internal class CallbackStatus
 	{
-		// Token: 0x06000298 RID: 664 RVA: 0x000188BC File Offset: 0x00016ABC
+		// Token: 0x060002BC RID: 700 RVA: 0x0001A168 File Offset: 0x00018368
 		public CallbackStatus()
 		{
 			this.status = 0;
 		}
 
-		// Token: 0x06000299 RID: 665 RVA: 0x000188CC File Offset: 0x00016ACC
+		// Token: 0x060002BD RID: 701 RVA: 0x0001A178 File Offset: 0x00018378
 		public void SetIfEqu(int newStatus, int oldStatus)
 		{
 			lock (this)
@@ -23,10 +23,10 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x1700001C RID: 28
+		// Token: 0x17000020 RID: 32
 		public int Status
 		{
-			// Token: 0x0600029A RID: 666 RVA: 0x00018914 File Offset: 0x00016B14
+			// Token: 0x060002BE RID: 702 RVA: 0x0001A1C0 File Offset: 0x000183C0
 			get
 			{
 				int result;
@@ -36,7 +36,7 @@ namespace Shadowsocks.Controller
 				}
 				return result;
 			}
-			// Token: 0x0600029B RID: 667 RVA: 0x00018954 File Offset: 0x00016B54
+			// Token: 0x060002BF RID: 703 RVA: 0x0001A200 File Offset: 0x00018400
 			set
 			{
 				lock (this)
@@ -46,7 +46,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x040001FD RID: 509
+		// Token: 0x04000211 RID: 529
 		protected int status;
 	}
 }

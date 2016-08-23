@@ -8,10 +8,10 @@ using System.Text;
 
 namespace SimpleJson
 {
-	// Token: 0x02000054 RID: 84
+	// Token: 0x02000056 RID: 86
 	public class SimpleJson
 	{
-		// Token: 0x0600033E RID: 830 RVA: 0x0001F050 File Offset: 0x0001D250
+		// Token: 0x06000347 RID: 839 RVA: 0x0001E298 File Offset: 0x0001C498
 		public static object DeserializeObject(string json)
 		{
 			object result;
@@ -22,25 +22,25 @@ namespace SimpleJson
 			throw new SerializationException("Invalid JSON string");
 		}
 
-		// Token: 0x06000343 RID: 835 RVA: 0x0001F107 File Offset: 0x0001D307
+		// Token: 0x0600034C RID: 844 RVA: 0x0001E34F File Offset: 0x0001C54F
 		public static T DeserializeObject<T>(string json)
 		{
 			return (T)((object)SimpleJson.DeserializeObject(json, typeof(T), null));
 		}
 
-		// Token: 0x06000341 RID: 833 RVA: 0x0001F0E5 File Offset: 0x0001D2E5
+		// Token: 0x0600034A RID: 842 RVA: 0x0001E32D File Offset: 0x0001C52D
 		public static object DeserializeObject(string json, Type type)
 		{
 			return SimpleJson.DeserializeObject(json, type, null);
 		}
 
-		// Token: 0x06000342 RID: 834 RVA: 0x0001F0EF File Offset: 0x0001D2EF
+		// Token: 0x0600034B RID: 843 RVA: 0x0001E337 File Offset: 0x0001C537
 		public static T DeserializeObject<T>(string json, IJsonSerializerStrategy jsonSerializerStrategy)
 		{
 			return (T)((object)SimpleJson.DeserializeObject(json, typeof(T), jsonSerializerStrategy));
 		}
 
-		// Token: 0x06000340 RID: 832 RVA: 0x0001F0A4 File Offset: 0x0001D2A4
+		// Token: 0x06000349 RID: 841 RVA: 0x0001E2EC File Offset: 0x0001C4EC
 		public static object DeserializeObject(string json, Type type, IJsonSerializerStrategy jsonSerializerStrategy)
 		{
 			object obj = SimpleJson.DeserializeObject(json);
@@ -51,7 +51,7 @@ namespace SimpleJson
 			return obj;
 		}
 
-		// Token: 0x0600034C RID: 844 RVA: 0x0001F5C2 File Offset: 0x0001D7C2
+		// Token: 0x06000355 RID: 853 RVA: 0x0001E80A File Offset: 0x0001CA0A
 		protected static void EatWhitespace(char[] json, ref int index)
 		{
 			while (index < json.Length && " \t\n\r\b\f".IndexOf(json[index]) != -1)
@@ -60,7 +60,7 @@ namespace SimpleJson
 			}
 		}
 
-		// Token: 0x0600034F RID: 847 RVA: 0x0001F770 File Offset: 0x0001D970
+		// Token: 0x06000358 RID: 856 RVA: 0x0001E9B8 File Offset: 0x0001CBB8
 		protected static string GetIndentString(int indent)
 		{
 			string text = "";
@@ -71,7 +71,7 @@ namespace SimpleJson
 			return text;
 		}
 
-		// Token: 0x0600034B RID: 843 RVA: 0x0001F594 File Offset: 0x0001D794
+		// Token: 0x06000354 RID: 852 RVA: 0x0001E7DC File Offset: 0x0001C9DC
 		protected static int GetLastIndexOfNumber(char[] json, int index)
 		{
 			int num = index;
@@ -82,20 +82,20 @@ namespace SimpleJson
 			return num - 1;
 		}
 
-		// Token: 0x06000355 RID: 853 RVA: 0x0001FC0C File Offset: 0x0001DE0C
+		// Token: 0x0600035E RID: 862 RVA: 0x0001EE54 File Offset: 0x0001D054
 		protected static bool IsNumeric(object value)
 		{
 			return value is sbyte || value is byte || value is short || value is ushort || value is int || value is uint || value is long || value is ulong || value is float || value is double || value is decimal;
 		}
 
-		// Token: 0x0600034D RID: 845 RVA: 0x0001F5E4 File Offset: 0x0001D7E4
+		// Token: 0x06000356 RID: 854 RVA: 0x0001E82C File Offset: 0x0001CA2C
 		protected static int LookAhead(char[] json, int index)
 		{
 			int num = index;
 			return SimpleJson.NextToken(json, ref num);
 		}
 
-		// Token: 0x0600034E RID: 846 RVA: 0x0001F5FC File Offset: 0x0001D7FC
+		// Token: 0x06000357 RID: 855 RVA: 0x0001E844 File Offset: 0x0001CA44
 		protected static int NextToken(char[] json, ref int index)
 		{
 			SimpleJson.EatWhitespace(json, ref index);
@@ -182,7 +182,7 @@ namespace SimpleJson
 			return 0;
 		}
 
-		// Token: 0x06000347 RID: 839 RVA: 0x0001F1E8 File Offset: 0x0001D3E8
+		// Token: 0x06000350 RID: 848 RVA: 0x0001E430 File Offset: 0x0001C630
 		protected static JsonArray ParseArray(char[] json, ref int index, ref bool success)
 		{
 			JsonArray jsonArray = new JsonArray();
@@ -218,7 +218,7 @@ namespace SimpleJson
 			return jsonArray;
 		}
 
-		// Token: 0x0600034A RID: 842 RVA: 0x0001F4F8 File Offset: 0x0001D6F8
+		// Token: 0x06000353 RID: 851 RVA: 0x0001E740 File Offset: 0x0001C940
 		protected static object ParseNumber(char[] json, ref int index, ref bool success)
 		{
 			SimpleJson.EatWhitespace(json, ref index);
@@ -242,7 +242,7 @@ namespace SimpleJson
 			return result;
 		}
 
-		// Token: 0x06000346 RID: 838 RVA: 0x0001F158 File Offset: 0x0001D358
+		// Token: 0x0600034F RID: 847 RVA: 0x0001E3A0 File Offset: 0x0001C5A0
 		protected static IDictionary<string, object> ParseObject(char[] json, ref int index, ref bool success)
 		{
 			IDictionary<string, object> dictionary = new JsonObject();
@@ -291,7 +291,7 @@ namespace SimpleJson
 			return dictionary;
 		}
 
-		// Token: 0x06000349 RID: 841 RVA: 0x0001F2F0 File Offset: 0x0001D4F0
+		// Token: 0x06000352 RID: 850 RVA: 0x0001E538 File Offset: 0x0001C738
 		protected static string ParseString(char[] json, ref int index, ref bool success)
 		{
 			StringBuilder stringBuilder = new StringBuilder(2000);
@@ -395,7 +395,7 @@ namespace SimpleJson
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06000348 RID: 840 RVA: 0x0001F250 File Offset: 0x0001D450
+		// Token: 0x06000351 RID: 849 RVA: 0x0001E498 File Offset: 0x0001C698
 		protected static object ParseValue(char[] json, ref int index, ref bool success)
 		{
 			switch (SimpleJson.LookAhead(json, index))
@@ -422,7 +422,7 @@ namespace SimpleJson
 			return null;
 		}
 
-		// Token: 0x06000352 RID: 850 RVA: 0x0001F96C File Offset: 0x0001DB6C
+		// Token: 0x0600035B RID: 859 RVA: 0x0001EBB4 File Offset: 0x0001CDB4
 		protected static bool SerializeArray(IJsonSerializerStrategy jsonSerializerStrategy, IEnumerable anArray, StringBuilder builder, int indent)
 		{
 			builder.Append("[\r\n");
@@ -446,7 +446,7 @@ namespace SimpleJson
 			return true;
 		}
 
-		// Token: 0x06000354 RID: 852 RVA: 0x0001FAF4 File Offset: 0x0001DCF4
+		// Token: 0x0600035D RID: 861 RVA: 0x0001ED3C File Offset: 0x0001CF3C
 		protected static bool SerializeNumber(object number, StringBuilder builder)
 		{
 			if (number is long)
@@ -480,13 +480,13 @@ namespace SimpleJson
 			return true;
 		}
 
-		// Token: 0x06000345 RID: 837 RVA: 0x0001F14B File Offset: 0x0001D34B
+		// Token: 0x0600034E RID: 846 RVA: 0x0001E393 File Offset: 0x0001C593
 		public static string SerializeObject(object json)
 		{
 			return SimpleJson.SerializeObject(json, SimpleJson.CurrentJsonSerializerStrategy);
 		}
 
-		// Token: 0x06000344 RID: 836 RVA: 0x0001F120 File Offset: 0x0001D320
+		// Token: 0x0600034D RID: 845 RVA: 0x0001E368 File Offset: 0x0001C568
 		public static string SerializeObject(object json, IJsonSerializerStrategy jsonSerializerStrategy)
 		{
 			StringBuilder stringBuilder = new StringBuilder(2000);
@@ -497,7 +497,7 @@ namespace SimpleJson
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06000351 RID: 849 RVA: 0x0001F890 File Offset: 0x0001DA90
+		// Token: 0x0600035A RID: 858 RVA: 0x0001EAD8 File Offset: 0x0001CCD8
 		protected static bool SerializeObject(IJsonSerializerStrategy jsonSerializerStrategy, IEnumerable keys, IEnumerable values, StringBuilder builder, int indent)
 		{
 			builder.Append("{\r\n");
@@ -534,7 +534,7 @@ namespace SimpleJson
 			return true;
 		}
 
-		// Token: 0x06000353 RID: 851 RVA: 0x0001FA20 File Offset: 0x0001DC20
+		// Token: 0x0600035C RID: 860 RVA: 0x0001EC68 File Offset: 0x0001CE68
 		protected static bool SerializeString(string aString, StringBuilder builder)
 		{
 			builder.Append("\"");
@@ -579,7 +579,7 @@ namespace SimpleJson
 			return true;
 		}
 
-		// Token: 0x06000350 RID: 848 RVA: 0x0001F79C File Offset: 0x0001D99C
+		// Token: 0x06000359 RID: 857 RVA: 0x0001E9E4 File Offset: 0x0001CBE4
 		protected static bool SerializeValue(IJsonSerializerStrategy jsonSerializerStrategy, object value, StringBuilder builder, int indent = 1)
 		{
 			bool flag = true;
@@ -625,7 +625,7 @@ namespace SimpleJson
 			return flag;
 		}
 
-		// Token: 0x0600033F RID: 831 RVA: 0x0001F074 File Offset: 0x0001D274
+		// Token: 0x06000348 RID: 840 RVA: 0x0001E2BC File Offset: 0x0001C4BC
 		public static bool TryDeserializeObject(string json, out object @object)
 		{
 			bool result = true;
@@ -642,10 +642,10 @@ namespace SimpleJson
 			return result;
 		}
 
-		// Token: 0x17000025 RID: 37
+		// Token: 0x17000028 RID: 40
 		public static IJsonSerializerStrategy CurrentJsonSerializerStrategy
 		{
-			// Token: 0x06000356 RID: 854 RVA: 0x0001FC88 File Offset: 0x0001DE88
+			// Token: 0x0600035F RID: 863 RVA: 0x0001EED0 File Offset: 0x0001D0D0
 			get
 			{
 				IJsonSerializerStrategy arg_14_0;
@@ -655,18 +655,18 @@ namespace SimpleJson
 				}
 				return arg_14_0;
 			}
-			// Token: 0x06000357 RID: 855 RVA: 0x0001FC9E File Offset: 0x0001DE9E
+			// Token: 0x06000360 RID: 864 RVA: 0x0001EEE6 File Offset: 0x0001D0E6
 			set
 			{
 				SimpleJson.currentJsonSerializerStrategy = value;
 			}
 		}
 
-		// Token: 0x17000026 RID: 38
+		// Token: 0x17000029 RID: 41
 		[EditorBrowsable(EditorBrowsableState.Advanced)]
 		public static PocoJsonSerializerStrategy PocoJsonSerializerStrategy
 		{
-			// Token: 0x06000358 RID: 856 RVA: 0x0001FCA6 File Offset: 0x0001DEA6
+			// Token: 0x06000361 RID: 865 RVA: 0x0001EEEE File Offset: 0x0001D0EE
 			get
 			{
 				PocoJsonSerializerStrategy arg_14_0;
@@ -678,49 +678,49 @@ namespace SimpleJson
 			}
 		}
 
-		// Token: 0x04000272 RID: 626
+		// Token: 0x0400026F RID: 623
 		private const int BUILDER_CAPACITY = 2000;
 
-		// Token: 0x04000273 RID: 627
+		// Token: 0x04000270 RID: 624
 		private static IJsonSerializerStrategy currentJsonSerializerStrategy;
 
-		// Token: 0x04000274 RID: 628
+		// Token: 0x04000271 RID: 625
 		private static PocoJsonSerializerStrategy pocoJsonSerializerStrategy;
 
-		// Token: 0x0400026B RID: 619
+		// Token: 0x04000268 RID: 616
 		private const int TOKEN_COLON = 5;
 
-		// Token: 0x0400026C RID: 620
+		// Token: 0x04000269 RID: 617
 		private const int TOKEN_COMMA = 6;
 
-		// Token: 0x04000268 RID: 616
+		// Token: 0x04000265 RID: 613
 		private const int TOKEN_CURLY_CLOSE = 2;
 
-		// Token: 0x04000267 RID: 615
+		// Token: 0x04000264 RID: 612
 		private const int TOKEN_CURLY_OPEN = 1;
 
-		// Token: 0x04000270 RID: 624
+		// Token: 0x0400026D RID: 621
 		private const int TOKEN_FALSE = 10;
 
-		// Token: 0x04000266 RID: 614
+		// Token: 0x04000263 RID: 611
 		private const int TOKEN_NONE = 0;
 
-		// Token: 0x04000271 RID: 625
+		// Token: 0x0400026E RID: 622
 		private const int TOKEN_NULL = 11;
 
-		// Token: 0x0400026E RID: 622
+		// Token: 0x0400026B RID: 619
 		private const int TOKEN_NUMBER = 8;
 
-		// Token: 0x0400026A RID: 618
+		// Token: 0x04000267 RID: 615
 		private const int TOKEN_SQUARED_CLOSE = 4;
 
-		// Token: 0x04000269 RID: 617
+		// Token: 0x04000266 RID: 614
 		private const int TOKEN_SQUARED_OPEN = 3;
 
-		// Token: 0x0400026D RID: 621
+		// Token: 0x0400026A RID: 618
 		private const int TOKEN_STRING = 7;
 
-		// Token: 0x0400026F RID: 623
+		// Token: 0x0400026C RID: 620
 		private const int TOKEN_TRUE = 9;
 	}
 }

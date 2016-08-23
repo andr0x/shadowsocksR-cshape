@@ -3,10 +3,10 @@ using System.Collections;
 
 namespace OpenDNS
 {
-	// Token: 0x02000099 RID: 153
+	// Token: 0x0200009B RID: 155
 	public class ResourceRecordCollection : ArrayList
 	{
-		// Token: 0x06000547 RID: 1351 RVA: 0x0002BAB6 File Offset: 0x00029CB6
+		// Token: 0x06000550 RID: 1360 RVA: 0x0002ACFE File Offset: 0x00028EFE
 		public void Sort(ResourceRecordCollection.SortFields sortField, bool isAscending)
 		{
 			if (sortField != ResourceRecordCollection.SortFields.Name)
@@ -26,10 +26,10 @@ namespace OpenDNS
 			}
 		}
 
-		// Token: 0x020000C8 RID: 200
+		// Token: 0x020000C9 RID: 201
 		private sealed class NameComparer : IComparer
 		{
-			// Token: 0x060005B6 RID: 1462 RVA: 0x0002CBF0 File Offset: 0x0002ADF0
+			// Token: 0x060005BB RID: 1467 RVA: 0x0002BE38 File Offset: 0x0002A038
 			public int Compare(object x, object y)
 			{
 				ResourceRecord arg_0D_0 = (ResourceRecord)x;
@@ -38,19 +38,19 @@ namespace OpenDNS
 			}
 		}
 
-		// Token: 0x020000C7 RID: 199
+		// Token: 0x020000C8 RID: 200
 		public enum SortFields
 		{
-			// Token: 0x0400047A RID: 1146
+			// Token: 0x04000477 RID: 1143
 			Name,
-			// Token: 0x0400047B RID: 1147
+			// Token: 0x04000478 RID: 1144
 			TTL
 		}
 
-		// Token: 0x020000C9 RID: 201
+		// Token: 0x020000CA RID: 202
 		private sealed class TTLComparer : IComparer
 		{
-			// Token: 0x060005B8 RID: 1464 RVA: 0x0002CC1C File Offset: 0x0002AE1C
+			// Token: 0x060005BD RID: 1469 RVA: 0x0002BE64 File Offset: 0x0002A064
 			public int Compare(object x, object y)
 			{
 				ResourceRecord arg_0D_0 = (ResourceRecord)x;

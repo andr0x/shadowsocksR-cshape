@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{D90EE0BE-5C2B-4850-8CD4-5F9F335E4624}</ProjectGuid>
+    <ProjectGuid>{0CBC1918-265F-46FB-B2CD-2C18546E5672}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShadowsocksR</RootNamespace>
@@ -35,20 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="zxing">
-      <HintPath>..\packages\ZXing.2.1.1\lib\net20\zxing.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -67,10 +57,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shadowsocks\Controller\APIServer.cs" />
     <Compile Include="Shadowsocks\Controller\AutoStartup.cs" />
+    <Compile Include="Shadowsocks\Controller\CallbackState.cs" />
     <Compile Include="Shadowsocks\Controller\CallbackStatus.cs" />
     <Compile Include="Shadowsocks\Controller\FileManager.cs" />
     <Compile Include="Shadowsocks\Controller\GFWListUpdater.cs" />
     <Compile Include="Shadowsocks\Controller\Handler.cs" />
+    <Compile Include="Shadowsocks\Controller\HandlerConfig.cs" />
     <Compile Include="Shadowsocks\Controller\HttpPortForwarder.cs" />
     <Compile Include="Shadowsocks\Controller\HttpPraser.cs" />
     <Compile Include="Shadowsocks\Controller\HttpProxyRunner.cs" />
@@ -83,6 +75,8 @@
     <Compile Include="Shadowsocks\Controller\PortForwarder.cs" />
     <Compile Include="Shadowsocks\Controller\ProtocolException.cs" />
     <Compile Include="Shadowsocks\Controller\ProtocolResponseDetector.cs" />
+    <Compile Include="Shadowsocks\Controller\ProxyAuthHandler.cs" />
+    <Compile Include="Shadowsocks\Controller\ProxySocket.cs" />
     <Compile Include="Shadowsocks\Controller\ShadowsocksController.cs" />
     <Compile Include="Shadowsocks\Controller\SpeedTester.cs" />
     <Compile Include="Shadowsocks\Controller\StreamWriterWithTimestamp.cs" />
@@ -116,7 +110,6 @@
     <Compile Include="Shadowsocks\Obfs\AuthData.cs" />
     <Compile Include="Shadowsocks\Obfs\AuthSHA1.cs" />
     <Compile Include="Shadowsocks\Obfs\AuthSHA1V2.cs" />
-    <Compile Include="Shadowsocks\Obfs\AuthSimple.cs" />
     <Compile Include="Shadowsocks\Obfs\HttpSimpleObfs.cs" />
     <Compile Include="Shadowsocks\Obfs\IObfs.cs" />
     <Compile Include="Shadowsocks\Obfs\ObfsBase.cs" />
@@ -125,7 +118,6 @@
     <Compile Include="Shadowsocks\Obfs\Plain.cs" />
     <Compile Include="Shadowsocks\Obfs\ServerInfo.cs" />
     <Compile Include="Shadowsocks\Obfs\TlsAuthData.cs" />
-    <Compile Include="Shadowsocks\Obfs\TlsAuthObfs.cs" />
     <Compile Include="Shadowsocks\Obfs\TlsTicketAuthObfs.cs" />
     <Compile Include="Shadowsocks\Obfs\VerifyData.cs" />
     <Compile Include="Shadowsocks\Obfs\VerifyDeflateObfs.cs" />
@@ -173,7 +165,6 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Shadowsocks\View\Win32.cs" />
-    <Compile Include="SimpleJson.cs" />
     <Compile Include="SimpleJson\IJsonSerializerStrategy.cs" />
     <Compile Include="SimpleJson\JsonArray.cs" />
     <Compile Include="SimpleJson\JsonObject.cs" />
@@ -240,7 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Shadowsocks\Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Shadowsocks\View\ConfigForm.resx">
@@ -257,26 +248,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="packages.config" />
-    <None Include="Resources\cn" />
-    <None Include="Resources\libsscrypto_dll" />
-    <None Include="Resources\mgwz_dll" />
-    <None Include="Resources\privoxy_conf" />
-    <None Include="Resources\privoxy_exe" />
-    <None Include="Resources\proxy_pac_txt" />
-    <None Include="Resources\user_rule" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shadowsocks.ico" />
-    <Content Include="Resources\ss16.png" />
-    <Content Include="Resources\ss20.png" />
-    <Content Include="Resources\ss24.png" />
-    <Content Include="Resources\ssw128.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shadowsocks\123\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

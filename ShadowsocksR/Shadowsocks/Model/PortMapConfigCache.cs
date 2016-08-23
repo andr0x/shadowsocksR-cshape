@@ -2,19 +2,19 @@
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000028 RID: 40
+	// Token: 0x02000026 RID: 38
 	public class PortMapConfigCache
 	{
-		// Token: 0x0400011A RID: 282
+		// Token: 0x0400010F RID: 271
 		public string id;
 
-		// Token: 0x0400011B RID: 283
+		// Token: 0x04000110 RID: 272
 		public Server server;
 
-		// Token: 0x0400011C RID: 284
+		// Token: 0x04000111 RID: 273
 		public string server_addr;
 
-		// Token: 0x0400011D RID: 285
+		// Token: 0x04000112 RID: 274
 		public int server_port;
 	}
 }

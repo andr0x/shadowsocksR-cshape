@@ -3,7 +3,7 @@
 	// Token: 0x0200000A RID: 10
 	public partial class SettingsForm : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000098 RID: 152 RVA: 0x0000ADA5 File Offset: 0x00008FA5
+		// Token: 0x06000098 RID: 152 RVA: 0x0000AF55 File Offset: 0x00009155
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +13,7 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000099 RID: 153 RVA: 0x0000ADC4 File Offset: 0x00008FC4
+		// Token: 0x06000099 RID: 153 RVA: 0x0000AF74 File Offset: 0x00009174
 		private void InitializeComponent()
 		{
 			this.tableLayoutPanel1 = new global::System.Windows.Forms.TableLayoutPanel();
@@ -202,6 +202,7 @@
 			this.LabelS5Username.Size = new global::System.Drawing.Size(66, 15);
 			this.LabelS5Username.TabIndex = 4;
 			this.LabelS5Username.Text = "Username";
+			this.TextS5Pass.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextS5Pass.Location = new global::System.Drawing.Point(83, 138);
 			this.TextS5Pass.Name = "TextS5Pass";
 			this.TextS5Pass.Size = new global::System.Drawing.Size(236, 21);
@@ -213,6 +214,7 @@
 			this.LabelS5Port.Size = new global::System.Drawing.Size(29, 15);
 			this.LabelS5Port.TabIndex = 1;
 			this.LabelS5Port.Text = "Port";
+			this.TextS5User.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextS5User.Location = new global::System.Drawing.Point(83, 111);
 			this.TextS5User.Name = "TextS5User";
 			this.TextS5User.Size = new global::System.Drawing.Size(236, 21);
@@ -224,10 +226,12 @@
 			this.LabelS5Server.Size = new global::System.Drawing.Size(56, 15);
 			this.LabelS5Server.TabIndex = 0;
 			this.LabelS5Server.Text = "Server IP";
+			this.TextS5Port.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextS5Port.Location = new global::System.Drawing.Point(83, 84);
 			this.TextS5Port.Name = "TextS5Port";
 			this.TextS5Port.Size = new global::System.Drawing.Size(236, 21);
 			this.TextS5Port.TabIndex = 3;
+			this.TextS5Server.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextS5Server.Location = new global::System.Drawing.Point(83, 57);
 			this.TextS5Server.Name = "TextS5Server";
 			this.TextS5Server.Size = new global::System.Drawing.Size(236, 21);
@@ -265,6 +269,7 @@
 			this.label1.Size = new global::System.Drawing.Size(65, 15);
 			this.label1.TabIndex = 5;
 			this.label1.Text = "UserAgent";
+			this.TextUserAgent.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextUserAgent.Location = new global::System.Drawing.Point(83, 165);
 			this.TextUserAgent.Name = "TextUserAgent";
 			this.TextUserAgent.Size = new global::System.Drawing.Size(236, 21);
@@ -298,6 +303,7 @@
 			this.tableLayoutPanel4.RowStyles.Add(new global::System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.Size = new global::System.Drawing.Size(314, 116);
 			this.tableLayoutPanel4.TabIndex = 0;
+			this.TextAuthPass.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextAuthPass.Location = new global::System.Drawing.Point(75, 82);
 			this.TextAuthPass.Name = "TextAuthPass";
 			this.TextAuthPass.Size = new global::System.Drawing.Size(236, 21);
@@ -309,6 +315,7 @@
 			this.LabelAuthPass.Size = new global::System.Drawing.Size(63, 15);
 			this.LabelAuthPass.TabIndex = 8;
 			this.LabelAuthPass.Text = "Password";
+			this.TextAuthUser.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TextAuthUser.Location = new global::System.Drawing.Point(75, 55);
 			this.TextAuthUser.Name = "TextAuthUser";
 			this.TextAuthUser.Size = new global::System.Drawing.Size(236, 21);
@@ -327,6 +334,7 @@
 			this.checkShareOverLan.TabIndex = 5;
 			this.checkShareOverLan.Text = "Allow Clients from LAN";
 			this.checkShareOverLan.UseVisualStyleBackColor = true;
+			this.ProxyPortTextBox.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.ProxyPortTextBox.Location = new global::System.Drawing.Point(75, 28);
 			this.ProxyPortTextBox.MaxLength = 10;
 			this.ProxyPortTextBox.Name = "ProxyPortTextBox";
@@ -421,6 +429,7 @@
 			this.ReconnectLabel.Size = new global::System.Drawing.Size(66, 15);
 			this.ReconnectLabel.TabIndex = 3;
 			this.ReconnectLabel.Text = "Reconnect";
+			this.ReconnectText.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.ReconnectText.Location = new global::System.Drawing.Point(78, 33);
 			this.ReconnectText.MaxLength = 10;
 			this.ReconnectText.Name = "ReconnectText";
@@ -434,6 +443,7 @@
 			this.TTLLabel.Size = new global::System.Drawing.Size(28, 15);
 			this.TTLLabel.TabIndex = 3;
 			this.TTLLabel.Text = "TTL";
+			this.TTLText.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.TTLText.Location = new global::System.Drawing.Point(78, 60);
 			this.TTLText.MaxLength = 10;
 			this.TTLText.Name = "TTLText";
@@ -447,6 +457,7 @@
 			this.label2.Size = new global::System.Drawing.Size(33, 15);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "DNS";
+			this.DNSText.ImeMode = global::System.Windows.Forms.ImeMode.Off;
 			this.DNSText.Location = new global::System.Drawing.Point(78, 6);
 			this.DNSText.MaxLength = 0;
 			this.DNSText.Name = "DNSText";

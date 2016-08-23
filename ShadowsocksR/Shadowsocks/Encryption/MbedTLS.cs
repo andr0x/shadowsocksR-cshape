@@ -7,10 +7,10 @@ using Shadowsocks.Properties;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000035 RID: 53
+	// Token: 0x02000033 RID: 51
 	public class MbedTLS
 	{
-		// Token: 0x060001EC RID: 492 RVA: 0x000145BC File Offset: 0x000127BC
+		// Token: 0x060001D7 RID: 471 RVA: 0x00013D2C File Offset: 0x00011F2C
 		static MbedTLS()
 		{
 			Path.GetTempPath();
@@ -29,11 +29,11 @@ namespace Shadowsocks.Encryption
 			MbedTLS.LoadLibrary(text);
 		}
 
-		// Token: 0x060001ED RID: 493
+		// Token: 0x060001D8 RID: 472
 		[DllImport("Kernel32.dll")]
 		private static extern IntPtr LoadLibrary(string path);
 
-		// Token: 0x060001EE RID: 494 RVA: 0x00014628 File Offset: 0x00012828
+		// Token: 0x060001D9 RID: 473 RVA: 0x00013D98 File Offset: 0x00011F98
 		public static byte[] MbedTLSMD5(byte[] input)
 		{
 			IntPtr arg_0F_0 = Marshal.AllocHGlobal(88);
@@ -47,30 +47,30 @@ namespace Shadowsocks.Encryption
 			return array;
 		}
 
-		// Token: 0x060001F3 RID: 499
+		// Token: 0x060001DE RID: 478
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void md5_finish(IntPtr ctx, byte[] output);
 
-		// Token: 0x060001F0 RID: 496
+		// Token: 0x060001DB RID: 475
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void md5_free(IntPtr ctx);
 
-		// Token: 0x060001EF RID: 495
+		// Token: 0x060001DA RID: 474
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void md5_init(IntPtr ctx);
 
-		// Token: 0x060001F1 RID: 497
+		// Token: 0x060001DC RID: 476
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void md5_starts(IntPtr ctx);
 
-		// Token: 0x060001F2 RID: 498
+		// Token: 0x060001DD RID: 477
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void md5_update(IntPtr ctx, byte[] input, uint ilen);
 
-		// Token: 0x0400018D RID: 397
+		// Token: 0x04000183 RID: 387
 		private const string DLLNAME = "libsscrypto";
 
-		// Token: 0x0400018E RID: 398
+		// Token: 0x04000184 RID: 388
 		public const int MD5_CTX_SIZE = 88;
 	}
 }

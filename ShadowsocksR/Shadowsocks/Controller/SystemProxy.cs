@@ -7,16 +7,16 @@ using Shadowsocks.Model;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000051 RID: 81
+	// Token: 0x02000053 RID: 83
 	public class SystemProxy
 	{
-		// Token: 0x06000322 RID: 802 RVA: 0x0001EC68 File Offset: 0x0001CE68
+		// Token: 0x0600032B RID: 811 RVA: 0x0001DEB8 File Offset: 0x0001C0B8
 		private static void CopyProxySettingFromLan()
 		{
 			RegistryKey registryKey = null;
 			try
 			{
-				registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", true);
+				registryKey = SystemProxy.OpenUserRegKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", true);
 				object value = registryKey.GetValue("DefaultConnectionSettings");
 				string[] valueNames = registryKey.GetValueNames();
 				for (int i = 0; i < valueNames.Length; i++)
@@ -29,9 +29,9 @@ namespace Shadowsocks.Controller
 				}
 				SystemProxy.NotifyIE();
 			}
-			catch (IOException arg_73_0)
+			catch (IOException arg_6E_0)
 			{
-				Logging.LogUsefulException(arg_73_0);
+				Logging.LogUsefulException(arg_6E_0);
 			}
 			finally
 			{
@@ -41,57 +41,27 @@ namespace Shadowsocks.Controller
 					{
 						registryKey.Close();
 					}
-					catch (Exception arg_85_0)
+					catch (Exception arg_80_0)
 					{
-						Logging.LogUsefulException(arg_85_0);
+						Logging.LogUsefulException(arg_80_0);
 					}
 				}
 			}
 		}
 
-		// Token: 0x0600031F RID: 799 RVA: 0x0001E9D8 File Offset: 0x0001CBD8
-		public static int GetFIPS()
-		{
-			RegistryKey registryKey = null;
-			try
-			{
-				registryKey = Registry.LocalMachine.OpenSubKey("SYSTEM\\CurrentControlSet\\Control\\Lsa\\FipsAlgorithmPolicy", false);
-				return (int)registryKey.GetValue("Enabled");
-			}
-			catch (Exception arg_26_0)
-			{
-				Logging.LogUsefulException(arg_26_0);
-			}
-			finally
-			{
-				if (registryKey != null)
-				{
-					try
-					{
-						registryKey.Close();
-					}
-					catch (Exception arg_38_0)
-					{
-						Logging.LogUsefulException(arg_38_0);
-					}
-				}
-			}
-			return -1;
-		}
-
-		// Token: 0x06000323 RID: 803 RVA: 0x0001ED2C File Offset: 0x0001CF2C
+		// Token: 0x0600032C RID: 812 RVA: 0x0001DF78 File Offset: 0x0001C178
 		private static string GetTimestamp(DateTime value)
 		{
 			return value.ToString("yyyyMMddHHmmssffff");
 		}
 
-		// Token: 0x06000324 RID: 804 RVA: 0x0001ED3C File Offset: 0x0001CF3C
+		// Token: 0x0600032D RID: 813 RVA: 0x0001DF88 File Offset: 0x0001C188
 		private static void IEAutoDetectProxy(bool set)
 		{
 			RegistryKey registryKey = null;
 			try
 			{
-				registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", true);
+				registryKey = SystemProxy.OpenUserRegKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Connections", true);
 				byte[] array = (byte[])registryKey.GetValue("DefaultConnectionSettings");
 				byte[] array2 = (byte[])registryKey.GetValue("SavedLegacySettings");
 				if (array == null)
@@ -123,26 +93,32 @@ namespace Shadowsocks.Controller
 					{
 						registryKey.Close();
 					}
-					catch (Exception arg_B6_0)
+					catch (Exception arg_B1_0)
 					{
-						Logging.LogUsefulException(arg_B6_0);
+						Logging.LogUsefulException(arg_B1_0);
 					}
 				}
 			}
 		}
 
-		// Token: 0x0600031C RID: 796
+		// Token: 0x06000326 RID: 806
 		[DllImport("wininet.dll")]
 		public static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int dwBufferLength);
 
-		// Token: 0x0600031D RID: 797 RVA: 0x0001E977 File Offset: 0x0001CB77
+		// Token: 0x06000327 RID: 807 RVA: 0x0001DCA7 File Offset: 0x0001BEA7
 		public static void NotifyIE()
 		{
 			SystemProxy._settingsReturn = SystemProxy.InternetSetOption(IntPtr.Zero, 39, IntPtr.Zero, 0);
 			SystemProxy._refreshReturn = SystemProxy.InternetSetOption(IntPtr.Zero, 37, IntPtr.Zero, 0);
 		}
 
-		// Token: 0x0600031E RID: 798 RVA: 0x0001E9A8 File Offset: 0x0001CBA8
+		// Token: 0x06000329 RID: 809 RVA: 0x0001DD08 File Offset: 0x0001BF08
+		public static RegistryKey OpenUserRegKey(string name, bool writable)
+		{
+			return RegistryKey.OpenRemoteBaseKey(RegistryHive.CurrentUser, "").OpenSubKey(name, writable);
+		}
+
+		// Token: 0x06000328 RID: 808 RVA: 0x0001DCD8 File Offset: 0x0001BED8
 		public static void RegistrySetValue(RegistryKey registry, string name, object value)
 		{
 			try
@@ -155,38 +131,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000320 RID: 800 RVA: 0x0001EA50 File Offset: 0x0001CC50
-		public static bool SetFIPS(int val)
-		{
-			RegistryKey registryKey = null;
-			try
-			{
-				registryKey = Registry.LocalMachine.OpenSubKey("SYSTEM\\CurrentControlSet\\Control\\Lsa\\FipsAlgorithmPolicy", true);
-				SystemProxy.RegistrySetValue(registryKey, "Enabled", val);
-				return true;
-			}
-			catch (Exception arg_28_0)
-			{
-				Logging.LogUsefulException(arg_28_0);
-			}
-			finally
-			{
-				if (registryKey != null)
-				{
-					try
-					{
-						registryKey.Close();
-					}
-					catch (Exception arg_3A_0)
-					{
-						Logging.LogUsefulException(arg_3A_0);
-					}
-				}
-			}
-			return false;
-		}
-
-		// Token: 0x06000321 RID: 801 RVA: 0x0001EACC File Offset: 0x0001CCCC
+		// Token: 0x0600032A RID: 810 RVA: 0x0001DD20 File Offset: 0x0001BF20
 		public static void Update(Configuration config, bool forceDisable)
 		{
 			bool global = config.global;
@@ -198,7 +143,7 @@ namespace Shadowsocks.Controller
 			RegistryKey registryKey = null;
 			try
 			{
-				registryKey = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
+				registryKey = SystemProxy.OpenUserRegKey("Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings", true);
 				if (flag)
 				{
 					if (global)
@@ -226,9 +171,9 @@ namespace Shadowsocks.Controller
 				SystemProxy.NotifyIE();
 				SystemProxy.CopyProxySettingFromLan();
 			}
-			catch (Exception arg_118_0)
+			catch (Exception arg_113_0)
 			{
-				Logging.LogUsefulException(arg_118_0);
+				Logging.LogUsefulException(arg_113_0);
 				MessageBox.Show(I18N.GetString("Failed to update registry"));
 			}
 			finally
@@ -239,24 +184,24 @@ namespace Shadowsocks.Controller
 					{
 						registryKey.Close();
 					}
-					catch (Exception arg_13A_0)
+					catch (Exception arg_135_0)
 					{
-						Logging.LogUsefulException(arg_13A_0);
+						Logging.LogUsefulException(arg_135_0);
 					}
 				}
 			}
 		}
 
-		// Token: 0x04000262 RID: 610
+		// Token: 0x0400025F RID: 607
 		public const int INTERNET_OPTION_REFRESH = 37;
 
-		// Token: 0x04000261 RID: 609
+		// Token: 0x0400025E RID: 606
 		public const int INTERNET_OPTION_SETTINGS_CHANGED = 39;
 
-		// Token: 0x04000264 RID: 612
+		// Token: 0x04000261 RID: 609
 		private static bool _refreshReturn;
 
-		// Token: 0x04000263 RID: 611
+		// Token: 0x04000260 RID: 608
 		private static bool _settingsReturn;
 	}
 }

@@ -10,10 +10,10 @@ using Shadowsocks.Model;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000049 RID: 73
+	// Token: 0x0200004C RID: 76
 	public class UpdateChecker
 	{
-		// Token: 0x0600027D RID: 637 RVA: 0x00017C84 File Offset: 0x00015E84
+		// Token: 0x060002A2 RID: 674 RVA: 0x00019530 File Offset: 0x00017730
 		public void CheckUpdate(Configuration config)
 		{
 			try
@@ -37,7 +37,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600027E RID: 638 RVA: 0x00017D14 File Offset: 0x00015F14
+		// Token: 0x060002A3 RID: 675 RVA: 0x000195C0 File Offset: 0x000177C0
 		public static int CompareVersion(string l, string r)
 		{
 			string[] array = l.Split(new char[]
@@ -60,7 +60,7 @@ namespace Shadowsocks.Controller
 			return 0;
 		}
 
-		// Token: 0x06000282 RID: 642 RVA: 0x00017E84 File Offset: 0x00016084
+		// Token: 0x060002A7 RID: 679 RVA: 0x00019730 File Offset: 0x00017930
 		private void http_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
 			try
@@ -70,8 +70,8 @@ namespace Shadowsocks.Controller
 				expr_0C.LoadXml(result);
 				XmlNodeList arg_23_0 = expr_0C.GetElementsByTagName("media:content");
 				List<string> list = new List<string>();
-				//using 
-				IEnumerator enumerator = arg_23_0.GetEnumerator();
+				//using (
+                IEnumerator enumerator = arg_23_0.GetEnumerator();//)
 				{
 					while (enumerator.MoveNext())
 					{
@@ -106,7 +106,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000281 RID: 641 RVA: 0x00017DDC File Offset: 0x00015FDC
+		// Token: 0x060002A6 RID: 678 RVA: 0x00019688 File Offset: 0x00017888
 		private bool IsNewVersion(string url)
 		{
 			if (url.IndexOf("prerelease") >= 0)
@@ -140,11 +140,11 @@ namespace Shadowsocks.Controller
 			{
 				return false;
 			}
-			string r = "3.8.4.2";
+			string r = "3.8.5.0";
 			return UpdateChecker.CompareVersion(text, r) > 0;
 		}
 
-		// Token: 0x0600027F RID: 639 RVA: 0x00017D8C File Offset: 0x00015F8C
+		// Token: 0x060002A4 RID: 676 RVA: 0x00019638 File Offset: 0x00017838
 		private static string ParseVersionFromURL(string url)
 		{
 			Match match = Regex.Match(url, ".*ShadowsocksR-win.*?-([\\d\\.]+)\\.\\w+", RegexOptions.IgnoreCase);
@@ -155,47 +155,47 @@ namespace Shadowsocks.Controller
 			return null;
 		}
 
-		// Token: 0x06000280 RID: 640 RVA: 0x00017DCF File Offset: 0x00015FCF
+		// Token: 0x060002A5 RID: 677 RVA: 0x0001967B File Offset: 0x0001787B
 		private void SortVersions(List<string> versions)
 		{
 			versions.Sort(new UpdateChecker.VersionComparer());
 		}
 
 		// Token: 0x14000003 RID: 3
-		// Token: 0x0600027B RID: 635 RVA: 0x00017C14 File Offset: 0x00015E14
-		// Token: 0x0600027C RID: 636 RVA: 0x00017C4C File Offset: 0x00015E4C
+		// Token: 0x060002A0 RID: 672 RVA: 0x000194C0 File Offset: 0x000176C0
+		// Token: 0x060002A1 RID: 673 RVA: 0x000194F8 File Offset: 0x000176F8
 		[method: CompilerGenerated]
 		[CompilerGenerated]
 		public event EventHandler NewVersionFound;
 
-		// Token: 0x040001F0 RID: 496
+		// Token: 0x04000204 RID: 516
 		public const string Copyright = "Copyright © BreakWall 2015";
 
-		// Token: 0x040001F2 RID: 498
-		public const string FullVersion = "3.8.4.2";
+		// Token: 0x04000206 RID: 518
+		public const string FullVersion = "3.8.5.0 Beta";
 
-		// Token: 0x040001EC RID: 492
+		// Token: 0x04000200 RID: 512
 		public string LatestVersionNumber;
 
-		// Token: 0x040001ED RID: 493
+		// Token: 0x04000201 RID: 513
 		public string LatestVersionURL;
 
-		// Token: 0x040001EF RID: 495
+		// Token: 0x04000203 RID: 515
 		public const string Name = "ShadowsocksR";
 
-		// Token: 0x040001EB RID: 491
+		// Token: 0x040001FF RID: 511
 		private const string UpdateURL = "https://raw.github.com/breakwa11/shadowsocks-rss/master/update/ssr-win-3.8.xml";
 
-		// Token: 0x040001F3 RID: 499
+		// Token: 0x04000207 RID: 519
 		private static bool UseProxy = true;
 
-		// Token: 0x040001F1 RID: 497
-		public const string Version = "3.8.4.2";
+		// Token: 0x04000205 RID: 517
+		public const string Version = "3.8.5.0";
 
-		// Token: 0x020000AC RID: 172
+		// Token: 0x020000AF RID: 175
 		public class VersionComparer : IComparer<string>
 		{
-			// Token: 0x06000577 RID: 1399 RVA: 0x0002C944 File Offset: 0x0002AB44
+			// Token: 0x06000580 RID: 1408 RVA: 0x0002BB8C File Offset: 0x00029D8C
 			public int Compare(string x, string y)
 			{
 				return UpdateChecker.CompareVersion(UpdateChecker.ParseVersionFromURL(x), UpdateChecker.ParseVersionFromURL(y));

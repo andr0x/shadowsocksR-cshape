@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000034 RID: 52
+	// Token: 0x02000032 RID: 50
 	public class LibcryptoEncryptor : IVEncryptor, IDisposable
 	{
-		// Token: 0x060001E1 RID: 481 RVA: 0x000140C1 File Offset: 0x000122C1
+		// Token: 0x060001CC RID: 460 RVA: 0x00013831 File Offset: 0x00011A31
 		public LibcryptoEncryptor(string method, string password) : base(method, password)
 		{
 			base.InitKey(method, password);
 		}
 
-		// Token: 0x060001E7 RID: 487 RVA: 0x0001429A File Offset: 0x0001249A
+		// Token: 0x060001D2 RID: 466 RVA: 0x00013A0A File Offset: 0x00011C0A
 		protected override void cipherUpdate(bool isCipher, int length, byte[] buf, byte[] outbuf)
 		{
 			if (this._disposed)
@@ -22,14 +22,14 @@ namespace Shadowsocks.Encryption
 			Libcrypto.update(isCipher ? this._encryptCtx : this._decryptCtx, buf, length, outbuf);
 		}
 
-		// Token: 0x060001E8 RID: 488 RVA: 0x000142CB File Offset: 0x000124CB
+		// Token: 0x060001D3 RID: 467 RVA: 0x00013A3B File Offset: 0x00011C3B
 		public override void Dispose()
 		{
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
-		// Token: 0x060001EA RID: 490 RVA: 0x0001430C File Offset: 0x0001250C
+		// Token: 0x060001D5 RID: 469 RVA: 0x00013A7C File Offset: 0x00011C7C
 		protected virtual void Dispose(bool disposing)
 		{
 			lock (this)
@@ -55,19 +55,19 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001E9 RID: 489 RVA: 0x000142DC File Offset: 0x000124DC
+		// Token: 0x060001D4 RID: 468 RVA: 0x00013A4C File Offset: 0x00011C4C
 		~LibcryptoEncryptor()
 		{
 			this.Dispose(false);
 		}
 
-		// Token: 0x060001E5 RID: 485 RVA: 0x000141B0 File Offset: 0x000123B0
+		// Token: 0x060001D0 RID: 464 RVA: 0x00013920 File Offset: 0x00011B20
 		protected override Dictionary<string, int[]> getCiphers()
 		{
 			return LibcryptoEncryptor._ciphers;
 		}
 
-		// Token: 0x060001E2 RID: 482 RVA: 0x000140EC File Offset: 0x000122EC
+		// Token: 0x060001CD RID: 461 RVA: 0x0001385C File Offset: 0x00011A5C
 		public static void InitAviable()
 		{
 			List<string> list = new List<string>();
@@ -84,7 +84,7 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001E6 RID: 486 RVA: 0x000141B8 File Offset: 0x000123B8
+		// Token: 0x060001D1 RID: 465 RVA: 0x00013928 File Offset: 0x00011B28
 		protected override void initCipher(byte[] iv, bool isCipher)
 		{
 			base.initCipher(iv, isCipher);
@@ -127,31 +127,31 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001E4 RID: 484 RVA: 0x000141A9 File Offset: 0x000123A9
+		// Token: 0x060001CF RID: 463 RVA: 0x00013919 File Offset: 0x00011B19
 		public static bool isSupport()
 		{
 			return Libcrypto.isSupport();
 		}
 
-		// Token: 0x060001E3 RID: 483 RVA: 0x00014198 File Offset: 0x00012398
+		// Token: 0x060001CE RID: 462 RVA: 0x00013908 File Offset: 0x00011B08
 		public static List<string> SupportedCiphers()
 		{
 			return new List<string>(LibcryptoEncryptor._ciphers.Keys);
 		}
 
-		// Token: 0x04000185 RID: 389
+		// Token: 0x0400017B RID: 379
 		private const int CIPHER_AES = 1;
 
-		// Token: 0x04000187 RID: 391
+		// Token: 0x0400017D RID: 381
 		private const int CIPHER_CAMELLIA = 3;
 
-		// Token: 0x04000188 RID: 392
+		// Token: 0x0400017E RID: 382
 		private const int CIPHER_OTHER_CFB = 4;
 
-		// Token: 0x04000186 RID: 390
+		// Token: 0x0400017C RID: 380
 		private const int CIPHER_RC4 = 2;
 
-		// Token: 0x0400018B RID: 395
+		// Token: 0x04000181 RID: 385
 		private static Dictionary<string, int[]> _ciphers = new Dictionary<string, int[]>
 		{
 			{
@@ -318,13 +318,13 @@ namespace Shadowsocks.Encryption
 			}
 		};
 
-		// Token: 0x0400018A RID: 394
+		// Token: 0x04000180 RID: 384
 		private IntPtr _decryptCtx = IntPtr.Zero;
 
-		// Token: 0x0400018C RID: 396
+		// Token: 0x04000182 RID: 386
 		private bool _disposed;
 
-		// Token: 0x04000189 RID: 393
+		// Token: 0x0400017F RID: 383
 		private IntPtr _encryptCtx = IntPtr.Zero;
 	}
 }

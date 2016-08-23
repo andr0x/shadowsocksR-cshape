@@ -22,7 +22,7 @@ namespace Shadowsocks.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Shadowsocks.Properties {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ShadowsocksR.Shadowsocks.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Shadowsocks.Properties {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -84,7 +84,7 @@ namespace Shadowsocks.Properties {
         ///Update Local PAC from Lan IP List=更新PAC为绕过局域网IP
         ///Update Local PAC from Chn  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
-        public static string cn {
+        internal static string cn {
             get {
                 return ResourceManager.GetString("cn", resourceCulture);
             }
@@ -93,7 +93,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] libsscrypto_dll {
+        internal static byte[] libsscrypto_dll {
             get {
                 object obj = ResourceManager.GetObject("libsscrypto_dll", resourceCulture);
                 return ((byte[])(obj));
@@ -103,7 +103,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] mgwz_dll {
+        internal static byte[] mgwz_dll {
             get {
                 object obj = ResourceManager.GetObject("mgwz_dll", resourceCulture);
                 return ((byte[])(obj));
@@ -111,17 +111,18 @@ namespace Shadowsocks.Properties {
         }
         
         /// <summary>
-        ///   查找类似 listen-address __POLIPO_BIND_IP__:__POLIPO_BIND_PORT__
+        ///   查找类似 listen-address __PRIVOXY_BIND_IP__:__PRIVOXY_BIND_PORT__
         ///show-on-task-bar 0
         ///activity-animation 0
         ///forward-socks5 / 127.0.0.1:__SOCKS_PORT__ .
         ///hide-console
         ///keep-alive-timeout __KEEP_ALIVE_TIMEOUT__
+        ///connection-sharing __CONNECTION_SHARING__
         ///__BYPASS_ACTION__
         ///
         /// 的本地化字符串。
         /// </summary>
-        public static string privoxy_conf {
+        internal static string privoxy_conf {
             get {
                 return ResourceManager.GetString("privoxy_conf", resourceCulture);
             }
@@ -130,7 +131,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] privoxy_exe {
+        internal static byte[] privoxy_exe {
             get {
                 object obj = ResourceManager.GetObject("privoxy_exe", resourceCulture);
                 return ((byte[])(obj));
@@ -140,7 +141,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
-        public static byte[] proxy_pac_txt {
+        internal static byte[] proxy_pac_txt {
             get {
                 object obj = ResourceManager.GetObject("proxy_pac_txt", resourceCulture);
                 return ((byte[])(obj));
@@ -148,19 +149,9 @@ namespace Shadowsocks.Properties {
         }
         
         /// <summary>
-        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Icon shadowsocks {
-            get {
-                object obj = ResourceManager.GetObject("shadowsocks", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap ss16 {
+        internal static System.Drawing.Bitmap ss16 {
             get {
                 object obj = ResourceManager.GetObject("ss16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -170,7 +161,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap ss20 {
+        internal static System.Drawing.Bitmap ss20 {
             get {
                 object obj = ResourceManager.GetObject("ss20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -180,7 +171,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap ss24 {
+        internal static System.Drawing.Bitmap ss24 {
             get {
                 object obj = ResourceManager.GetObject("ss24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -190,7 +181,7 @@ namespace Shadowsocks.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap ssw128 {
+        internal static System.Drawing.Bitmap ssw128 {
             get {
                 object obj = ResourceManager.GetObject("ssw128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -202,7 +193,7 @@ namespace Shadowsocks.Properties {
         ///! See https://adblockplus.org/en/filter-cheatsheet
         /// 的本地化字符串。
         /// </summary>
-        public static string user_rule {
+        internal static string user_rule {
             get {
                 return ResourceManager.GetString("user_rule", resourceCulture);
             }

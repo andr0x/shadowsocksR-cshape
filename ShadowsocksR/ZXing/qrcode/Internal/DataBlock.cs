@@ -2,17 +2,17 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200006C RID: 108
+	// Token: 0x0200006E RID: 110
 	internal sealed class DataBlock
 	{
-		// Token: 0x060003E6 RID: 998 RVA: 0x00021B69 File Offset: 0x0001FD69
+		// Token: 0x060003EF RID: 1007 RVA: 0x00020DB1 File Offset: 0x0001EFB1
 		private DataBlock(int numDataCodewords, byte[] codewords)
 		{
 			this.numDataCodewords = numDataCodewords;
 			this.codewords = codewords;
 		}
 
-		// Token: 0x060003E7 RID: 999 RVA: 0x00021B80 File Offset: 0x0001FD80
+		// Token: 0x060003F0 RID: 1008 RVA: 0x00020DC8 File Offset: 0x0001EFC8
 		internal static DataBlock[] getDataBlocks(byte[] rawCodewords, Version version, ErrorCorrectionLevel ecLevel)
 		{
 			if (rawCodewords.Length != version.TotalCodewords)
@@ -73,30 +73,30 @@ namespace ZXing.QrCode.Internal
 			return array2;
 		}
 
-		// Token: 0x17000044 RID: 68
+		// Token: 0x17000047 RID: 71
 		internal byte[] Codewords
 		{
-			// Token: 0x060003E9 RID: 1001 RVA: 0x00021D3C File Offset: 0x0001FF3C
+			// Token: 0x060003F2 RID: 1010 RVA: 0x00020F84 File Offset: 0x0001F184
 			get
 			{
 				return this.codewords;
 			}
 		}
 
-		// Token: 0x17000043 RID: 67
+		// Token: 0x17000046 RID: 70
 		internal int NumDataCodewords
 		{
-			// Token: 0x060003E8 RID: 1000 RVA: 0x00021D34 File Offset: 0x0001FF34
+			// Token: 0x060003F1 RID: 1009 RVA: 0x00020F7C File Offset: 0x0001F17C
 			get
 			{
 				return this.numDataCodewords;
 			}
 		}
 
-		// Token: 0x040002DB RID: 731
+		// Token: 0x040002D8 RID: 728
 		private readonly byte[] codewords;
 
-		// Token: 0x040002DA RID: 730
+		// Token: 0x040002D7 RID: 727
 		private readonly int numDataCodewords;
 	}
 }

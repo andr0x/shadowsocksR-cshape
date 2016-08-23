@@ -4,10 +4,10 @@ using System.Net.Sockets;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000023 RID: 35
+	// Token: 0x02000021 RID: 33
 	public class Connections
 	{
-		// Token: 0x0600014C RID: 332 RVA: 0x00010780 File Offset: 0x0000E980
+		// Token: 0x06000138 RID: 312 RVA: 0x0000FD3C File Offset: 0x0000DF3C
 		public bool AddRef(Socket socket)
 		{
 			bool result;
@@ -27,7 +27,7 @@ namespace Shadowsocks.Model
 			return result;
 		}
 
-		// Token: 0x0600014E RID: 334 RVA: 0x00010874 File Offset: 0x0000EA74
+		// Token: 0x0600013A RID: 314 RVA: 0x0000FE30 File Offset: 0x0000E030
 		public void CloseAll()
 		{
 			Socket[] array;
@@ -50,7 +50,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600014D RID: 333 RVA: 0x000107F0 File Offset: 0x0000E9F0
+		// Token: 0x06000139 RID: 313 RVA: 0x0000FDAC File Offset: 0x0000DFAC
 		public bool DecRef(Socket socket)
 		{
 			bool result;
@@ -77,14 +77,14 @@ namespace Shadowsocks.Model
 		// Token: 0x17000010 RID: 16
 		public int Count
 		{
-			// Token: 0x0600014F RID: 335 RVA: 0x00010900 File Offset: 0x0000EB00
+			// Token: 0x0600013B RID: 315 RVA: 0x0000FEBC File Offset: 0x0000E0BC
 			get
 			{
 				return this.sockets.Count;
 			}
 		}
 
-		// Token: 0x040000FA RID: 250
+		// Token: 0x040000EF RID: 239
 		private Dictionary<Socket, int> sockets = new Dictionary<Socket, int>();
 	}
 }

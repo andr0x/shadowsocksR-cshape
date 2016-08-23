@@ -3,53 +3,53 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x0200001A RID: 26
+	// Token: 0x02000018 RID: 24
 	public abstract class ObfsBase : IObfs, IDisposable
 	{
-		// Token: 0x06000111 RID: 273 RVA: 0x0000F9B9 File Offset: 0x0000DBB9
+		// Token: 0x060000FD RID: 253 RVA: 0x0000F015 File Offset: 0x0000D215
 		protected ObfsBase(string method)
 		{
 			this.Method = method;
 		}
 
-		// Token: 0x06000116 RID: 278
+		// Token: 0x06000102 RID: 258
 		public abstract byte[] ClientDecode(byte[] encryptdata, int datalength, out int outlength, out bool needsendback);
 
-		// Token: 0x06000115 RID: 277
+		// Token: 0x06000101 RID: 257
 		public abstract byte[] ClientEncode(byte[] encryptdata, int datalength, out int outlength);
 
-		// Token: 0x06000117 RID: 279 RVA: 0x0000F9D0 File Offset: 0x0000DBD0
+		// Token: 0x06000103 RID: 259 RVA: 0x0000F02C File Offset: 0x0000D22C
 		public virtual byte[] ClientPostDecrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			outlength = datalength;
 			return plaindata;
 		}
 
-		// Token: 0x06000114 RID: 276 RVA: 0x0000F9D0 File Offset: 0x0000DBD0
+		// Token: 0x06000100 RID: 256 RVA: 0x0000F02C File Offset: 0x0000D22C
 		public virtual byte[] ClientPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			outlength = datalength;
 			return plaindata;
 		}
 
-		// Token: 0x06000119 RID: 281 RVA: 0x0000F9D0 File Offset: 0x0000DBD0
+		// Token: 0x06000105 RID: 261 RVA: 0x0000F02C File Offset: 0x0000D22C
 		public virtual byte[] ClientUdpPostDecrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			outlength = datalength;
 			return plaindata;
 		}
 
-		// Token: 0x06000118 RID: 280 RVA: 0x0000F9D0 File Offset: 0x0000DBD0
+		// Token: 0x06000104 RID: 260 RVA: 0x0000F02C File Offset: 0x0000D22C
 		public virtual byte[] ClientUdpPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			outlength = datalength;
 			return plaindata;
 		}
 
-		// Token: 0x0600011A RID: 282
+		// Token: 0x06000106 RID: 262
 		public abstract void Dispose();
 
-		// Token: 0x0600011E RID: 286 RVA: 0x0000F9F0 File Offset: 0x0000DBF0
+		// Token: 0x0600010A RID: 266 RVA: 0x0000F04C File Offset: 0x0000D24C
 		public static int GetHeadSize(byte[] plaindata, int defaultValue)
 		{
 			if (plaindata == null || plaindata.Length < 2)
@@ -72,46 +72,46 @@ namespace Shadowsocks.Obfs
 			return defaultValue;
 		}
 
-		// Token: 0x06000112 RID: 274
+		// Token: 0x060000FE RID: 254
 		public abstract Dictionary<string, int[]> GetObfs();
 
-		// Token: 0x0600011F RID: 287 RVA: 0x0000FA26 File Offset: 0x0000DC26
+		// Token: 0x0600010B RID: 267 RVA: 0x0000F082 File Offset: 0x0000D282
 		public long getSentLength()
 		{
 			return this.SentLength;
 		}
 
-		// Token: 0x0600011B RID: 283 RVA: 0x0000F9D6 File Offset: 0x0000DBD6
+		// Token: 0x06000107 RID: 263 RVA: 0x0000F032 File Offset: 0x0000D232
 		public virtual object InitData()
 		{
 			return null;
 		}
 
-		// Token: 0x06000113 RID: 275 RVA: 0x0000F9C8 File Offset: 0x0000DBC8
+		// Token: 0x060000FF RID: 255 RVA: 0x0000F024 File Offset: 0x0000D224
 		public string Name()
 		{
 			return this.Method;
 		}
 
-		// Token: 0x0600011C RID: 284 RVA: 0x0000F9D9 File Offset: 0x0000DBD9
+		// Token: 0x06000108 RID: 264 RVA: 0x0000F035 File Offset: 0x0000D235
 		public virtual void SetServerInfo(ServerInfo serverInfo)
 		{
 			this.Server = serverInfo;
 		}
 
-		// Token: 0x0600011D RID: 285 RVA: 0x0000F9E2 File Offset: 0x0000DBE2
+		// Token: 0x06000109 RID: 265 RVA: 0x0000F03E File Offset: 0x0000D23E
 		public virtual void SetServerInfoIV(byte[] iv)
 		{
 			this.Server.SetIV(iv);
 		}
 
-		// Token: 0x040000E8 RID: 232
+		// Token: 0x040000DD RID: 221
 		protected string Method;
 
-		// Token: 0x040000EA RID: 234
+		// Token: 0x040000DF RID: 223
 		protected long SentLength;
 
-		// Token: 0x040000E9 RID: 233
+		// Token: 0x040000DE RID: 222
 		protected ServerInfo Server;
 	}
 }

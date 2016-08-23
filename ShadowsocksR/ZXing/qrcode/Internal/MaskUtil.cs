@@ -2,16 +2,16 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200007E RID: 126
+	// Token: 0x02000080 RID: 128
 	public static class MaskUtil
 	{
-		// Token: 0x06000473 RID: 1139 RVA: 0x00026FCB File Offset: 0x000251CB
+		// Token: 0x0600047C RID: 1148 RVA: 0x00026213 File Offset: 0x00024413
 		public static int applyMaskPenaltyRule1(ByteMatrix matrix)
 		{
 			return MaskUtil.applyMaskPenaltyRule1Internal(matrix, true) + MaskUtil.applyMaskPenaltyRule1Internal(matrix, false);
 		}
 
-		// Token: 0x0600047A RID: 1146 RVA: 0x00027334 File Offset: 0x00025534
+		// Token: 0x06000483 RID: 1155 RVA: 0x0002657C File Offset: 0x0002477C
 		private static int applyMaskPenaltyRule1Internal(ByteMatrix matrix, bool isHorizontal)
 		{
 			int num = 0;
@@ -47,7 +47,7 @@ namespace ZXing.QrCode.Internal
 			return num;
 		}
 
-		// Token: 0x06000474 RID: 1140 RVA: 0x00026FDC File Offset: 0x000251DC
+		// Token: 0x0600047D RID: 1149 RVA: 0x00026224 File Offset: 0x00024424
 		public static int applyMaskPenaltyRule2(ByteMatrix matrix)
 		{
 			int num = 0;
@@ -68,7 +68,7 @@ namespace ZXing.QrCode.Internal
 			return 3 * num;
 		}
 
-		// Token: 0x06000475 RID: 1141 RVA: 0x00027060 File Offset: 0x00025260
+		// Token: 0x0600047E RID: 1150 RVA: 0x000262A8 File Offset: 0x000244A8
 		public static int applyMaskPenaltyRule3(ByteMatrix matrix)
 		{
 			int num = 0;
@@ -93,7 +93,7 @@ namespace ZXing.QrCode.Internal
 			return num * 40;
 		}
 
-		// Token: 0x06000478 RID: 1144 RVA: 0x00027204 File Offset: 0x00025404
+		// Token: 0x06000481 RID: 1153 RVA: 0x0002644C File Offset: 0x0002464C
 		public static int applyMaskPenaltyRule4(ByteMatrix matrix)
 		{
 			int num = 0;
@@ -115,7 +115,7 @@ namespace ZXing.QrCode.Internal
 			return (int)(Math.Abs((double)num / (double)num2 - 0.5) * 20.0) * 10;
 		}
 
-		// Token: 0x06000479 RID: 1145 RVA: 0x0002728C File Offset: 0x0002548C
+		// Token: 0x06000482 RID: 1154 RVA: 0x000264D4 File Offset: 0x000246D4
 		public static bool getDataMaskBit(int maskPattern, int x, int y)
 		{
 			int num;
@@ -160,7 +160,7 @@ namespace ZXing.QrCode.Internal
 			return num == 0;
 		}
 
-		// Token: 0x06000476 RID: 1142 RVA: 0x000271A8 File Offset: 0x000253A8
+		// Token: 0x0600047F RID: 1151 RVA: 0x000263F0 File Offset: 0x000245F0
 		private static bool isWhiteHorizontal(byte[] rowArray, int from, int to)
 		{
 			for (int i = from; i < to; i++)
@@ -173,7 +173,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x06000477 RID: 1143 RVA: 0x000271D4 File Offset: 0x000253D4
+		// Token: 0x06000480 RID: 1152 RVA: 0x0002641C File Offset: 0x0002461C
 		private static bool isWhiteVertical(byte[][] array, int col, int from, int to)
 		{
 			for (int i = from; i < to; i++)
@@ -186,16 +186,16 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x04000322 RID: 802
+		// Token: 0x0400031F RID: 799
 		private const int N1 = 3;
 
-		// Token: 0x04000323 RID: 803
+		// Token: 0x04000320 RID: 800
 		private const int N2 = 3;
 
-		// Token: 0x04000324 RID: 804
+		// Token: 0x04000321 RID: 801
 		private const int N3 = 40;
 
-		// Token: 0x04000325 RID: 805
+		// Token: 0x04000322 RID: 802
 		private const int N4 = 10;
 	}
 }

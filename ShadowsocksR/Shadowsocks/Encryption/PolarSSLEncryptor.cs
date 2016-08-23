@@ -4,16 +4,16 @@ using System.Runtime.InteropServices;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000037 RID: 55
+	// Token: 0x02000035 RID: 53
 	public class PolarSSLEncryptor : IVEncryptor, IDisposable
 	{
-		// Token: 0x06000200 RID: 512 RVA: 0x000146E8 File Offset: 0x000128E8
+		// Token: 0x060001EB RID: 491 RVA: 0x00013E58 File Offset: 0x00012058
 		public PolarSSLEncryptor(string method, string password) : base(method, password)
 		{
 			base.InitKey(method, password);
 		}
 
-		// Token: 0x06000204 RID: 516 RVA: 0x00014848 File Offset: 0x00012A48
+		// Token: 0x060001EF RID: 495 RVA: 0x00013FB8 File Offset: 0x000121B8
 		protected override void cipherUpdate(bool isCipher, int length, byte[] buf, byte[] outbuf)
 		{
 			if (this._disposed)
@@ -58,14 +58,14 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x06000205 RID: 517 RVA: 0x000148DB File Offset: 0x00012ADB
+		// Token: 0x060001F0 RID: 496 RVA: 0x0001404B File Offset: 0x0001224B
 		public override void Dispose()
 		{
 			this.Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
-		// Token: 0x06000207 RID: 519 RVA: 0x0001491C File Offset: 0x00012B1C
+		// Token: 0x060001F2 RID: 498 RVA: 0x0001408C File Offset: 0x0001228C
 		protected virtual void Dispose(bool disposing)
 		{
 			lock (this)
@@ -115,19 +115,19 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x06000206 RID: 518 RVA: 0x000148EC File Offset: 0x00012AEC
+		// Token: 0x060001F1 RID: 497 RVA: 0x0001405C File Offset: 0x0001225C
 		~PolarSSLEncryptor()
 		{
 			this.Dispose(false);
 		}
 
-		// Token: 0x06000202 RID: 514 RVA: 0x00014721 File Offset: 0x00012921
+		// Token: 0x060001ED RID: 493 RVA: 0x00013E91 File Offset: 0x00012091
 		protected override Dictionary<string, int[]> getCiphers()
 		{
 			return PolarSSLEncryptor._ciphers;
 		}
 
-		// Token: 0x06000203 RID: 515 RVA: 0x00014728 File Offset: 0x00012928
+		// Token: 0x060001EE RID: 494 RVA: 0x00013E98 File Offset: 0x00012098
 		protected override void initCipher(byte[] iv, bool isCipher)
 		{
 			base.initCipher(iv, isCipher);
@@ -179,19 +179,19 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x06000201 RID: 513 RVA: 0x00014710 File Offset: 0x00012910
+		// Token: 0x060001EC RID: 492 RVA: 0x00013E80 File Offset: 0x00012080
 		public static List<string> SupportedCiphers()
 		{
 			return new List<string>(PolarSSLEncryptor._ciphers.Keys);
 		}
 
-		// Token: 0x04000194 RID: 404
+		// Token: 0x0400018A RID: 394
 		private const int CIPHER_AES = 1;
 
-		// Token: 0x04000195 RID: 405
+		// Token: 0x0400018B RID: 395
 		private const int CIPHER_RC4 = 2;
 
-		// Token: 0x04000198 RID: 408
+		// Token: 0x0400018E RID: 398
 		private static Dictionary<string, int[]> _ciphers = new Dictionary<string, int[]>
 		{
 			{
@@ -236,13 +236,13 @@ namespace Shadowsocks.Encryption
 			}
 		};
 
-		// Token: 0x04000197 RID: 407
+		// Token: 0x0400018D RID: 397
 		private IntPtr _decryptCtx = IntPtr.Zero;
 
-		// Token: 0x04000199 RID: 409
+		// Token: 0x0400018F RID: 399
 		private bool _disposed;
 
-		// Token: 0x04000196 RID: 406
+		// Token: 0x0400018C RID: 396
 		private IntPtr _encryptCtx = IntPtr.Zero;
 	}
 }

@@ -11,7 +11,7 @@ namespace Shadowsocks.View
 	// Token: 0x02000005 RID: 5
 	public partial class QRCodeForm : Form
 	{
-		// Token: 0x06000056 RID: 86 RVA: 0x00006EE3 File Offset: 0x000050E3
+		// Token: 0x06000056 RID: 86 RVA: 0x0000703B File Offset: 0x0000523B
 		public QRCodeForm(string code)
 		{
 			this.code = code;
@@ -20,10 +20,10 @@ namespace Shadowsocks.View
 			this.Text = I18N.GetString("QRCode");
 		}
 
-		// Token: 0x06000057 RID: 87 RVA: 0x00006F20 File Offset: 0x00005120
+		// Token: 0x06000057 RID: 87 RVA: 0x00007078 File Offset: 0x00005278
 		private void GenQR(string ssconfig)
 		{
-			ByteMatrix matrix = Encoder.encode(ssconfig,ErrorCorrectionLevel.M).Matrix;
+			ByteMatrix matrix = Encoder.encode(ssconfig, ErrorCorrectionLevel.M).Matrix;
 			int num = Math.Max(this.pictureBox1.Height / matrix.Height, 1);
 			Bitmap image = new Bitmap(matrix.Width * num, matrix.Height * num);
 			using (Graphics graphics = Graphics.FromImage(image))
@@ -51,7 +51,7 @@ namespace Shadowsocks.View
 			this.pictureBox1.Image = image;
 		}
 
-		// Token: 0x06000058 RID: 88 RVA: 0x00007014 File Offset: 0x00005214
+		// Token: 0x06000058 RID: 88 RVA: 0x0000716C File Offset: 0x0000536C
 		private void QRCodeForm_Load(object sender, EventArgs e)
 		{
 			this.GenQR(this.code);

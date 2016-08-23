@@ -5,10 +5,10 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200006E RID: 110
+	// Token: 0x02000070 RID: 112
 	internal static class DecodedBitStreamParser
 	{
-		// Token: 0x060003EF RID: 1007 RVA: 0x00021DEC File Offset: 0x0001FFEC
+		// Token: 0x060003F8 RID: 1016 RVA: 0x00021034 File Offset: 0x0001F234
 		internal static DecoderResult decode(byte[] bytes, Version version, ErrorCorrectionLevel ecLevel, IDictionary<DecodeHintType, object> hints)
 		{
 			BitSource bitSource = new BitSource(bytes);
@@ -139,7 +139,7 @@ namespace ZXing.QrCode.Internal
 			return new DecoderResult(bytes, text, (list.Count == 0) ? null : list, (ecLevel == null) ? null : ecLevel.ToString(), saSequence, saParity);
 		}
 
-		// Token: 0x060003F4 RID: 1012 RVA: 0x000221F8 File Offset: 0x000203F8
+		// Token: 0x060003FD RID: 1021 RVA: 0x00021440 File Offset: 0x0001F640
 		private static bool decodeAlphanumericSegment(BitSource bits, StringBuilder result, int count, bool fc1InEffect)
 		{
 			int length = result.Length;
@@ -186,7 +186,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F2 RID: 1010 RVA: 0x00022168 File Offset: 0x00020368
+		// Token: 0x060003FB RID: 1019 RVA: 0x000213B0 File Offset: 0x0001F5B0
 		private static bool decodeByteSegment(BitSource bits, StringBuilder result, int count, IList<byte[]> byteSegments, IDictionary<DecodeHintType, object> hints)
 		{
 			if (count << 3 > bits.available())
@@ -211,7 +211,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F0 RID: 1008 RVA: 0x00022000 File Offset: 0x00020200
+		// Token: 0x060003F9 RID: 1017 RVA: 0x00021248 File Offset: 0x0001F448
 		private static bool decodeHanziSegment(BitSource bits, StringBuilder result, int count)
 		{
 			if (count * 13 > bits.available())
@@ -248,7 +248,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F1 RID: 1009 RVA: 0x000220B8 File Offset: 0x000202B8
+		// Token: 0x060003FA RID: 1018 RVA: 0x00021300 File Offset: 0x0001F500
 		private static bool decodeKanjiSegment(BitSource bits, StringBuilder result, int count)
 		{
 			if (count * 13 > bits.available())
@@ -285,7 +285,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F5 RID: 1013 RVA: 0x000222D0 File Offset: 0x000204D0
+		// Token: 0x060003FE RID: 1022 RVA: 0x00021518 File Offset: 0x0001F718
 		private static bool decodeNumericSegment(BitSource bits, StringBuilder result, int count)
 		{
 			while (count >= 3)
@@ -334,7 +334,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x060003F6 RID: 1014 RVA: 0x000223A8 File Offset: 0x000205A8
+		// Token: 0x060003FF RID: 1023 RVA: 0x000215F0 File Offset: 0x0001F7F0
 		private static int parseECIValue(BitSource bits)
 		{
 			int num = bits.readBits(8);
@@ -355,14 +355,14 @@ namespace ZXing.QrCode.Internal
 			throw new ArgumentException("Bad ECI bits starting with byte " + num);
 		}
 
-		// Token: 0x060003F3 RID: 1011 RVA: 0x000221E4 File Offset: 0x000203E4
+		// Token: 0x060003FC RID: 1020 RVA: 0x0002142C File Offset: 0x0001F62C
 		private static char toAlphaNumericChar(int value)
 		{
 			int arg_08_0 = DecodedBitStreamParser.ALPHANUMERIC_CHARS.Length;
 			return DecodedBitStreamParser.ALPHANUMERIC_CHARS[value];
 		}
 
-		// Token: 0x040002DD RID: 733
+		// Token: 0x040002DA RID: 730
 		private static readonly char[] ALPHANUMERIC_CHARS = new char[]
 		{
 			'0',
@@ -412,7 +412,7 @@ namespace ZXing.QrCode.Internal
 			':'
 		};
 
-		// Token: 0x040002DE RID: 734
+		// Token: 0x040002DB RID: 731
 		private const int GB2312_SUBSET = 1;
 	}
 }

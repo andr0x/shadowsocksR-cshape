@@ -5,17 +5,17 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x02000011 RID: 17
+	// Token: 0x02000010 RID: 16
 	public class AuthSHA1 : VerifySimpleBase
 	{
-		// Token: 0x060000CD RID: 205 RVA: 0x0000D730 File Offset: 0x0000B930
+		// Token: 0x060000C3 RID: 195 RVA: 0x0000D4E1 File Offset: 0x0000B6E1
 		public AuthSHA1(string method) : base(method)
 		{
 			this.has_sent_header = false;
 			this.has_recv_header = false;
 		}
 
-		// Token: 0x060000D4 RID: 212 RVA: 0x0000DB14 File Offset: 0x0000BD14
+		// Token: 0x060000CA RID: 202 RVA: 0x0000D8CC File Offset: 0x0000BACC
 		public override byte[] ClientPostDecrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			byte[] array = new byte[this.recv_buf_len + datalength];
@@ -51,7 +51,7 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x060000D3 RID: 211 RVA: 0x0000D9B8 File Offset: 0x0000BBB8
+		// Token: 0x060000C9 RID: 201 RVA: 0x0000D770 File Offset: 0x0000B970
 		public override byte[] ClientPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			int expr_01 = datalength;
@@ -106,24 +106,24 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x060000D5 RID: 213 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x060000CB RID: 203 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public override void Dispose()
 		{
 		}
 
-		// Token: 0x060000CF RID: 207 RVA: 0x0000D758 File Offset: 0x0000B958
+		// Token: 0x060000C5 RID: 197 RVA: 0x0000D509 File Offset: 0x0000B709
 		public override Dictionary<string, int[]> GetObfs()
 		{
 			return AuthSHA1._obfs;
 		}
 
-		// Token: 0x060000D0 RID: 208 RVA: 0x0000D2DC File Offset: 0x0000B4DC
+		// Token: 0x060000C6 RID: 198 RVA: 0x0000D510 File Offset: 0x0000B710
 		public override object InitData()
 		{
 			return new AuthData();
 		}
 
-		// Token: 0x060000D2 RID: 210 RVA: 0x0000D7C8 File Offset: 0x0000B9C8
+		// Token: 0x060000C8 RID: 200 RVA: 0x0000D580 File Offset: 0x0000B780
 		public void PackAuthData(byte[] data, int datalength, byte[] outdata, out int outlength)
 		{
 			int num = this.random.Next(250) + 1;
@@ -152,14 +152,14 @@ namespace Shadowsocks.Obfs
 			outdata[4] = (byte)(outlength >> 8);
 			outdata[5] = (byte)outlength;
 			outdata[6] = (byte)num;
-			BitConverter.GetBytes((uint)CRC32.CalcCRC32(this.Server.key, this.Server.key.Length, unchecked ( (ulong)-1))).CopyTo(outdata, 0);
+			BitConverter.GetBytes((uint)CRC32.CalcCRC32(this.Server.key, this.Server.key.Length,unchecked ( (ulong)-1))).CopyTo(outdata, 0);
 			byte[] array = new byte[this.Server.iv.Length + this.Server.key.Length];
 			this.Server.iv.CopyTo(array, 0);
 			this.Server.key.CopyTo(array, this.Server.iv.Length);
 			Array.Copy(new HMACSHA1(array).ComputeHash(outdata, 0, outlength - 10), 0, outdata, outlength - 10, 10);
 		}
 
-		// Token: 0x060000D1 RID: 209 RVA: 0x0000D760 File Offset: 0x0000B960
+		// Token: 0x060000C7 RID: 199 RVA: 0x0000D518 File Offset: 0x0000B718
 		public void PackData(byte[] data, int datalength, byte[] outdata, out int outlength)
 		{
 			int num = this.random.Next(16) + 1;
@@ -174,22 +174,22 @@ namespace Shadowsocks.Obfs
 			BitConverter.GetBytes((uint)Adler32.CalcAdler32(outdata, outlength - 4)).CopyTo(outdata, outlength - 4);
 		}
 
-		// Token: 0x060000CE RID: 206 RVA: 0x0000D747 File Offset: 0x0000B947
+		// Token: 0x060000C4 RID: 196 RVA: 0x0000D4F8 File Offset: 0x0000B6F8
 		public static List<string> SupportedObfs()
 		{
 			return new List<string>(AuthSHA1._obfs.Keys);
 		}
 
-		// Token: 0x040000C4 RID: 196
+		// Token: 0x040000C0 RID: 192
 		protected static RNGCryptoServiceProvider g_random = new RNGCryptoServiceProvider();
 
-		// Token: 0x040000C3 RID: 195
+		// Token: 0x040000BF RID: 191
 		protected bool has_recv_header;
 
-		// Token: 0x040000C2 RID: 194
+		// Token: 0x040000BE RID: 190
 		protected bool has_sent_header;
 
-		// Token: 0x040000C1 RID: 193
+		// Token: 0x040000BD RID: 189
 		private static Dictionary<string, int[]> _obfs = new Dictionary<string, int[]>
 		{
 			{

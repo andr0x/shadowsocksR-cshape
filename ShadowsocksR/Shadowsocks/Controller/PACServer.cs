@@ -10,17 +10,17 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200004A RID: 74
+	// Token: 0x0200004D RID: 77
 	internal class PACServer : Listener.Service
 	{
-		// Token: 0x06000289 RID: 649 RVA: 0x000180F5 File Offset: 0x000162F5
+		// Token: 0x060002AE RID: 686 RVA: 0x000199A1 File Offset: 0x00017BA1
 		public PACServer()
 		{
 			this.WatchPacFile();
 			this.WatchUserRuleFile();
 		}
 
-		// Token: 0x06000295 RID: 661 RVA: 0x000187BC File Offset: 0x000169BC
+		// Token: 0x060002BA RID: 698 RVA: 0x0001A068 File Offset: 0x00018268
 		private string GetPACAddress(byte[] requestBuf, int length, IPEndPoint localEndPoint, int socksType)
 		{
 			if (socksType == 5)
@@ -55,7 +55,7 @@ namespace Shadowsocks.Controller
 			});
 		}
 
-		// Token: 0x0600028E RID: 654 RVA: 0x000183C4 File Offset: 0x000165C4
+		// Token: 0x060002B3 RID: 691 RVA: 0x00019C70 File Offset: 0x00017E70
 		private string GetPACContent()
 		{
 			if (File.Exists(PACServer.PAC_FILE))
@@ -65,7 +65,7 @@ namespace Shadowsocks.Controller
 			return Utils.UnGzip(Resources.proxy_pac_txt);
 		}
 
-		// Token: 0x0600028B RID: 651 RVA: 0x00018114 File Offset: 0x00016314
+		// Token: 0x060002B0 RID: 688 RVA: 0x000199C0 File Offset: 0x00017BC0
 		public bool Handle(byte[] firstPacket, int length, Socket socket)
 		{
 			bool result;
@@ -158,7 +158,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x06000290 RID: 656 RVA: 0x000185DC File Offset: 0x000167DC
+		// Token: 0x060002B5 RID: 693 RVA: 0x00019E88 File Offset: 0x00018088
 		private void SendCallback(IAsyncResult ar)
 		{
 			Socket socket = (Socket)ar.AsyncState;
@@ -172,7 +172,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600028F RID: 655 RVA: 0x000183EC File Offset: 0x000165EC
+		// Token: 0x060002B4 RID: 692 RVA: 0x00019C98 File Offset: 0x00017E98
 		public void SendResponse(byte[] firstPacket, int length, Socket socket, int socksType, string setProxy)
 		{
 			try
@@ -223,7 +223,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600028C RID: 652 RVA: 0x00018374 File Offset: 0x00016574
+		// Token: 0x060002B1 RID: 689 RVA: 0x00019C20 File Offset: 0x00017E20
 		public string TouchPACFile()
 		{
 			if (File.Exists(PACServer.PAC_FILE))
@@ -234,7 +234,7 @@ namespace Shadowsocks.Controller
 			return PACServer.PAC_FILE;
 		}
 
-		// Token: 0x0600028D RID: 653 RVA: 0x0001839C File Offset: 0x0001659C
+		// Token: 0x060002B2 RID: 690 RVA: 0x00019C48 File Offset: 0x00017E48
 		internal string TouchUserRuleFile()
 		{
 			if (File.Exists(PACServer.USER_RULE_FILE))
@@ -245,13 +245,13 @@ namespace Shadowsocks.Controller
 			return PACServer.USER_RULE_FILE;
 		}
 
-		// Token: 0x0600028A RID: 650 RVA: 0x00018109 File Offset: 0x00016309
+		// Token: 0x060002AF RID: 687 RVA: 0x000199B5 File Offset: 0x00017BB5
 		public void UpdateConfiguration(Configuration config)
 		{
 			this._config = config;
 		}
 
-		// Token: 0x06000294 RID: 660 RVA: 0x000187A0 File Offset: 0x000169A0
+		// Token: 0x060002B9 RID: 697 RVA: 0x0001A04C File Offset: 0x0001824C
 		private void UserRuleFileWatcher_Changed(object sender, FileSystemEventArgs e)
 		{
 			if (this.UserRuleFileChanged != null)
@@ -260,7 +260,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000293 RID: 659 RVA: 0x00018785 File Offset: 0x00016985
+		// Token: 0x060002B8 RID: 696 RVA: 0x0001A031 File Offset: 0x00018231
 		private void Watcher_Changed(object sender, FileSystemEventArgs e)
 		{
 			if (this.PACFileChanged != null)
@@ -269,7 +269,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000291 RID: 657 RVA: 0x00018618 File Offset: 0x00016818
+		// Token: 0x060002B6 RID: 694 RVA: 0x00019EC4 File Offset: 0x000180C4
 		private void WatchPacFile()
 		{
 			if (this.PACFileWatcher != null)
@@ -286,7 +286,7 @@ namespace Shadowsocks.Controller
 			this.PACFileWatcher.EnableRaisingEvents = true;
 		}
 
-		// Token: 0x06000292 RID: 658 RVA: 0x000186D0 File Offset: 0x000168D0
+		// Token: 0x060002B7 RID: 695 RVA: 0x00019F7C File Offset: 0x0001817C
 		private void WatchUserRuleFile()
 		{
 			if (this.UserRuleFileWatcher != null)
@@ -304,38 +304,38 @@ namespace Shadowsocks.Controller
 		}
 
 		// Token: 0x14000004 RID: 4
-		// Token: 0x06000285 RID: 645 RVA: 0x00018018 File Offset: 0x00016218
-		// Token: 0x06000286 RID: 646 RVA: 0x00018050 File Offset: 0x00016250
+		// Token: 0x060002AA RID: 682 RVA: 0x000198C4 File Offset: 0x00017AC4
+		// Token: 0x060002AB RID: 683 RVA: 0x000198FC File Offset: 0x00017AFC
 		[method: CompilerGenerated]
 		[CompilerGenerated]
 		public event EventHandler PACFileChanged;
 
 		// Token: 0x14000005 RID: 5
-		// Token: 0x06000287 RID: 647 RVA: 0x00018088 File Offset: 0x00016288
-		// Token: 0x06000288 RID: 648 RVA: 0x000180C0 File Offset: 0x000162C0
+		// Token: 0x060002AC RID: 684 RVA: 0x00019934 File Offset: 0x00017B34
+		// Token: 0x060002AD RID: 685 RVA: 0x0001996C File Offset: 0x00017B6C
 		[method: CompilerGenerated]
 		[CompilerGenerated]
 		public event EventHandler UserRuleFileChanged;
 
-		// Token: 0x040001F5 RID: 501
+		// Token: 0x04000209 RID: 521
 		public static string BYPASS_FILE = "bypass.action";
 
-		// Token: 0x040001F8 RID: 504
+		// Token: 0x0400020C RID: 524
 		private FileSystemWatcher PACFileWatcher;
 
-		// Token: 0x040001F4 RID: 500
+		// Token: 0x04000208 RID: 520
 		public static string PAC_FILE = "pac.txt";
 
-		// Token: 0x040001F9 RID: 505
+		// Token: 0x0400020D RID: 525
 		private FileSystemWatcher UserRuleFileWatcher;
 
-		// Token: 0x040001F7 RID: 503
+		// Token: 0x0400020B RID: 523
 		public static string USER_ABP_FILE = "abp.txt";
 
-		// Token: 0x040001F6 RID: 502
+		// Token: 0x0400020A RID: 522
 		public static string USER_RULE_FILE = "user-rule.txt";
 
-		// Token: 0x040001FA RID: 506
+		// Token: 0x0400020E RID: 526
 		private Configuration _config;
 	}
 }

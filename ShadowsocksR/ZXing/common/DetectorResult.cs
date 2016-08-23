@@ -1,39 +1,33 @@
-/*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+﻿using System;
 
 namespace ZXing.Common
 {
-   /// <summary> <p>Encapsulates the result of detecting a barcode in an image. This includes the raw
-   /// matrix of black/white pixels corresponding to the barcode, and possibly points of interest
-   /// in the image, like the location of finder patterns or corners of the barcode in the image.</p>
-   /// 
-   /// </summary>
-   /// <author>  Sean Owen
-   /// </author>
-   /// <author>www.Redivivus.in (suraj.supekar@redivivus.in) - Ported from ZXING Java Source 
-   /// </author>
-   public class DetectorResult
-   {
-      public BitMatrix Bits { get; private set; }
-      public ResultPoint[] Points { get; private set; }
+	// Token: 0x02000088 RID: 136
+	public class DetectorResult
+	{
+		// Token: 0x060004EA RID: 1258 RVA: 0x00027DA6 File Offset: 0x00025FA6
+		public DetectorResult(BitMatrix bits, ResultPoint[] points)
+		{
+			this.Bits = bits;
+			this.Points = points;
+		}
 
-      public DetectorResult(BitMatrix bits, ResultPoint[] points)
-      {
-         Bits = bits;
-         Points = points;
-      }
-   }
+		// Token: 0x1700007B RID: 123
+		public BitMatrix Bits
+		{
+			// Token: 0x060004E6 RID: 1254 RVA: 0x00027D84 File Offset: 0x00025F84
+			get;
+			// Token: 0x060004E7 RID: 1255 RVA: 0x00027D8C File Offset: 0x00025F8C
+			private set;
+		}
+
+		// Token: 0x1700007C RID: 124
+		public ResultPoint[] Points
+		{
+			// Token: 0x060004E8 RID: 1256 RVA: 0x00027D95 File Offset: 0x00025F95
+			get;
+			// Token: 0x060004E9 RID: 1257 RVA: 0x00027D9D File Offset: 0x00025F9D
+			private set;
+		}
+	}
 }

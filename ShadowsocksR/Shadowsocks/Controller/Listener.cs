@@ -9,17 +9,17 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000043 RID: 67
+	// Token: 0x02000041 RID: 65
 	public class Listener
 	{
-		// Token: 0x06000259 RID: 601 RVA: 0x00016D56 File Offset: 0x00014F56
+		// Token: 0x06000244 RID: 580 RVA: 0x000164CA File Offset: 0x000146CA
 		public Listener(IList<Listener.Service> services)
 		{
 			this._services = services;
 			this._stop = false;
 		}
 
-		// Token: 0x06000261 RID: 609 RVA: 0x0001727C File Offset: 0x0001547C
+		// Token: 0x0600024C RID: 588 RVA: 0x00016A00 File Offset: 0x00014C00
 		public void AcceptCallback(IAsyncResult ar)
 		{
 			if (this._stop)
@@ -89,7 +89,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600025B RID: 603 RVA: 0x00016D80 File Offset: 0x00014F80
+		// Token: 0x06000246 RID: 582 RVA: 0x000164F4 File Offset: 0x000146F4
 		private bool CheckIfPortInUse(int port)
 		{
 			try
@@ -109,13 +109,13 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x0600025A RID: 602 RVA: 0x00016D77 File Offset: 0x00014F77
+		// Token: 0x06000245 RID: 581 RVA: 0x000164EB File Offset: 0x000146EB
 		public IList<Listener.Service> GetServices()
 		{
 			return this._services;
 		}
 
-		// Token: 0x0600025C RID: 604 RVA: 0x00016DD0 File Offset: 0x00014FD0
+		// Token: 0x06000247 RID: 583 RVA: 0x00016544 File Offset: 0x00014744
 		public bool isConfigChange(Configuration config)
 		{
 			try
@@ -131,7 +131,7 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x06000262 RID: 610 RVA: 0x00017404 File Offset: 0x00015604
+		// Token: 0x0600024D RID: 589 RVA: 0x00016B88 File Offset: 0x00014D88
 		private void ReceiveCallback(IAsyncResult ar)
 		{
 			object[] expr_0B = (object[])ar.AsyncState;
@@ -161,7 +161,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600025F RID: 607 RVA: 0x000170E8 File Offset: 0x000152E8
+		// Token: 0x0600024A RID: 586 RVA: 0x0001686C File Offset: 0x00014A6C
 		private void ResetTimeout(double time, Socket socket)
 		{
 			if (time <= 0.0 && this.timer == null)
@@ -202,7 +202,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600025D RID: 605 RVA: 0x00016E60 File Offset: 0x00015060
+		// Token: 0x06000248 RID: 584 RVA: 0x000165D4 File Offset: 0x000147D4
 		public void Start(Configuration config, int port)
 		{
 			this._config = config;
@@ -226,6 +226,7 @@ namespace Shadowsocks.Controller
 					try
 					{
 						this._socket_v6 = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
+						this._socket_v6.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
 						this._socket_v6.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 					}
 					catch
@@ -283,7 +284,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600025E RID: 606 RVA: 0x00017090 File Offset: 0x00015290
+		// Token: 0x06000249 RID: 585 RVA: 0x00016814 File Offset: 0x00014A14
 		public void Stop()
 		{
 			this.ResetTimeout(0.0, null);
@@ -300,7 +301,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000260 RID: 608 RVA: 0x00017208 File Offset: 0x00015408
+		// Token: 0x0600024B RID: 587 RVA: 0x0001698C File Offset: 0x00014B8C
 		private void timer_Elapsed(object sender, ElapsedEventArgs eventArgs, Socket socket)
 		{
 			if (this.timer == null)
@@ -322,43 +323,43 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x040001D4 RID: 468
+		// Token: 0x040001CA RID: 458
 		protected Timer timer;
 
-		// Token: 0x040001D5 RID: 469
+		// Token: 0x040001CB RID: 459
 		protected object timerLock = new object();
 
-		// Token: 0x040001CF RID: 463
+		// Token: 0x040001C5 RID: 453
 		private string _authPass;
 
-		// Token: 0x040001CE RID: 462
+		// Token: 0x040001C4 RID: 452
 		private string _authUser;
 
-		// Token: 0x040001CD RID: 461
+		// Token: 0x040001C3 RID: 451
 		private bool _bypassWhiteList;
 
-		// Token: 0x040001CB RID: 459
+		// Token: 0x040001C1 RID: 449
 		private Configuration _config;
 
-		// Token: 0x040001D3 RID: 467
+		// Token: 0x040001C9 RID: 457
 		private IList<Listener.Service> _services;
 
-		// Token: 0x040001CC RID: 460
+		// Token: 0x040001C2 RID: 450
 		private bool _shareOverLAN;
 
-		// Token: 0x040001D0 RID: 464
+		// Token: 0x040001C6 RID: 454
 		private Socket _socket;
 
-		// Token: 0x040001D1 RID: 465
+		// Token: 0x040001C7 RID: 455
 		private Socket _socket_v6;
 
-		// Token: 0x040001D2 RID: 466
+		// Token: 0x040001C8 RID: 456
 		private bool _stop;
 
-		// Token: 0x020000A9 RID: 169
+		// Token: 0x020000AB RID: 171
 		public interface Service
 		{
-			// Token: 0x06000568 RID: 1384
+			// Token: 0x06000571 RID: 1393
 			bool Handle(byte[] firstPacket, int length, Socket socket);
 		}
 	}

@@ -8,19 +8,19 @@ namespace Shadowsocks.View
 	// Token: 0x02000008 RID: 8
 	public class PerPixelAlphaForm : Form
 	{
-		// Token: 0x06000068 RID: 104 RVA: 0x00007731 File Offset: 0x00005931
+		// Token: 0x06000068 RID: 104 RVA: 0x00007889 File Offset: 0x00005A89
 		public PerPixelAlphaForm()
 		{
 			base.FormBorderStyle = FormBorderStyle.None;
 		}
 
-		// Token: 0x06000069 RID: 105 RVA: 0x00007740 File Offset: 0x00005940
+		// Token: 0x06000069 RID: 105 RVA: 0x00007898 File Offset: 0x00005A98
 		public void SetBitmap(Bitmap bitmap)
 		{
 			this.SetBitmap(bitmap, 255);
 		}
 
-		// Token: 0x0600006A RID: 106 RVA: 0x00007750 File Offset: 0x00005950
+		// Token: 0x0600006A RID: 106 RVA: 0x000078A8 File Offset: 0x00005AA8
 		public void SetBitmap(Bitmap bitmap, byte opacity)
 		{
 			if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
@@ -60,7 +60,7 @@ namespace Shadowsocks.View
 		// Token: 0x17000002 RID: 2
 		protected override CreateParams CreateParams
 		{
-			// Token: 0x0600006B RID: 107 RVA: 0x0000785C File Offset: 0x00005A5C
+			// Token: 0x0600006B RID: 107 RVA: 0x000079B4 File Offset: 0x00005BB4
 			get
 			{
 				CreateParams expr_06 = base.CreateParams;

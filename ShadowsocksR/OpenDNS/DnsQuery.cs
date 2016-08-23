@@ -7,10 +7,10 @@ using System.Text;
 
 namespace OpenDNS
 {
-	// Token: 0x02000091 RID: 145
+	// Token: 0x02000093 RID: 147
 	public class DnsQuery
 	{
-		// Token: 0x06000529 RID: 1321 RVA: 0x0002A8DD File Offset: 0x00028ADD
+		// Token: 0x06000532 RID: 1330 RVA: 0x00029B25 File Offset: 0x00027D25
 		public DnsQuery()
 		{
 			this.Port = 53;
@@ -19,7 +19,7 @@ namespace OpenDNS
 			this.QueryClass = Classes.IN;
 		}
 
-		// Token: 0x0600052A RID: 1322 RVA: 0x0002A906 File Offset: 0x00028B06
+		// Token: 0x06000533 RID: 1331 RVA: 0x00029B4E File Offset: 0x00027D4E
 		public DnsQuery(string _Domain, Types _Type)
 		{
 			this.Port = 53;
@@ -30,7 +30,7 @@ namespace OpenDNS
 			this.RecursionDesired = true;
 		}
 
-		// Token: 0x06000533 RID: 1331 RVA: 0x0002B705 File Offset: 0x00029905
+		// Token: 0x0600053C RID: 1340 RVA: 0x0002A94D File Offset: 0x00028B4D
 		private bool CheckForServers()
 		{
 			if (this.Servers.Count == 0)
@@ -44,7 +44,7 @@ namespace OpenDNS
 			throw new Exception("Abort: No DNS servers specified manually and could not get default ones.");
 		}
 
-		// Token: 0x06000532 RID: 1330 RVA: 0x0002B640 File Offset: 0x00029840
+		// Token: 0x0600053B RID: 1339 RVA: 0x0002A888 File Offset: 0x00028A88
 		private int ExtractName(int ResourceDataCursor, StringBuilder Name)
 		{
 			int num = (int)(this.data[ResourceDataCursor++] & 255);
@@ -83,7 +83,7 @@ namespace OpenDNS
 			return ResourceDataCursor;
 		}
 
-		// Token: 0x06000534 RID: 1332 RVA: 0x0002B73C File Offset: 0x0002993C
+		// Token: 0x0600053D RID: 1341 RVA: 0x0002A984 File Offset: 0x00028B84
 		private ArrayList GetDefaultServers()
 		{
 			ArrayList result = new ArrayList();
@@ -100,7 +100,7 @@ namespace OpenDNS
 			return result;
 		}
 
-		// Token: 0x06000531 RID: 1329 RVA: 0x0002B614 File Offset: 0x00029814
+		// Token: 0x0600053A RID: 1338 RVA: 0x0002A85C File Offset: 0x00028A5C
 		private string GetName()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -108,7 +108,7 @@ namespace OpenDNS
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06000530 RID: 1328 RVA: 0x0002AE74 File Offset: 0x00029074
+		// Token: 0x06000539 RID: 1337 RVA: 0x0002A0BC File Offset: 0x000282BC
 		private void GetResourceRecord(int i, ResourceRecordCollection Container)
 		{
 			string name = this.GetName();
@@ -119,7 +119,7 @@ namespace OpenDNS
 			byte[] arg_44_0 = this.data;
 			num = this.position;
 			this.position = num + 1;
-			Types types = (Types)(((int)arg_4B_0 )| (arg_44_0[num] & 255));
+			Types types = arg_4B_0 | (Types)(arg_44_0[num] & 255);
 			byte[] arg_67_0 = this.data;
 			num = this.position;
 			this.position = num + 1;
@@ -127,7 +127,7 @@ namespace OpenDNS
 			byte[] arg_8A_0 = this.data;
 			num = this.position;
 			this.position = num + 1;
-			Classes @class = (Classes)(((int)arg_91_0) | (arg_8A_0[num] & 255));
+			Classes @class = arg_91_0 | (Classes)(arg_8A_0[num] & 255);
 			byte[] arg_AD_0 = this.data;
 			num = this.position;
 			this.position = num + 1;
@@ -355,7 +355,7 @@ namespace OpenDNS
 			Trace.WriteLine("Resource type did not match: " + types.ToString(), "RUY QDNS");
 		}
 
-		// Token: 0x0600052E RID: 1326 RVA: 0x0002AAF0 File Offset: 0x00028CF0
+		// Token: 0x06000537 RID: 1335 RVA: 0x00029D38 File Offset: 0x00027F38
 		private byte[] MakeQuery()
 		{
 			int num = new Random().Next(55555);
@@ -367,7 +367,7 @@ namespace OpenDNS
 			array[0] = (byte)(num >> 8);
 			array[1] = (byte)(num & 255);
 			array[2] = 1;
-			array[2] = (this.RecursionDesired ? (byte)(array[2] | 1) : (byte)(array[2] & 254));
+			array[2] = (byte)(this.RecursionDesired ? (array[2] | 1) : (array[2] & 254));
 			array[3] = 0;
 			array[4] = 0;
 			array[5] = 1;
@@ -394,7 +394,7 @@ namespace OpenDNS
 			return array;
 		}
 
-		// Token: 0x0600052F RID: 1327 RVA: 0x0002AC24 File Offset: 0x00028E24
+		// Token: 0x06000538 RID: 1336 RVA: 0x00029E6C File Offset: 0x0002806C
 		private void ReadResponse()
 		{
 			int iD = ((int)(this.data[0] & 255) << 8) + (int)(this.data[1] & 255);
@@ -446,12 +446,12 @@ namespace OpenDNS
 			}
 		}
 
-		// Token: 0x0600052B RID: 1323 RVA: 0x0002A940 File Offset: 0x00028B40
+		// Token: 0x06000534 RID: 1332 RVA: 0x00029B88 File Offset: 0x00027D88
 		public bool Send()
 		{
 			this.CheckForServers();
-			//using 
-			IEnumerator enumerator = this.Servers.GetEnumerator();
+			//using (
+            IEnumerator enumerator = this.Servers.GetEnumerator();//)
 			{
 				while (enumerator.MoveNext())
 				{
@@ -466,7 +466,7 @@ namespace OpenDNS
 						{
 							port = int.Parse(array[1]);
 						}
-						catch (Exception)
+						catch
 						{
 						}
 					}
@@ -475,7 +475,7 @@ namespace OpenDNS
 						this.SendQuery2(array[0], port);
 						break;
 					}
-					catch (Exception)
+					catch
 					{
 					}
 				}
@@ -483,7 +483,7 @@ namespace OpenDNS
 			return this.Response != null;
 		}
 
-		// Token: 0x0600052C RID: 1324 RVA: 0x0002A9F4 File Offset: 0x00028BF4
+		// Token: 0x06000535 RID: 1333 RVA: 0x00029C3C File Offset: 0x00027E3C
 		private void SendQuery(string ipAddress)
 		{
 			if (ipAddress == null)
@@ -502,7 +502,7 @@ namespace OpenDNS
 			udpClient.Close();
 		}
 
-		// Token: 0x0600052D RID: 1325 RVA: 0x0002AA54 File Offset: 0x00028C54
+		// Token: 0x06000536 RID: 1334 RVA: 0x00029C9C File Offset: 0x00027E9C
 		private void SendQuery2(string ipAddress, int port)
 		{
 			int optionValue = 5000;
@@ -523,44 +523,44 @@ namespace OpenDNS
 			socket.Shutdown(SocketShutdown.Both);
 		}
 
-		// Token: 0x17000084 RID: 132
+		// Token: 0x17000087 RID: 135
 		public DnsResponse Response
 		{
-			// Token: 0x06000528 RID: 1320 RVA: 0x0002A8D5 File Offset: 0x00028AD5
+			// Token: 0x06000531 RID: 1329 RVA: 0x00029B1D File Offset: 0x00027D1D
 			get
 			{
 				return this._Response;
 			}
 		}
 
-		// Token: 0x0400037B RID: 891
+		// Token: 0x04000378 RID: 888
 		private byte[] data;
 
-		// Token: 0x0400037E RID: 894
+		// Token: 0x0400037B RID: 891
 		public string Domain;
 
-		// Token: 0x0400037D RID: 893
+		// Token: 0x0400037A RID: 890
 		private int length;
 
-		// Token: 0x04000381 RID: 897
+		// Token: 0x0400037E RID: 894
 		public int Port;
 
-		// Token: 0x0400037C RID: 892
+		// Token: 0x04000379 RID: 889
 		private int position;
 
-		// Token: 0x04000380 RID: 896
+		// Token: 0x0400037D RID: 893
 		public Classes QueryClass;
 
-		// Token: 0x0400037F RID: 895
+		// Token: 0x0400037C RID: 892
 		public Types QueryType;
 
-		// Token: 0x04000383 RID: 899
+		// Token: 0x04000380 RID: 896
 		public bool RecursionDesired;
 
-		// Token: 0x04000382 RID: 898
+		// Token: 0x0400037F RID: 895
 		public ArrayList Servers;
 
-		// Token: 0x04000384 RID: 900
+		// Token: 0x04000381 RID: 897
 		private DnsResponse _Response;
 	}
 }

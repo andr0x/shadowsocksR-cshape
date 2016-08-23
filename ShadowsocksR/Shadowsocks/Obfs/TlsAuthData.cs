@@ -2,10 +2,10 @@
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x02000014 RID: 20
+	// Token: 0x02000013 RID: 19
 	public class TlsAuthData
 	{
-		// Token: 0x040000D2 RID: 210
+		// Token: 0x040000CE RID: 206
 		public byte[] clientID;
 	}
 }

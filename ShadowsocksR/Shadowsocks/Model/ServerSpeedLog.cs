@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x0200002F RID: 47
+	// Token: 0x0200002D RID: 45
 	public class ServerSpeedLog
 	{
-		// Token: 0x0600018F RID: 399 RVA: 0x0001256F File Offset: 0x0001076F
+		// Token: 0x0600017B RID: 379 RVA: 0x00011BE6 File Offset: 0x0000FDE6
 		public ServerSpeedLog()
 		{
 		}
 
-		// Token: 0x06000190 RID: 400 RVA: 0x00012582 File Offset: 0x00010782
+		// Token: 0x0600017C RID: 380 RVA: 0x00011BF9 File Offset: 0x0000FDF9
 		public ServerSpeedLog(long upload, long download)
 		{
 			this.transUpload = upload;
 			this.transDownload = download;
 		}
 
-		// Token: 0x060001AC RID: 428 RVA: 0x0001365C File Offset: 0x0001185C
+		// Token: 0x06000198 RID: 408 RVA: 0x00012DEC File Offset: 0x00010FEC
 		public void AddConnectTime(int millisecond)
 		{
 			lock (this)
@@ -37,7 +37,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600019E RID: 414 RVA: 0x00012F64 File Offset: 0x00011164
+		// Token: 0x0600018A RID: 394 RVA: 0x000125F4 File Offset: 0x000107F4
 		public void AddConnectTimes()
 		{
 			lock (this)
@@ -46,7 +46,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600019F RID: 415 RVA: 0x00012FA8 File Offset: 0x000111A8
+		// Token: 0x0600018B RID: 395 RVA: 0x00012638 File Offset: 0x00010838
 		public void AddDisconnectTimes()
 		{
 			lock (this)
@@ -55,9 +55,10 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A7 RID: 423 RVA: 0x00013438 File Offset: 0x00011638
+		// Token: 0x06000193 RID: 403 RVA: 0x00012B48 File Offset: 0x00010D48
 		public void AddDownloadBytes(long bytes)
 		{
+			DateTime now = DateTime.Now;
 			lock (this)
 			{
 				this.transDownload += bytes;
@@ -68,24 +69,45 @@ namespace Shadowsocks.Model
 				List<TransLog> list = this.downTransLog;
 				if (list.Count > 0)
 				{
-					DateTime arg_55_0 = DateTime.Now;
-					List<TransLog> expr_43 = list;
-					if ((arg_55_0 - expr_43[expr_43.Count - 1].recvTime).TotalMilliseconds < 100.0)
+					DateTime arg_57_0 = now;
+					List<TransLog> expr_45 = list;
+					if ((arg_57_0 - expr_45[expr_45.Count - 1].recvTime).TotalMilliseconds < 100.0)
 					{
-						List<TransLog> expr_6E = list;
-						expr_6E[expr_6E.Count - 1].size += (int)bytes;
+						List<TransLog> expr_71 = list;
+						expr_71[expr_71.Count - 1].size += (int)bytes;
+						List<TransLog> expr_8D = list;
+						expr_8D[expr_8D.Count - 1].endTime = now;
 						return;
 					}
 				}
-				list.Add(new TransLog((int)bytes, DateTime.Now));
-				while (list.Count > 0 && DateTime.Now > list[0].recvTime.AddSeconds(2.0))
+				if (list.Count > 0)
+				{
+					int i;
+					for (i = list.Count - 1; i >= 0; i--)
+					{
+						if (!(list[i].recvTime > now) || i <= 0)
+						{
+							list.Insert(i + 1, new TransLog((int)bytes, now));
+							break;
+						}
+					}
+					if (i == -1)
+					{
+						list.Insert(0, new TransLog((int)bytes, now));
+					}
+				}
+				else
+				{
+					list.Add(new TransLog((int)bytes, now));
+				}
+				while (list.Count > 0 && now > list[0].recvTime.AddSeconds(3.0))
 				{
 					list.RemoveAt(0);
 				}
 			}
 		}
 
-		// Token: 0x060001A8 RID: 424 RVA: 0x00013538 File Offset: 0x00011738
+		// Token: 0x06000194 RID: 404 RVA: 0x00012CC8 File Offset: 0x00010EC8
 		public void AddDownloadRawBytes(long bytes)
 		{
 			lock (this)
@@ -94,7 +116,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A4 RID: 420 RVA: 0x00013240 File Offset: 0x00011440
+		// Token: 0x06000190 RID: 400 RVA: 0x000128D0 File Offset: 0x00010AD0
 		public void AddErrorDecodeTimes()
 		{
 			lock (this)
@@ -110,7 +132,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A5 RID: 421 RVA: 0x000132BC File Offset: 0x000114BC
+		// Token: 0x06000191 RID: 401 RVA: 0x0001294C File Offset: 0x00010B4C
 		public void AddErrorEmptyTimes()
 		{
 			lock (this)
@@ -126,7 +148,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A2 RID: 418 RVA: 0x00013148 File Offset: 0x00011348
+		// Token: 0x0600018E RID: 398 RVA: 0x000127D8 File Offset: 0x000109D8
 		public void AddErrorTimes()
 		{
 			lock (this)
@@ -142,7 +164,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A1 RID: 417 RVA: 0x000130F0 File Offset: 0x000112F0
+		// Token: 0x0600018D RID: 397 RVA: 0x00012780 File Offset: 0x00010980
 		public void AddNoErrorTimes()
 		{
 			lock (this)
@@ -153,7 +175,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A3 RID: 419 RVA: 0x000131C4 File Offset: 0x000113C4
+		// Token: 0x0600018F RID: 399 RVA: 0x00012854 File Offset: 0x00010A54
 		public void AddTimeoutTimes()
 		{
 			lock (this)
@@ -169,9 +191,10 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A6 RID: 422 RVA: 0x00013338 File Offset: 0x00011538
+		// Token: 0x06000192 RID: 402 RVA: 0x000129C8 File Offset: 0x00010BC8
 		public void AddUploadBytes(long bytes)
 		{
+			DateTime now = DateTime.Now;
 			lock (this)
 			{
 				this.transUpload += bytes;
@@ -182,24 +205,45 @@ namespace Shadowsocks.Model
 				List<TransLog> list = this.upTransLog;
 				if (list.Count > 0)
 				{
-					DateTime arg_55_0 = DateTime.Now;
-					List<TransLog> expr_43 = list;
-					if ((arg_55_0 - expr_43[expr_43.Count - 1].recvTime).TotalMilliseconds < 100.0)
+					DateTime arg_57_0 = now;
+					List<TransLog> expr_45 = list;
+					if ((arg_57_0 - expr_45[expr_45.Count - 1].recvTime).TotalMilliseconds < 100.0)
 					{
-						List<TransLog> expr_6E = list;
-						expr_6E[expr_6E.Count - 1].size += (int)bytes;
+						List<TransLog> expr_71 = list;
+						expr_71[expr_71.Count - 1].size += (int)bytes;
+						List<TransLog> expr_8D = list;
+						expr_8D[expr_8D.Count - 1].endTime = now;
 						return;
 					}
 				}
-				list.Add(new TransLog((int)bytes, DateTime.Now));
-				while (list.Count > 0 && DateTime.Now > list[0].recvTime.AddSeconds(2.0))
+				if (list.Count > 0)
+				{
+					int i;
+					for (i = list.Count - 1; i >= 0; i--)
+					{
+						if (!(list[i].recvTime > now) || i <= 0)
+						{
+							list.Insert(i + 1, new TransLog((int)bytes, now));
+							break;
+						}
+					}
+					if (i == -1)
+					{
+						list.Insert(0, new TransLog((int)bytes, now));
+					}
+				}
+				else
+				{
+					list.Add(new TransLog((int)bytes, now));
+				}
+				while (list.Count > 0 && now > list[0].recvTime.AddSeconds(3.0))
 				{
 					list.RemoveAt(0);
 				}
 			}
 		}
 
-		// Token: 0x0600019D RID: 413 RVA: 0x00012E98 File Offset: 0x00011098
+		// Token: 0x06000189 RID: 393 RVA: 0x00012528 File Offset: 0x00010728
 		public void Clear()
 		{
 			lock (this)
@@ -228,7 +272,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600019B RID: 411 RVA: 0x00012DAC File Offset: 0x00010FAC
+		// Token: 0x06000187 RID: 391 RVA: 0x0001243C File Offset: 0x0001063C
 		public void ClearError()
 		{
 			lock (this)
@@ -252,7 +296,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600019C RID: 412 RVA: 0x00012E50 File Offset: 0x00011050
+		// Token: 0x06000188 RID: 392 RVA: 0x000124E0 File Offset: 0x000106E0
 		public void ClearMaxSpeed()
 		{
 			lock (this)
@@ -262,7 +306,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001AA RID: 426 RVA: 0x000135D0 File Offset: 0x000117D0
+		// Token: 0x06000196 RID: 406 RVA: 0x00012D60 File Offset: 0x00010F60
 		public void ResetContinurousTimes()
 		{
 			lock (this)
@@ -273,7 +317,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001AB RID: 427 RVA: 0x0001361C File Offset: 0x0001181C
+		// Token: 0x06000197 RID: 407 RVA: 0x00012DAC File Offset: 0x00010FAC
 		public void ResetEmptyTimes()
 		{
 			lock (this)
@@ -282,7 +326,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A9 RID: 425 RVA: 0x0001357C File Offset: 0x0001177C
+		// Token: 0x06000195 RID: 405 RVA: 0x00012D0C File Offset: 0x00010F0C
 		public void ResetErrorDecodeTimes()
 		{
 			lock (this)
@@ -294,7 +338,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x060001A0 RID: 416 RVA: 0x00012FEC File Offset: 0x000111EC
+		// Token: 0x0600018C RID: 396 RVA: 0x0001267C File Offset: 0x0001087C
 		protected void Sweep()
 		{
 			while (this.errList.Count > 0 && ((DateTime.Now - this.errList.First.Value.time).TotalMinutes >= 30.0 || this.errList.Count >= 100))
@@ -329,7 +373,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000191 RID: 401 RVA: 0x000125A4 File Offset: 0x000107A4
+		// Token: 0x0600017D RID: 381 RVA: 0x00011C1C File Offset: 0x0000FE1C
 		public ServerSpeedLogShow Translate()
 		{
 			ServerSpeedLogShow serverSpeedLogShow = new ServerSpeedLogShow();
@@ -360,7 +404,7 @@ namespace Shadowsocks.Model
 		// Token: 0x1700001A RID: 26
 		public long AvgConnectTime
 		{
-			// Token: 0x0600019A RID: 410 RVA: 0x00012CA0 File Offset: 0x00010EA0
+			// Token: 0x06000186 RID: 390 RVA: 0x00012330 File Offset: 0x00010530
 			get
 			{
 				long result;
@@ -399,7 +443,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000018 RID: 24
 		public long AvgDownloadBytes
 		{
-			// Token: 0x06000198 RID: 408 RVA: 0x00012838 File Offset: 0x00010A38
+			// Token: 0x06000184 RID: 388 RVA: 0x00011EB0 File Offset: 0x000100B0
 			get
 			{
 				List<TransLog> list;
@@ -422,7 +466,7 @@ namespace Shadowsocks.Model
 				{
 					DateTime arg_99_0 = DateTime.Now;
 					List<TransLog> expr_79 = list;
-					if (arg_99_0 > expr_79[expr_79.Count - 1].recvTime.AddSeconds(2.0))
+					if (arg_99_0 > expr_79[expr_79.Count - 1].recvTime.AddSeconds(3.0))
 					{
 						return 0L;
 					}
@@ -436,9 +480,9 @@ namespace Shadowsocks.Model
 				for (int k = 0; k < list.Count; k++)
 				{
 					num3 += (long)list[k].size;
-					while (num4 + 100 <= k && (list[k].recvTime - list[num4].recvTime).TotalSeconds > 1.0)
+					while (num4 + 3 <= k && (list[k].endTime - list[num4].recvTime).TotalSeconds > 1.5)
 					{
-						long num5 = (long)((double)(num3 - (long)list[num4].size) / (list[k].recvTime - list[num4].recvTime).TotalSeconds);
+						long num5 = (long)((double)(num3 - (long)list[num4].size) / (list[k].endTime - list[num4].recvTime).TotalSeconds);
 						if (num5 > this.maxTransDownload)
 						{
 							this.maxTransDownload = num5;
@@ -449,13 +493,13 @@ namespace Shadowsocks.Model
 				}
 				if (list.Count > 1)
 				{
-					List<TransLog> expr_1B7 = list;
-					num2 = (expr_1B7[expr_1B7.Count - 1].recvTime - list[0].recvTime).TotalSeconds;
+					List<TransLog> expr_1B6 = list;
+					num2 = (expr_1B6[expr_1B6.Count - 1].endTime - list[0].recvTime).TotalSeconds;
 				}
-				if (num2 > 0.1)
+				if (num2 > 0.2)
 				{
 					long num6 = (long)((double)num / num2);
-					if (num6 > this.maxTransDownload)
+					if (num2 > 1.0 && num6 > this.maxTransDownload)
 					{
 						this.maxTransDownload = num6;
 					}
@@ -468,7 +512,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000019 RID: 25
 		public long AvgUploadBytes
 		{
-			// Token: 0x06000199 RID: 409 RVA: 0x00012A6C File Offset: 0x00010C6C
+			// Token: 0x06000185 RID: 389 RVA: 0x000120F0 File Offset: 0x000102F0
 			get
 			{
 				List<TransLog> list;
@@ -491,7 +535,7 @@ namespace Shadowsocks.Model
 				{
 					DateTime arg_99_0 = DateTime.Now;
 					List<TransLog> expr_79 = list;
-					if (arg_99_0 > expr_79[expr_79.Count - 1].recvTime.AddSeconds(2.0))
+					if (arg_99_0 > expr_79[expr_79.Count - 1].recvTime.AddSeconds(3.0))
 					{
 						return 0L;
 					}
@@ -505,9 +549,9 @@ namespace Shadowsocks.Model
 				for (int k = 0; k < list.Count; k++)
 				{
 					num3 += (long)list[k].size;
-					while (num4 + 100 <= k && (list[k].recvTime - list[num4].recvTime).TotalSeconds > 1.0)
+					while (num4 + 3 <= k && (list[k].endTime - list[num4].recvTime).TotalSeconds > 1.5)
 					{
-						long num5 = (long)((double)(num3 - (long)list[num4].size) / (list[k].recvTime - list[num4].recvTime).TotalSeconds);
+						long num5 = (long)((double)(num3 - (long)list[num4].size) / (list[k].endTime - list[num4].recvTime).TotalSeconds);
 						if (num5 > this.maxTransUpload)
 						{
 							this.maxTransUpload = num5;
@@ -518,13 +562,13 @@ namespace Shadowsocks.Model
 				}
 				if (list.Count > 1)
 				{
-					List<TransLog> expr_1B7 = list;
-					num2 = (expr_1B7[expr_1B7.Count - 1].recvTime - list[0].recvTime).TotalSeconds;
+					List<TransLog> expr_1B6 = list;
+					num2 = (expr_1B6[expr_1B6.Count - 1].endTime - list[0].recvTime).TotalSeconds;
 				}
-				if (num2 > 0.1)
+				if (num2 > 0.2)
 				{
 					long num6 = (long)((double)num / num2);
-					if (num6 > this.maxTransUpload)
+					if (num2 > 1.0 && num6 > this.maxTransUpload)
 					{
 						this.maxTransUpload = num6;
 					}
@@ -537,7 +581,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000014 RID: 20
 		public long ErrorConnectTimes
 		{
-			// Token: 0x06000194 RID: 404 RVA: 0x00012738 File Offset: 0x00010938
+			// Token: 0x06000180 RID: 384 RVA: 0x00011DB0 File Offset: 0x0000FFB0
 			get
 			{
 				long result;
@@ -552,7 +596,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000017 RID: 23
 		public long ErrorContinurousTimes
 		{
-			// Token: 0x06000197 RID: 407 RVA: 0x000127F8 File Offset: 0x000109F8
+			// Token: 0x06000183 RID: 387 RVA: 0x00011E70 File Offset: 0x00010070
 			get
 			{
 				long result;
@@ -567,7 +611,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000016 RID: 22
 		public long ErrorEncryptTimes
 		{
-			// Token: 0x06000196 RID: 406 RVA: 0x000127B8 File Offset: 0x000109B8
+			// Token: 0x06000182 RID: 386 RVA: 0x00011E30 File Offset: 0x00010030
 			get
 			{
 				long result;
@@ -582,7 +626,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000015 RID: 21
 		public long ErrorTimeoutTimes
 		{
-			// Token: 0x06000195 RID: 405 RVA: 0x00012778 File Offset: 0x00010978
+			// Token: 0x06000181 RID: 385 RVA: 0x00011DF0 File Offset: 0x0000FFF0
 			get
 			{
 				long result;
@@ -597,7 +641,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000012 RID: 18
 		public long TotalConnectTimes
 		{
-			// Token: 0x06000192 RID: 402 RVA: 0x000126B8 File Offset: 0x000108B8
+			// Token: 0x0600017E RID: 382 RVA: 0x00011D30 File Offset: 0x0000FF30
 			get
 			{
 				long result;
@@ -612,7 +656,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000013 RID: 19
 		public long TotalDisconnectTimes
 		{
-			// Token: 0x06000193 RID: 403 RVA: 0x000126F8 File Offset: 0x000108F8
+			// Token: 0x0600017F RID: 383 RVA: 0x00011D70 File Offset: 0x0000FF70
 			get
 			{
 				long result;
@@ -624,61 +668,61 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0400016C RID: 364
-		private const int avgTime = 2;
-
-		// Token: 0x04000169 RID: 361
-		private List<int> connectTime;
-
-		// Token: 0x04000165 RID: 357
-		private List<TransLog> downTransLog;
-
-		// Token: 0x0400016B RID: 363
-		private LinkedList<ErrorLog> errList = new LinkedList<ErrorLog>();
-
-		// Token: 0x0400015C RID: 348
-		private long errorConnectTimes;
-
-		// Token: 0x04000161 RID: 353
-		private long errorContinurousTimes;
-
-		// Token: 0x0400015E RID: 350
-		private long errorDecodeTimes;
+		// Token: 0x04000162 RID: 354
+		private const int avgTime = 3;
 
 		// Token: 0x0400015F RID: 351
-		private long errorEmptyTimes;
-
-		// Token: 0x0400015D RID: 349
-		private long errorTimeoutTimes;
-
-		// Token: 0x04000160 RID: 352
-		private int lastError;
-
-		// Token: 0x04000167 RID: 359
-		private long maxTransDownload;
-
-		// Token: 0x04000168 RID: 360
-		private long maxTransUpload;
-
-		// Token: 0x0400016A RID: 362
-		private int sumConnectTime;
-
-		// Token: 0x0400015A RID: 346
-		private long totalConnectTimes;
+		private List<int> connectTime;
 
 		// Token: 0x0400015B RID: 347
+		private List<TransLog> downTransLog;
+
+		// Token: 0x04000161 RID: 353
+		private LinkedList<ErrorLog> errList = new LinkedList<ErrorLog>();
+
+		// Token: 0x04000152 RID: 338
+		private long errorConnectTimes;
+
+		// Token: 0x04000157 RID: 343
+		private long errorContinurousTimes;
+
+		// Token: 0x04000154 RID: 340
+		private long errorDecodeTimes;
+
+		// Token: 0x04000155 RID: 341
+		private long errorEmptyTimes;
+
+		// Token: 0x04000153 RID: 339
+		private long errorTimeoutTimes;
+
+		// Token: 0x04000156 RID: 342
+		private int lastError;
+
+		// Token: 0x0400015D RID: 349
+		private long maxTransDownload;
+
+		// Token: 0x0400015E RID: 350
+		private long maxTransUpload;
+
+		// Token: 0x04000160 RID: 352
+		private int sumConnectTime;
+
+		// Token: 0x04000150 RID: 336
+		private long totalConnectTimes;
+
+		// Token: 0x04000151 RID: 337
 		private long totalDisconnectTimes;
 
-		// Token: 0x04000163 RID: 355
+		// Token: 0x04000159 RID: 345
 		private long transDownload;
 
-		// Token: 0x04000164 RID: 356
+		// Token: 0x0400015A RID: 346
 		private long transDownloadRaw;
 
-		// Token: 0x04000162 RID: 354
+		// Token: 0x04000158 RID: 344
 		private long transUpload;
 
-		// Token: 0x04000166 RID: 358
+		// Token: 0x0400015C RID: 348
 		private List<TransLog> upTransLog;
 	}
 }

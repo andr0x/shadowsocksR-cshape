@@ -9,11 +9,11 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000024 RID: 36
+	// Token: 0x02000022 RID: 34
 	[Serializable]
 	public class Server
 	{
-		// Token: 0x0600015C RID: 348 RVA: 0x00010C30 File Offset: 0x0000EE30
+		// Token: 0x06000148 RID: 328 RVA: 0x000101EC File Offset: 0x0000E3EC
 		public Server()
 		{
 			this.server = "server ip or url";
@@ -32,7 +32,7 @@ namespace Shadowsocks.Model
 			this.id = BitConverter.ToString(array).Replace("-", "");
 		}
 
-		// Token: 0x0600015D RID: 349 RVA: 0x00010D01 File Offset: 0x0000EF01
+		// Token: 0x06000149 RID: 329 RVA: 0x000102BD File Offset: 0x0000E4BD
 		public Server(string ssURL) : this()
 		{
 			if (ssURL.StartsWith("ss://"))
@@ -46,7 +46,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x0600015B RID: 347 RVA: 0x00010B44 File Offset: 0x0000ED44
+		// Token: 0x06000147 RID: 327 RVA: 0x00010100 File Offset: 0x0000E300
 		public Server Clone()
 		{
 			return new Server
@@ -67,7 +67,7 @@ namespace Shadowsocks.Model
 			};
 		}
 
-		// Token: 0x06000151 RID: 337 RVA: 0x00010920 File Offset: 0x0000EB20
+		// Token: 0x0600013D RID: 317 RVA: 0x0000FEDC File Offset: 0x0000E0DC
 		public void CopyServer(Server Server)
 		{
 			this.serverSpeedLog = Server.serverSpeedLog;
@@ -77,7 +77,7 @@ namespace Shadowsocks.Model
 			this.enable = Server.enable;
 		}
 
-		// Token: 0x0600015E RID: 350 RVA: 0x00010D32 File Offset: 0x0000EF32
+		// Token: 0x0600014A RID: 330 RVA: 0x000102EE File Offset: 0x0000E4EE
 		public static string DecodeBase64(string val)
 		{
 			if (val.LastIndexOf(':') > 0)
@@ -87,7 +87,7 @@ namespace Shadowsocks.Model
 			return Utils.DecodeBase64(val);
 		}
 
-		// Token: 0x0600015F RID: 351 RVA: 0x00010D47 File Offset: 0x0000EF47
+		// Token: 0x0600014B RID: 331 RVA: 0x00010303 File Offset: 0x0000E503
 		public static string DecodeUrlSafeBase64(string val)
 		{
 			if (val.LastIndexOf(':') > 0)
@@ -97,19 +97,19 @@ namespace Shadowsocks.Model
 			return Utils.DecodeUrlSafeBase64(val);
 		}
 
-		// Token: 0x06000154 RID: 340 RVA: 0x0001096F File Offset: 0x0000EB6F
+		// Token: 0x06000140 RID: 320 RVA: 0x0000FF2B File Offset: 0x0000E12B
 		public DnsBuffer DnsBuffer()
 		{
 			return this.dnsBuffer;
 		}
 
-		// Token: 0x06000155 RID: 341 RVA: 0x00010977 File Offset: 0x0000EB77
+		// Token: 0x06000141 RID: 321 RVA: 0x0000FF33 File Offset: 0x0000E133
 		public DnsBuffer DnsTargetBuffer()
 		{
 			return this.dnsTargetBuffer;
 		}
 
-		// Token: 0x0600015A RID: 346 RVA: 0x00010A1C File Offset: 0x0000EC1C
+		// Token: 0x06000146 RID: 326 RVA: 0x0000FFD8 File Offset: 0x0000E1D8
 		public string FriendlyName()
 		{
 			if (string.IsNullOrEmpty(this.server))
@@ -156,31 +156,31 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000153 RID: 339 RVA: 0x00010967 File Offset: 0x0000EB67
+		// Token: 0x0600013F RID: 319 RVA: 0x0000FF23 File Offset: 0x0000E123
 		public Connections GetConnections()
 		{
 			return this.Connections;
 		}
 
-		// Token: 0x06000164 RID: 356 RVA: 0x000111E9 File Offset: 0x0000F3E9
+		// Token: 0x06000150 RID: 336 RVA: 0x00010825 File Offset: 0x0000EA25
 		public object getObfsData()
 		{
 			return this.obfsdata;
 		}
 
-		// Token: 0x06000166 RID: 358 RVA: 0x000111FA File Offset: 0x0000F3FA
+		// Token: 0x06000152 RID: 338 RVA: 0x00010836 File Offset: 0x0000EA36
 		public object getProtocolData()
 		{
 			return this.protocoldata;
 		}
 
-		// Token: 0x06000162 RID: 354 RVA: 0x000111D8 File Offset: 0x0000F3D8
+		// Token: 0x0600014E RID: 334 RVA: 0x00010814 File Offset: 0x0000EA14
 		public bool isEnable()
 		{
 			return this.enable;
 		}
 
-		// Token: 0x06000161 RID: 353 RVA: 0x00010FC8 File Offset: 0x0000F1C8
+		// Token: 0x0600014D RID: 333 RVA: 0x00010604 File Offset: 0x0000E804
 		public void ServerFromSS(string ssURL)
 		{
 			string text = Server.DecodeBase64(Regex.Split(ssURL, "ss://", RegexOptions.IgnoreCase)[1].ToString());
@@ -273,7 +273,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000160 RID: 352 RVA: 0x00010D5C File Offset: 0x0000EF5C
+		// Token: 0x0600014C RID: 332 RVA: 0x00010318 File Offset: 0x0000E518
 		public void ServerFromSSR(string ssrURL)
 		{
 			string text = Server.DecodeUrlSafeBase64(Regex.Split(ssrURL, "ssr://", RegexOptions.IgnoreCase)[1].ToString());
@@ -315,6 +315,39 @@ namespace Shadowsocks.Model
 			{
 				':'
 			}, StringSplitOptions.None);
+			if (array2.Length > 6)
+			{
+				string[] array3 = new string[6];
+				string[] arg_13A_0 = array3;
+				int arg_13A_1 = 5;
+				string[] expr_134 = array2;
+				arg_13A_0[arg_13A_1] = expr_134[expr_134.Length - 1];
+				string[] arg_145_0 = array3;
+				int arg_145_1 = 4;
+				string[] expr_13F = array2;
+				arg_145_0[arg_145_1] = expr_13F[expr_13F.Length - 2];
+				string[] arg_150_0 = array3;
+				int arg_150_1 = 3;
+				string[] expr_14A = array2;
+				arg_150_0[arg_150_1] = expr_14A[expr_14A.Length - 3];
+				string[] arg_15B_0 = array3;
+				int arg_15B_1 = 2;
+				string[] expr_155 = array2;
+				arg_15B_0[arg_15B_1] = expr_155[expr_155.Length - 4];
+				string[] arg_166_0 = array3;
+				int arg_166_1 = 1;
+				string[] expr_160 = array2;
+				arg_166_0[arg_166_1] = expr_160[expr_160.Length - 5];
+				string[] arg_171_0 = array3;
+				int arg_171_1 = 0;
+				string[] expr_16B = array2;
+				arg_171_0[arg_171_1] = expr_16B[expr_16B.Length - 6];
+				for (int j = array2.Length - 7; j >= 0; j--)
+				{
+					array3[0] = array2[j] + ":" + array3[0];
+				}
+				array2 = array3;
+			}
 			if (array2.Length != 6)
 			{
 				throw new FormatException();
@@ -349,37 +382,37 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000156 RID: 342 RVA: 0x0001097F File Offset: 0x0000EB7F
+		// Token: 0x06000142 RID: 322 RVA: 0x0000FF3B File Offset: 0x0000E13B
 		public ServerSpeedLog ServerSpeedLog()
 		{
 			return this.serverSpeedLog;
 		}
 
-		// Token: 0x06000152 RID: 338 RVA: 0x0001095E File Offset: 0x0000EB5E
+		// Token: 0x0600013E RID: 318 RVA: 0x0000FF1A File Offset: 0x0000E11A
 		public void SetConnections(Connections Connections)
 		{
 			this.Connections = Connections;
 		}
 
-		// Token: 0x06000163 RID: 355 RVA: 0x000111E0 File Offset: 0x0000F3E0
+		// Token: 0x0600014F RID: 335 RVA: 0x0001081C File Offset: 0x0000EA1C
 		public void setEnable(bool enable)
 		{
 			this.enable = enable;
 		}
 
-		// Token: 0x06000165 RID: 357 RVA: 0x000111F1 File Offset: 0x0000F3F1
+		// Token: 0x06000151 RID: 337 RVA: 0x0001082D File Offset: 0x0000EA2D
 		public void setObfsData(object data)
 		{
 			this.obfsdata = data;
 		}
 
-		// Token: 0x06000167 RID: 359 RVA: 0x00011202 File Offset: 0x0000F402
+		// Token: 0x06000153 RID: 339 RVA: 0x0001083E File Offset: 0x0000EA3E
 		public void setProtocolData(object data)
 		{
 			this.protocoldata = data;
 		}
 
-		// Token: 0x06000157 RID: 343 RVA: 0x00010987 File Offset: 0x0000EB87
+		// Token: 0x06000143 RID: 323 RVA: 0x0000FF43 File Offset: 0x0000E143
 		public void SetServerSpeedLog(ServerSpeedLog log)
 		{
 			this.serverSpeedLog = log;
@@ -388,7 +421,7 @@ namespace Shadowsocks.Model
 		// Token: 0x17000011 RID: 17
 		public string remarks
 		{
-			// Token: 0x06000158 RID: 344 RVA: 0x00010990 File Offset: 0x0000EB90
+			// Token: 0x06000144 RID: 324 RVA: 0x0000FF4C File Offset: 0x0000E14C
 			get
 			{
 				if (this.remarks_base64.Length == 0)
@@ -409,68 +442,68 @@ namespace Shadowsocks.Model
 				}
 				return result;
 			}
-			// Token: 0x06000159 RID: 345 RVA: 0x00010A0C File Offset: 0x0000EC0C
+			// Token: 0x06000145 RID: 325 RVA: 0x0000FFC8 File Offset: 0x0000E1C8
 			set
 			{
 				this.remarks_base64 = Utils.EncodeUrlSafeBase64(value);
 			}
 		}
 
-		// Token: 0x0400010D RID: 269
+		// Token: 0x04000102 RID: 258
 		private Connections Connections = new Connections();
 
-		// Token: 0x0400010B RID: 267
+		// Token: 0x04000100 RID: 256
 		private DnsBuffer dnsBuffer = new DnsBuffer();
 
-		// Token: 0x0400010C RID: 268
+		// Token: 0x04000101 RID: 257
 		private DnsBuffer dnsTargetBuffer = new DnsBuffer();
 
-		// Token: 0x04000106 RID: 262
+		// Token: 0x040000FB RID: 251
 		public bool enable;
 
-		// Token: 0x04000103 RID: 259
+		// Token: 0x040000F8 RID: 248
 		public string group;
 
-		// Token: 0x04000107 RID: 263
+		// Token: 0x040000FC RID: 252
 		public string id;
 
-		// Token: 0x040000FF RID: 255
+		// Token: 0x040000F4 RID: 244
 		public string method;
 
-		// Token: 0x04000100 RID: 256
+		// Token: 0x040000F5 RID: 245
 		public string obfs;
 
-		// Token: 0x04000109 RID: 265
+		// Token: 0x040000FE RID: 254
 		private object obfsdata;
 
-		// Token: 0x04000101 RID: 257
+		// Token: 0x040000F6 RID: 246
 		public string obfsparam;
 
-		// Token: 0x040000FE RID: 254
+		// Token: 0x040000F3 RID: 243
 		public string password;
 
-		// Token: 0x04000105 RID: 261
+		// Token: 0x040000FA RID: 250
 		public string protocol;
 
-		// Token: 0x04000108 RID: 264
+		// Token: 0x040000FD RID: 253
 		private object protocoldata;
 
-		// Token: 0x04000102 RID: 258
+		// Token: 0x040000F7 RID: 247
 		public string remarks_base64;
 
-		// Token: 0x040000FB RID: 251
+		// Token: 0x040000F0 RID: 240
 		public string server;
 
-		// Token: 0x0400010A RID: 266
+		// Token: 0x040000FF RID: 255
 		private ServerSpeedLog serverSpeedLog = new ServerSpeedLog();
 
-		// Token: 0x040000FC RID: 252
+		// Token: 0x040000F1 RID: 241
 		public int server_port;
 
-		// Token: 0x040000FD RID: 253
+		// Token: 0x040000F2 RID: 242
 		public int server_udp_port;
 
-		// Token: 0x04000104 RID: 260
+		// Token: 0x040000F9 RID: 249
 		public bool udp_over_tcp;
 	}
 }

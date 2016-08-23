@@ -4,10 +4,10 @@ using System.IO.Compression;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200003D RID: 61
+	// Token: 0x0200003B RID: 59
 	public class FileManager
 	{
-		// Token: 0x06000227 RID: 551 RVA: 0x00015618 File Offset: 0x00013818
+		// Token: 0x06000212 RID: 530 RVA: 0x00014D88 File Offset: 0x00012F88
 		public static bool ByteArrayToFile(string fileName, byte[] content)
 		{
 			try
@@ -24,7 +24,7 @@ namespace Shadowsocks.Controller
 			return false;
 		}
 
-		// Token: 0x06000229 RID: 553 RVA: 0x000156D4 File Offset: 0x000138D4
+		// Token: 0x06000214 RID: 532 RVA: 0x00014E44 File Offset: 0x00013044
 		public static byte[] DeflateCompress(byte[] content, int index, int count, out int size)
 		{
 			size = 0;
@@ -46,7 +46,7 @@ namespace Shadowsocks.Controller
 			return null;
 		}
 
-		// Token: 0x0600022A RID: 554 RVA: 0x0001574C File Offset: 0x0001394C
+		// Token: 0x06000215 RID: 533 RVA: 0x00014EBC File Offset: 0x000130BC
 		public static byte[] DeflateDecompress(byte[] content, int index, int count, out int size)
 		{
 			size = 0;
@@ -75,7 +75,7 @@ namespace Shadowsocks.Controller
 			return null;
 		}
 
-		// Token: 0x06000228 RID: 552 RVA: 0x00015668 File Offset: 0x00013868
+		// Token: 0x06000213 RID: 531 RVA: 0x00014DD8 File Offset: 0x00012FD8
 		public static void UncompressFile(string fileName, byte[] content)
 		{
 			FileStream fileStream = File.Create(fileName);

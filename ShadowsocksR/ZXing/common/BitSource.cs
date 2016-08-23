@@ -1,124 +1,91 @@
-/*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 
 namespace ZXing.Common
 {
-   /// <summary> <p>This provides an easy abstraction to read bits at a time from a sequence of bytes, where the
-   /// number of bits read is not often a multiple of 8.</p>
-   /// 
-   /// <p>This class is thread-safe but not reentrant. Unless the caller modifies the bytes array
-   /// it passed in, in which case all bets are off.</p>
-   /// 
-   /// </summary>
-   /// <author>  Sean Owen
-   /// </author>
-   /// <author>www.Redivivus.in (suraj.supekar@redivivus.in) - Ported from ZXING Java Source 
-   /// </author>
-   public sealed class BitSource
-   {
-      private readonly byte[] bytes;
-      private int byteOffset;
-      private int bitOffset;
+	// Token: 0x02000085 RID: 133
+	public sealed class BitSource
+	{
+		// Token: 0x060004C9 RID: 1225 RVA: 0x000279FB File Offset: 0x00025BFB
+		public BitSource(byte[] bytes)
+		{
+			this.bytes = bytes;
+		}
 
-      /// <param name="bytes">bytes from which this will read bits. Bits will be read from the first byte first.
-      /// Bits are read within a byte from most-significant to least-significant bit.
-      /// </param>
-      public BitSource(byte[] bytes)
-      {
-         this.bytes = bytes;
-      }
+		// Token: 0x060004CD RID: 1229 RVA: 0x00027B46 File Offset: 0x00025D46
+		public int available()
+		{
+			return 8 * (this.bytes.Length - this.byteOffset) - this.bitOffset;
+		}
 
-      /// <summary>
-      /// index of next bit in current byte which would be read by the next call to {@link #readBits(int)}.
-      /// </summary>
-      public int BitOffset
-      {
-         get { return bitOffset; }
-      }
-  
-      /// <summary>
-      /// index of next byte in input byte array which would be read by the next call to {@link #readBits(int)}.
-      /// </summary>
-      public int ByteOffset
-      {
-         get { return byteOffset; }
-      }
+		// Token: 0x060004CC RID: 1228 RVA: 0x00027A1C File Offset: 0x00025C1C
+		public int readBits(int numBits)
+		{
+			if (numBits < 1 || numBits > 32 || numBits > this.available())
+			{
+				throw new ArgumentException(numBits.ToString(), "numBits");
+			}
+			int num = 0;
+			if (this.bitOffset > 0)
+			{
+				int num2 = 8 - this.bitOffset;
+				int num3 = (numBits < num2) ? numBits : num2;
+				int num4 = num2 - num3;
+				int num5 = 255 >> 8 - num3 << num4;
+				num = ((int)this.bytes[this.byteOffset] & num5) >> num4;
+				numBits -= num3;
+				this.bitOffset += num3;
+				if (this.bitOffset == 8)
+				{
+					this.bitOffset = 0;
+					this.byteOffset++;
+				}
+			}
+			if (numBits > 0)
+			{
+				while (numBits >= 8)
+				{
+					num = (num << 8 | (int)(this.bytes[this.byteOffset] & 255));
+					this.byteOffset++;
+					numBits -= 8;
+				}
+				if (numBits > 0)
+				{
+					int num6 = 8 - numBits;
+					int num7 = 255 >> num6 << num6;
+					num = (num << numBits | ((int)this.bytes[this.byteOffset] & num7) >> num6);
+					this.bitOffset += numBits;
+				}
+			}
+			return num;
+		}
 
-      /// <param name="numBits">number of bits to read
-      /// </param>
-      /// <returns> int representing the bits read. The bits will appear as the least-significant
-      /// bits of the int
-      /// </returns>
-      /// <exception cref="ArgumentException">if numBits isn't in [1,32] or more than is available</exception>
-      public int readBits(int numBits)
-      {
-         if (numBits < 1 || numBits > 32 || numBits > available())
-         {
-            throw new ArgumentException(numBits.ToString(), "numBits");
-         }
+		// Token: 0x1700006F RID: 111
+		public int BitOffset
+		{
+			// Token: 0x060004CA RID: 1226 RVA: 0x00027A0A File Offset: 0x00025C0A
+			get
+			{
+				return this.bitOffset;
+			}
+		}
 
-         int result = 0;
+		// Token: 0x17000070 RID: 112
+		public int ByteOffset
+		{
+			// Token: 0x060004CB RID: 1227 RVA: 0x00027A12 File Offset: 0x00025C12
+			get
+			{
+				return this.byteOffset;
+			}
+		}
 
-         // First, read remainder from current byte
-         if (bitOffset > 0)
-         {
-            int bitsLeft = 8 - bitOffset;
-            int toRead = numBits < bitsLeft ? numBits : bitsLeft;
-            int bitsToNotRead = bitsLeft - toRead;
-            int mask = (0xFF >> (8 - toRead)) << bitsToNotRead;
-            result = (bytes[byteOffset] & mask) >> bitsToNotRead;
-            numBits -= toRead;
-            bitOffset += toRead;
-            if (bitOffset == 8)
-            {
-               bitOffset = 0;
-               byteOffset++;
-            }
-         }
+		// Token: 0x04000339 RID: 825
+		private int bitOffset;
 
-         // Next read whole bytes
-         if (numBits > 0)
-         {
-            while (numBits >= 8)
-            {
-               result = (result << 8) | (bytes[byteOffset] & 0xFF);
-               byteOffset++;
-               numBits -= 8;
-            }
+		// Token: 0x04000338 RID: 824
+		private int byteOffset;
 
-            // Finally read a partial byte
-            if (numBits > 0)
-            {
-               int bitsToNotRead = 8 - numBits;
-               int mask = (0xFF >> bitsToNotRead) << bitsToNotRead;
-               result = (result << numBits) | ((bytes[byteOffset] & mask) >> bitsToNotRead);
-               bitOffset += numBits;
-            }
-         }
-
-         return result;
-      }
-
-      /// <returns> number of bits that can be read successfully
-      /// </returns>
-      public int available()
-      {
-         return 8 * (bytes.Length - byteOffset) - bitOffset;
-      }
-   }
+		// Token: 0x04000337 RID: 823
+		private readonly byte[] bytes;
+	}
 }

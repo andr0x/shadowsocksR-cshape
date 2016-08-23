@@ -2,7 +2,7 @@
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x0200001D RID: 29
+	// Token: 0x0200001B RID: 27
 	public class VerifyData
 	{
 	}

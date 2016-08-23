@@ -5,11 +5,11 @@ using SimpleJson;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x0200002B RID: 43
+	// Token: 0x02000029 RID: 41
 	[Serializable]
 	public class ServerTransferTotal
 	{
-		// Token: 0x06000189 RID: 393 RVA: 0x0001242C File Offset: 0x0001062C
+		// Token: 0x06000175 RID: 373 RVA: 0x00011A9C File Offset: 0x0000FC9C
 		public void AddDownload(string server, long size)
 		{
 			Dictionary<string, object> obj = this.servers;
@@ -38,7 +38,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000188 RID: 392 RVA: 0x00012338 File Offset: 0x00010538
+		// Token: 0x06000174 RID: 372 RVA: 0x000119A8 File Offset: 0x0000FBA8
 		public void AddUpload(string server, long size)
 		{
 			Dictionary<string, object> obj = this.servers;
@@ -67,7 +67,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000186 RID: 390 RVA: 0x0001229C File Offset: 0x0001049C
+		// Token: 0x06000172 RID: 370 RVA: 0x0001190C File Offset: 0x0000FB0C
 		public void Init()
 		{
 			this.saveCounter = 256;
@@ -78,7 +78,7 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x06000185 RID: 389 RVA: 0x0001223C File Offset: 0x0001043C
+		// Token: 0x06000171 RID: 369 RVA: 0x000118AC File Offset: 0x0000FAAC
 		public static ServerTransferTotal Load()
 		{
 			ServerTransferTotal result;
@@ -101,7 +101,7 @@ namespace Shadowsocks.Model
 			return result;
 		}
 
-		// Token: 0x06000187 RID: 391 RVA: 0x000122C8 File Offset: 0x000104C8
+		// Token: 0x06000173 RID: 371 RVA: 0x00011938 File Offset: 0x0000FB38
 		public static void Save(ServerTransferTotal config)
 		{
 			try
@@ -119,22 +119,22 @@ namespace Shadowsocks.Model
 			}
 		}
 
-		// Token: 0x04000141 RID: 321
+		// Token: 0x04000136 RID: 310
 		private static string LOG_FILE = "transfer_log.json";
 
-		// Token: 0x04000143 RID: 323
+		// Token: 0x04000138 RID: 312
 		private int saveCounter;
 
-		// Token: 0x04000144 RID: 324
+		// Token: 0x04000139 RID: 313
 		private DateTime saveTime;
 
-		// Token: 0x04000142 RID: 322
+		// Token: 0x04000137 RID: 311
 		public Dictionary<string, object> servers = new Dictionary<string, object>();
 
-		// Token: 0x020000A4 RID: 164
+		// Token: 0x020000A6 RID: 166
 		private class JsonSerializerStrategy : PocoJsonSerializerStrategy
 		{
-			// Token: 0x06000551 RID: 1361 RVA: 0x0002BC70 File Offset: 0x00029E70
+			// Token: 0x0600055A RID: 1370 RVA: 0x0002AEB8 File Offset: 0x000290B8
 			public override object DeserializeObject(object value, Type type)
 			{
 				if (type == typeof(long) && value.GetType() == typeof(string))

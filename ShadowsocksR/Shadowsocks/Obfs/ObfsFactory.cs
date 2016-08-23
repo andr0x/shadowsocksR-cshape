@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x0200001B RID: 27
+	// Token: 0x02000019 RID: 25
 	public static class ObfsFactory
 	{
-		// Token: 0x06000120 RID: 288 RVA: 0x0000FA30 File Offset: 0x0000DC30
+		// Token: 0x0600010C RID: 268 RVA: 0x0000F08C File Offset: 0x0000D28C
 		static ObfsFactory()
 		{
 			ObfsFactory._constructorTypes = new Type[]
@@ -22,41 +22,33 @@ namespace Shadowsocks.Obfs
 			{
 				ObfsFactory._registeredObfs.Add(current2, typeof(HttpSimpleObfs));
 			}
-			foreach (string current3 in TlsAuthObfs.SupportedObfs())
+			foreach (string current3 in TlsTicketAuthObfs.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current3, typeof(TlsAuthObfs));
+				ObfsFactory._registeredObfs.Add(current3, typeof(TlsTicketAuthObfs));
 			}
-			foreach (string current4 in TlsTicketAuthObfs.SupportedObfs())
+			foreach (string current4 in VerifySimpleObfs.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current4, typeof(TlsTicketAuthObfs));
+				ObfsFactory._registeredObfs.Add(current4, typeof(VerifySimpleObfs));
 			}
-			foreach (string current5 in VerifySimpleObfs.SupportedObfs())
+			foreach (string current5 in VerifyDeflateObfs.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current5, typeof(VerifySimpleObfs));
+				ObfsFactory._registeredObfs.Add(current5, typeof(VerifyDeflateObfs));
 			}
-			foreach (string current6 in VerifyDeflateObfs.SupportedObfs())
+			foreach (string current6 in VerifySHA1Obfs.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current6, typeof(VerifyDeflateObfs));
+				ObfsFactory._registeredObfs.Add(current6, typeof(VerifySHA1Obfs));
 			}
-			foreach (string current7 in VerifySHA1Obfs.SupportedObfs())
+			foreach (string current7 in AuthSHA1.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current7, typeof(VerifySHA1Obfs));
+				ObfsFactory._registeredObfs.Add(current7, typeof(AuthSHA1));
 			}
-			foreach (string current8 in AuthSimple.SupportedObfs())
+			foreach (string current8 in AuthSHA1V2.SupportedObfs())
 			{
-				ObfsFactory._registeredObfs.Add(current8, typeof(AuthSimple));
-			}
-			foreach (string current9 in AuthSHA1.SupportedObfs())
-			{
-				ObfsFactory._registeredObfs.Add(current9, typeof(AuthSHA1));
-			}
-			foreach (string current10 in AuthSHA1V2.SupportedObfs())
-			{
-				ObfsFactory._registeredObfs.Add(current10, typeof(AuthSHA1V2));
+				ObfsFactory._registeredObfs.Add(current8, typeof(AuthSHA1V2));
 			}
 		}
 
-		// Token: 0x06000121 RID: 289 RVA: 0x0000FD88 File Offset: 0x0000DF88
+		// Token: 0x0600010D RID: 269 RVA: 0x0000F344 File Offset: 0x0000D544
 		public static IObfs GetObfs(string method)
 		{
 			if (string.IsNullOrEmpty(method))
@@ -70,10 +62,10 @@ namespace Shadowsocks.Obfs
 			});
 		}
 
-		// Token: 0x040000EC RID: 236
+		// Token: 0x040000E1 RID: 225
 		private static Type[] _constructorTypes;
 
-		// Token: 0x040000EB RID: 235
+		// Token: 0x040000E0 RID: 224
 		private static Dictionary<string, Type> _registeredObfs;
 	}
 }

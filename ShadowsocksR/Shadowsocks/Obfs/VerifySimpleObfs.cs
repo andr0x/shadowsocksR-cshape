@@ -4,15 +4,15 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x0200001F RID: 31
+	// Token: 0x0200001D RID: 29
 	public class VerifySimpleObfs : VerifySimpleBase
 	{
-		// Token: 0x0600012F RID: 303 RVA: 0x0000FE87 File Offset: 0x0000E087
+		// Token: 0x0600011B RID: 283 RVA: 0x0000F443 File Offset: 0x0000D643
 		public VerifySimpleObfs(string method) : base(method)
 		{
 		}
 
-		// Token: 0x06000134 RID: 308 RVA: 0x0000FFC8 File Offset: 0x0000E1C8
+		// Token: 0x06000120 RID: 288 RVA: 0x0000F584 File Offset: 0x0000D784
 		public override byte[] ClientPostDecrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			byte[] array = new byte[this.recv_buf_len + datalength];
@@ -48,7 +48,7 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x06000133 RID: 307 RVA: 0x0000FEF8 File Offset: 0x0000E0F8
+		// Token: 0x0600011F RID: 287 RVA: 0x0000F4B4 File Offset: 0x0000D6B4
 		public override byte[] ClientPreEncrypt(byte[] plaindata, int datalength, out int outlength)
 		{
 			int expr_01 = datalength;
@@ -85,18 +85,18 @@ namespace Shadowsocks.Obfs
 			return array;
 		}
 
-		// Token: 0x06000135 RID: 309 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x06000121 RID: 289 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public override void Dispose()
 		{
 		}
 
-		// Token: 0x06000131 RID: 305 RVA: 0x0000FEA1 File Offset: 0x0000E0A1
+		// Token: 0x0600011D RID: 285 RVA: 0x0000F45D File Offset: 0x0000D65D
 		public override Dictionary<string, int[]> GetObfs()
 		{
 			return VerifySimpleObfs._obfs;
 		}
 
-		// Token: 0x06000132 RID: 306 RVA: 0x0000FEA8 File Offset: 0x0000E0A8
+		// Token: 0x0600011E RID: 286 RVA: 0x0000F464 File Offset: 0x0000D664
 		public void PackData(byte[] data, int datalength, byte[] outdata, out int outlength)
 		{
 			int num = this.random.Next(16) + 1;
@@ -108,13 +108,13 @@ namespace Shadowsocks.Obfs
 			CRC32.SetCRC32(outdata, outlength);
 		}
 
-		// Token: 0x06000130 RID: 304 RVA: 0x0000FE90 File Offset: 0x0000E090
+		// Token: 0x0600011C RID: 284 RVA: 0x0000F44C File Offset: 0x0000D64C
 		public static List<string> SupportedObfs()
 		{
 			return new List<string>(VerifySimpleObfs._obfs.Keys);
 		}
 
-		// Token: 0x040000F2 RID: 242
+		// Token: 0x040000E7 RID: 231
 		private static Dictionary<string, int[]> _obfs = new Dictionary<string, int[]>
 		{
 			{

@@ -3,15 +3,15 @@ using System.Text;
 
 namespace OpenDNS
 {
-	// Token: 0x02000098 RID: 152
+	// Token: 0x0200009A RID: 154
 	public class ResourceRecord
 	{
-		// Token: 0x06000543 RID: 1347 RVA: 0x00007729 File Offset: 0x00005929
+		// Token: 0x0600054C RID: 1356 RVA: 0x00007881 File Offset: 0x00005A81
 		public ResourceRecord()
 		{
 		}
 
-		// Token: 0x06000544 RID: 1348 RVA: 0x0002B9E3 File Offset: 0x00029BE3
+		// Token: 0x0600054D RID: 1357 RVA: 0x0002AC2B File Offset: 0x00028E2B
 		public ResourceRecord(string _Name, Types _Type, Classes _Class, int _TimeToLive)
 		{
 			this.Name = _Name;
@@ -20,7 +20,7 @@ namespace OpenDNS
 			this.TimeToLive = _TimeToLive;
 		}
 
-		// Token: 0x06000545 RID: 1349 RVA: 0x0002BA08 File Offset: 0x00029C08
+		// Token: 0x0600054E RID: 1358 RVA: 0x0002AC50 File Offset: 0x00028E50
 		public ResourceRecord(string _Name, Types _Type, Classes _Class, int _TimeToLive, string _RText)
 		{
 			this.Name = _Name;
@@ -30,7 +30,7 @@ namespace OpenDNS
 			this.RText = _RText;
 		}
 
-		// Token: 0x06000546 RID: 1350 RVA: 0x0002BA38 File Offset: 0x00029C38
+		// Token: 0x0600054F RID: 1359 RVA: 0x0002AC80 File Offset: 0x00028E80
 		public override string ToString()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -48,19 +48,19 @@ namespace OpenDNS
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x040003B4 RID: 948
+		// Token: 0x040003B1 RID: 945
 		public Classes Class;
 
-		// Token: 0x040003B2 RID: 946
+		// Token: 0x040003AF RID: 943
 		public string Name;
 
-		// Token: 0x040003B6 RID: 950
+		// Token: 0x040003B3 RID: 947
 		public string RText;
 
-		// Token: 0x040003B5 RID: 949
+		// Token: 0x040003B2 RID: 946
 		public int TimeToLive;
 
-		// Token: 0x040003B3 RID: 947
+		// Token: 0x040003B0 RID: 944
 		public Types Type;
 	}
 }

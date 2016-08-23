@@ -15,7 +15,7 @@ namespace Shadowsocks.Util
 	// Token: 0x0200000D RID: 13
 	public class Utils
 	{
-		// Token: 0x060000AE RID: 174 RVA: 0x0000D05C File Offset: 0x0000B25C
+		// Token: 0x060000AE RID: 174 RVA: 0x0000D290 File Offset: 0x0000B490
 		public static string DecodeBase64(string val)
 		{
 			byte[] array = null;
@@ -39,7 +39,7 @@ namespace Shadowsocks.Util
 			return result;
 		}
 
-		// Token: 0x060000B0 RID: 176 RVA: 0x0000D0E0 File Offset: 0x0000B2E0
+		// Token: 0x060000B0 RID: 176 RVA: 0x0000D314 File Offset: 0x0000B514
 		public static string DecodeUrlSafeBase64(string val)
 		{
 			byte[] array = null;
@@ -63,13 +63,13 @@ namespace Shadowsocks.Util
 			return result;
 		}
 
-		// Token: 0x060000AF RID: 175 RVA: 0x0000D0BC File Offset: 0x0000B2BC
+		// Token: 0x060000AF RID: 175 RVA: 0x0000D2F0 File Offset: 0x0000B4F0
 		public static string EncodeUrlSafeBase64(string val)
 		{
 			return Convert.ToBase64String(Encoding.UTF8.GetBytes(val)).Replace('+', '-').Replace('/', '_');
 		}
 
-		// Token: 0x060000A9 RID: 169 RVA: 0x0000CDCC File Offset: 0x0000AFCC
+		// Token: 0x060000A9 RID: 169 RVA: 0x0000D000 File Offset: 0x0000B200
 		public static int FindStr(byte[] target, int targetLength, byte[] m)
 		{
 			if (m.Length != 0 && targetLength >= m.Length)
@@ -93,7 +93,7 @@ namespace Shadowsocks.Util
 			return -1;
 		}
 
-		// Token: 0x060000AC RID: 172 RVA: 0x0000CECC File Offset: 0x0000B0CC
+		// Token: 0x060000AC RID: 172 RVA: 0x0000D100 File Offset: 0x0000B300
 		public static bool isLAN(Socket socket)
 		{
 			IPAddress address = ((IPEndPoint)socket.RemoteEndPoint).Address;
@@ -124,7 +124,7 @@ namespace Shadowsocks.Util
 			return true;
 		}
 
-		// Token: 0x060000AB RID: 171 RVA: 0x0000CE6C File Offset: 0x0000B06C
+		// Token: 0x060000AB RID: 171 RVA: 0x0000D0A0 File Offset: 0x0000B2A0
 		public static bool isMatchSubNet(IPAddress ip, string netmask)
 		{
 			string[] array = netmask.Split(new char[]
@@ -144,12 +144,12 @@ namespace Shadowsocks.Util
 					bool result = false;
 					return result;
 				}
-				//return false;
+				return false;
 			}
 			return false;
 		}
 
-		// Token: 0x060000AA RID: 170 RVA: 0x0000CE1C File Offset: 0x0000B01C
+		// Token: 0x060000AA RID: 170 RVA: 0x0000D050 File Offset: 0x0000B250
 		public static bool isMatchSubNet(IPAddress ip, IPAddress net, int netmask)
 		{
 			byte[] addressBytes = ip.GetAddressBytes();
@@ -168,7 +168,7 @@ namespace Shadowsocks.Util
 			return addressBytes[num] >> i - netmask == addressBytes2[num] >> i - netmask;
 		}
 
-		// Token: 0x060000A8 RID: 168 RVA: 0x0000CDA4 File Offset: 0x0000AFA4
+		// Token: 0x060000A8 RID: 168 RVA: 0x0000CFD8 File Offset: 0x0000B1D8
 		public static void RandBytes(byte[] buf, int length)
 		{
 			byte[] array = new byte[length];
@@ -176,7 +176,7 @@ namespace Shadowsocks.Util
 			array.CopyTo(buf, 0);
 		}
 
-		// Token: 0x060000A6 RID: 166 RVA: 0x0000CCE6 File Offset: 0x0000AEE6
+		// Token: 0x060000A6 RID: 166 RVA: 0x0000CF1A File Offset: 0x0000B11A
 		public static void ReleaseMemory()
 		{
 			GC.Collect(GC.MaxGeneration);
@@ -189,7 +189,7 @@ namespace Shadowsocks.Util
 		[return: MarshalAs(UnmanagedType.Bool)]
 		private static extern bool SetProcessWorkingSetSize(IntPtr process, UIntPtr minimumWorkingSetSize, UIntPtr maximumWorkingSetSize);
 
-		// Token: 0x060000A7 RID: 167 RVA: 0x0000CD14 File Offset: 0x0000AF14
+		// Token: 0x060000A7 RID: 167 RVA: 0x0000CF48 File Offset: 0x0000B148
 		public static string UnGzip(byte[] buf)
 		{
 			byte[] array = new byte[1024];
@@ -209,7 +209,7 @@ namespace Shadowsocks.Util
 			return @string;
 		}
 
-		// Token: 0x060000AD RID: 173 RVA: 0x0000CF74 File Offset: 0x0000B174
+		// Token: 0x060000AD RID: 173 RVA: 0x0000D1A8 File Offset: 0x0000B3A8
 		public static string urlDecode(string str)
 		{
 			string text = "";
@@ -239,10 +239,10 @@ namespace Shadowsocks.Util
 			return text;
 		}
 
-		// Token: 0x020000A0 RID: 160
+		// Token: 0x020000A2 RID: 162
 		public static class LoadResourceDll
 		{
-			// Token: 0x0600054C RID: 1356 RVA: 0x0002BB5C File Offset: 0x00029D5C
+			// Token: 0x06000555 RID: 1365 RVA: 0x0002ADA4 File Offset: 0x00028FA4
 			private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
 			{
 				string fullName = new AssemblyName(args.Name).FullName;
@@ -255,10 +255,10 @@ namespace Shadowsocks.Util
 				throw new DllNotFoundException(fullName);
 			}
 
-			// Token: 0x04000433 RID: 1075
+			// Token: 0x04000430 RID: 1072
 			private static Dictionary<string, object> Assemblies = new Dictionary<string, object>();
 
-			// Token: 0x04000432 RID: 1074
+			// Token: 0x0400042F RID: 1071
 			private static Dictionary<string, Assembly> Dlls = new Dictionary<string, Assembly>();
 		}
 	}

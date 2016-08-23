@@ -9,7 +9,7 @@ namespace Shadowsocks.View
 	// Token: 0x02000006 RID: 6
 	public class QRCodeSplashForm : PerPixelAlphaForm
 	{
-		// Token: 0x0600005B RID: 91 RVA: 0x0000718C File Offset: 0x0000538C
+		// Token: 0x0600005B RID: 91 RVA: 0x000072E4 File Offset: 0x000054E4
 		public QRCodeSplashForm()
 		{
 			base.Load += new EventHandler(this.QRCodeSplashForm_Load);
@@ -28,7 +28,7 @@ namespace Shadowsocks.View
 			base.TopMost = true;
 		}
 
-		// Token: 0x0600005C RID: 92 RVA: 0x0000721C File Offset: 0x0000541C
+		// Token: 0x0600005C RID: 92 RVA: 0x00007374 File Offset: 0x00005574
 		private void QRCodeSplashForm_Load(object sender, EventArgs e)
 		{
 			base.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -50,7 +50,7 @@ namespace Shadowsocks.View
 			this.brush = new SolidBrush(Color.FromArgb(30, Color.Red));
 		}
 
-		// Token: 0x0600005E RID: 94 RVA: 0x0000733C File Offset: 0x0000553C
+		// Token: 0x0600005E RID: 94 RVA: 0x00007494 File Offset: 0x00005694
 		private void timer_Tick(object sender, EventArgs e)
 		{
 			double num = (double)this.sw.ElapsedMilliseconds / 1000.0 / QRCodeSplashForm.ANIMATION_TIME;
@@ -119,7 +119,7 @@ namespace Shadowsocks.View
 		// Token: 0x17000001 RID: 1
 		protected override CreateParams CreateParams
 		{
-			// Token: 0x0600005D RID: 93 RVA: 0x00007320 File Offset: 0x00005520
+			// Token: 0x0600005D RID: 93 RVA: 0x00007478 File Offset: 0x00005678
 			get
 			{
 				CreateParams expr_06 = base.CreateParams;

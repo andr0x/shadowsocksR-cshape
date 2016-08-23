@@ -2,10 +2,10 @@
 
 namespace Shadowsocks.Obfs
 {
-	// Token: 0x02000017 RID: 23
+	// Token: 0x02000015 RID: 21
 	public class ObfsException : Exception
 	{
-		// Token: 0x06000103 RID: 259 RVA: 0x0000F954 File Offset: 0x0000DB54
+		// Token: 0x060000EF RID: 239 RVA: 0x0000EFB0 File Offset: 0x0000D1B0
 		public ObfsException(string info) : base(info)
 		{
 		}

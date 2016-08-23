@@ -3,7 +3,7 @@
 	// Token: 0x02000009 RID: 9
 	public partial class ServerLogForm : global::System.Windows.Forms.Form
 	{
-		// Token: 0x0600008C RID: 140 RVA: 0x00009AF1 File Offset: 0x00007CF1
+		// Token: 0x0600008C RID: 140 RVA: 0x00009CA1 File Offset: 0x00007EA1
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +13,7 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600008D RID: 141 RVA: 0x00009B10 File Offset: 0x00007D10
+		// Token: 0x0600008D RID: 141 RVA: 0x00009CC0 File Offset: 0x00007EC0
 		private void InitializeComponent()
 		{
 			this.components = new global::System.ComponentModel.Container();
@@ -137,12 +137,12 @@
 			this.AvgLatency.Name = "AvgLatency";
 			this.AvgLatency.ReadOnly = true;
 			this.AvgLatency.Width = 48;
-			this.AvgDownSpeed.HeaderText = "Avg DownSpeed";
+			this.AvgDownSpeed.HeaderText = "Avg DSpeed";
 			this.AvgDownSpeed.MinimumWidth = 60;
 			this.AvgDownSpeed.Name = "AvgDownSpeed";
 			this.AvgDownSpeed.ReadOnly = true;
 			this.AvgDownSpeed.Width = 60;
-			this.MaxDownSpeed.HeaderText = "Max DownSpeed";
+			this.MaxDownSpeed.HeaderText = "Max DSpeed";
 			this.MaxDownSpeed.MinimumWidth = 2;
 			this.MaxDownSpeed.Name = "MaxDownSpeed";
 			this.MaxDownSpeed.ReadOnly = true;
@@ -157,7 +157,7 @@
 			this.MaxUpSpeed.Name = "MaxUpSpeed";
 			this.MaxUpSpeed.ReadOnly = true;
 			this.MaxUpSpeed.Width = 60;
-			this.Download.HeaderText = "Download";
+			this.Download.HeaderText = "Dload";
 			this.Download.MinimumWidth = 2;
 			this.Download.Name = "Download";
 			this.Download.ReadOnly = true;
@@ -167,7 +167,7 @@
 			this.Upload.Name = "Upload";
 			this.Upload.ReadOnly = true;
 			this.Upload.Width = 72;
-			this.DownloadRaw.HeaderText = "DownloadRaw";
+			this.DownloadRaw.HeaderText = "DloadRaw";
 			this.DownloadRaw.MinimumWidth = 2;
 			this.DownloadRaw.Name = "DownloadRaw";
 			this.DownloadRaw.ReadOnly = true;

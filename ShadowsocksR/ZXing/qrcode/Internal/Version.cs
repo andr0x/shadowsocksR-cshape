@@ -3,10 +3,10 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000074 RID: 116
+	// Token: 0x02000076 RID: 118
 	public sealed class Version
 	{
-		// Token: 0x06000417 RID: 1047 RVA: 0x00022E24 File Offset: 0x00021024
+		// Token: 0x06000420 RID: 1056 RVA: 0x0002206C File Offset: 0x0002026C
 		private Version(int versionNumber, int[] alignmentPatternCenters, params Version.ECBlocks[] ecBlocks)
 		{
 			this.versionNumber = versionNumber;
@@ -23,7 +23,7 @@ namespace ZXing.QrCode.Internal
 			this.totalCodewords = num;
 		}
 
-		// Token: 0x06000420 RID: 1056 RVA: 0x00022F7C File Offset: 0x0002117C
+		// Token: 0x06000429 RID: 1065 RVA: 0x000221C4 File Offset: 0x000203C4
 		internal BitMatrix buildFunctionPattern()
 		{
 			int dimensionForVersion = this.DimensionForVersion;
@@ -53,7 +53,7 @@ namespace ZXing.QrCode.Internal
 			return bitMatrix;
 		}
 
-		// Token: 0x06000422 RID: 1058 RVA: 0x00023068 File Offset: 0x00021268
+		// Token: 0x0600042B RID: 1067 RVA: 0x000222B0 File Offset: 0x000204B0
 		private static Version[] buildVersions()
 		{
 			return new Version[]
@@ -1205,7 +1205,7 @@ namespace ZXing.QrCode.Internal
 			};
 		}
 
-		// Token: 0x0600041F RID: 1055 RVA: 0x00022F1C File Offset: 0x0002111C
+		// Token: 0x06000428 RID: 1064 RVA: 0x00022164 File Offset: 0x00020364
 		internal static Version decodeVersionInformation(int versionBits)
 		{
 			int num = 2147483647;
@@ -1231,13 +1231,13 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x0600041C RID: 1052 RVA: 0x00022EB3 File Offset: 0x000210B3
+		// Token: 0x06000425 RID: 1061 RVA: 0x000220FB File Offset: 0x000202FB
 		public Version.ECBlocks getECBlocksForLevel(ErrorCorrectionLevel ecLevel)
 		{
 			return this.ecBlocks[ecLevel.ordinal()];
 		}
 
-		// Token: 0x0600041D RID: 1053 RVA: 0x00022EC4 File Offset: 0x000210C4
+		// Token: 0x06000426 RID: 1062 RVA: 0x0002210C File Offset: 0x0002030C
 		public static Version getProvisionalVersionForDimension(int dimension)
 		{
 			if (dimension % 4 != 1)
@@ -1256,7 +1256,7 @@ namespace ZXing.QrCode.Internal
 			return result;
 		}
 
-		// Token: 0x0600041E RID: 1054 RVA: 0x00022F00 File Offset: 0x00021100
+		// Token: 0x06000427 RID: 1063 RVA: 0x00022148 File Offset: 0x00020348
 		public static Version getVersionForNumber(int versionNumber)
 		{
 			if (versionNumber < 1 || versionNumber > 40)
@@ -1266,68 +1266,68 @@ namespace ZXing.QrCode.Internal
 			return Version.VERSIONS[versionNumber - 1];
 		}
 
-		// Token: 0x06000421 RID: 1057 RVA: 0x0002305B File Offset: 0x0002125B
+		// Token: 0x0600042A RID: 1066 RVA: 0x000222A3 File Offset: 0x000204A3
 		public override string ToString()
 		{
 			return Convert.ToString(this.versionNumber);
 		}
 
-		// Token: 0x1700004D RID: 77
+		// Token: 0x17000050 RID: 80
 		public int[] AlignmentPatternCenters
 		{
-			// Token: 0x06000419 RID: 1049 RVA: 0x00022E96 File Offset: 0x00021096
+			// Token: 0x06000422 RID: 1058 RVA: 0x000220DE File Offset: 0x000202DE
 			get
 			{
 				return this.alignmentPatternCenters;
 			}
 		}
 
-		// Token: 0x1700004F RID: 79
+		// Token: 0x17000052 RID: 82
 		public int DimensionForVersion
 		{
-			// Token: 0x0600041B RID: 1051 RVA: 0x00022EA6 File Offset: 0x000210A6
+			// Token: 0x06000424 RID: 1060 RVA: 0x000220EE File Offset: 0x000202EE
 			get
 			{
 				return 17 + 4 * this.versionNumber;
 			}
 		}
 
-		// Token: 0x1700004E RID: 78
+		// Token: 0x17000051 RID: 81
 		public int TotalCodewords
 		{
-			// Token: 0x0600041A RID: 1050 RVA: 0x00022E9E File Offset: 0x0002109E
+			// Token: 0x06000423 RID: 1059 RVA: 0x000220E6 File Offset: 0x000202E6
 			get
 			{
 				return this.totalCodewords;
 			}
 		}
 
-		// Token: 0x1700004C RID: 76
+		// Token: 0x1700004F RID: 79
 		public int VersionNumber
 		{
-			// Token: 0x06000418 RID: 1048 RVA: 0x00022E8E File Offset: 0x0002108E
+			// Token: 0x06000421 RID: 1057 RVA: 0x000220D6 File Offset: 0x000202D6
 			get
 			{
 				return this.versionNumber;
 			}
 		}
 
-		// Token: 0x040002FE RID: 766
+		// Token: 0x040002FB RID: 763
 		private readonly int[] alignmentPatternCenters;
 
-		// Token: 0x040002FF RID: 767
+		// Token: 0x040002FC RID: 764
 		private readonly Version.ECBlocks[] ecBlocks;
 
-		// Token: 0x04000300 RID: 768
+		// Token: 0x040002FD RID: 765
 		private readonly int totalCodewords;
 
-		// Token: 0x040002FD RID: 765
+		// Token: 0x040002FA RID: 762
 		private readonly int versionNumber;
 
-		// Token: 0x040002FC RID: 764
+		// Token: 0x040002F9 RID: 761
 		private static readonly Version[] VERSIONS = Version.buildVersions();
 
-		// Token: 0x040002FB RID: 763
+		// Token: 0x040002F8 RID: 760
 		private static readonly int[] VERSION_DECODE_INFO = new int[]
 		{
 			31892,
@@ -1366,73 +1366,73 @@ namespace ZXing.QrCode.Internal
 			167017
 		};
 
-		// Token: 0x020000C4 RID: 196
+		// Token: 0x020000C5 RID: 197
 		public sealed class ECB
 		{
-			// Token: 0x060005AF RID: 1455 RVA: 0x0002CB0D File Offset: 0x0002AD0D
+			// Token: 0x060005B4 RID: 1460 RVA: 0x0002BD55 File Offset: 0x00029F55
 			internal ECB(int count, int dataCodewords)
 			{
 				this.count = count;
 				this.dataCodewords = dataCodewords;
 			}
 
-			// Token: 0x17000093 RID: 147
+			// Token: 0x17000096 RID: 150
 			public int Count
 			{
-				// Token: 0x060005B0 RID: 1456 RVA: 0x0002CB23 File Offset: 0x0002AD23
+				// Token: 0x060005B5 RID: 1461 RVA: 0x0002BD6B File Offset: 0x00029F6B
 				get
 				{
 					return this.count;
 				}
 			}
 
-			// Token: 0x17000094 RID: 148
+			// Token: 0x17000097 RID: 151
 			public int DataCodewords
 			{
-				// Token: 0x060005B1 RID: 1457 RVA: 0x0002CB2B File Offset: 0x0002AD2B
+				// Token: 0x060005B6 RID: 1462 RVA: 0x0002BD73 File Offset: 0x00029F73
 				get
 				{
 					return this.dataCodewords;
 				}
 			}
 
-			// Token: 0x04000475 RID: 1141
+			// Token: 0x04000472 RID: 1138
 			private readonly int count;
 
-			// Token: 0x04000476 RID: 1142
+			// Token: 0x04000473 RID: 1139
 			private readonly int dataCodewords;
 		}
 
-		// Token: 0x020000C3 RID: 195
+		// Token: 0x020000C4 RID: 196
 		public sealed class ECBlocks
 		{
-			// Token: 0x060005AA RID: 1450 RVA: 0x0002CAA3 File Offset: 0x0002ACA3
+			// Token: 0x060005AF RID: 1455 RVA: 0x0002BCEB File Offset: 0x00029EEB
 			internal ECBlocks(int ecCodewordsPerBlock, params Version.ECB[] ecBlocks)
 			{
 				this.ecCodewordsPerBlock = ecCodewordsPerBlock;
 				this.ecBlocks = ecBlocks;
 			}
 
-			// Token: 0x060005AE RID: 1454 RVA: 0x0002CB05 File Offset: 0x0002AD05
+			// Token: 0x060005B3 RID: 1459 RVA: 0x0002BD4D File Offset: 0x00029F4D
 			public Version.ECB[] getECBlocks()
 			{
 				return this.ecBlocks;
 			}
 
-			// Token: 0x17000090 RID: 144
+			// Token: 0x17000093 RID: 147
 			public int ECCodewordsPerBlock
 			{
-				// Token: 0x060005AB RID: 1451 RVA: 0x0002CAB9 File Offset: 0x0002ACB9
+				// Token: 0x060005B0 RID: 1456 RVA: 0x0002BD01 File Offset: 0x00029F01
 				get
 				{
 					return this.ecCodewordsPerBlock;
 				}
 			}
 
-			// Token: 0x17000091 RID: 145
+			// Token: 0x17000094 RID: 148
 			public int NumBlocks
 			{
-				// Token: 0x060005AC RID: 1452 RVA: 0x0002CAC4 File Offset: 0x0002ACC4
+				// Token: 0x060005B1 RID: 1457 RVA: 0x0002BD0C File Offset: 0x00029F0C
 				get
 				{
 					int num = 0;
@@ -1446,20 +1446,20 @@ namespace ZXing.QrCode.Internal
 				}
 			}
 
-			// Token: 0x17000092 RID: 146
+			// Token: 0x17000095 RID: 149
 			public int TotalECCodewords
 			{
-				// Token: 0x060005AD RID: 1453 RVA: 0x0002CAF6 File Offset: 0x0002ACF6
+				// Token: 0x060005B2 RID: 1458 RVA: 0x0002BD3E File Offset: 0x00029F3E
 				get
 				{
 					return this.ecCodewordsPerBlock * this.NumBlocks;
 				}
 			}
 
-			// Token: 0x04000474 RID: 1140
+			// Token: 0x04000471 RID: 1137
 			private readonly Version.ECB[] ecBlocks;
 
-			// Token: 0x04000473 RID: 1139
+			// Token: 0x04000470 RID: 1136
 			private readonly int ecCodewordsPerBlock;
 		}
 	}

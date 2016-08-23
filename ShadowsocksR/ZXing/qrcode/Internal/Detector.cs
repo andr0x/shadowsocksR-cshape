@@ -5,22 +5,22 @@ using ZXing.Common.Detector;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000077 RID: 119
+	// Token: 0x02000079 RID: 121
 	public class Detector
 	{
-		// Token: 0x0600042D RID: 1069 RVA: 0x00025210 File Offset: 0x00023410
+		// Token: 0x06000436 RID: 1078 RVA: 0x00024458 File Offset: 0x00022658
 		public Detector(BitMatrix image)
 		{
 			this.image = image;
 		}
 
-		// Token: 0x06000436 RID: 1078 RVA: 0x0002550C File Offset: 0x0002370C
+		// Token: 0x0600043F RID: 1087 RVA: 0x00024754 File Offset: 0x00022954
 		protected internal virtual float calculateModuleSize(ResultPoint topLeft, ResultPoint topRight, ResultPoint bottomLeft)
 		{
 			return (this.calculateModuleSizeOneWay(topLeft, topRight) + this.calculateModuleSizeOneWay(topLeft, bottomLeft)) / 2f;
 		}
 
-		// Token: 0x06000437 RID: 1079 RVA: 0x00025528 File Offset: 0x00023728
+		// Token: 0x06000440 RID: 1088 RVA: 0x00024770 File Offset: 0x00022970
 		private float calculateModuleSizeOneWay(ResultPoint pattern, ResultPoint otherPattern)
 		{
 			float num = this.sizeOfBlackWhiteBlackRunBothWays((int)pattern.X, (int)pattern.Y, (int)otherPattern.X, (int)otherPattern.Y);
@@ -36,7 +36,7 @@ namespace ZXing.QrCode.Internal
 			return (num + num2) / 14f;
 		}
 
-		// Token: 0x06000435 RID: 1077 RVA: 0x000254A4 File Offset: 0x000236A4
+		// Token: 0x0600043E RID: 1086 RVA: 0x000246EC File Offset: 0x000228EC
 		private static bool computeDimension(ResultPoint topLeft, ResultPoint topRight, ResultPoint bottomLeft, float moduleSize, out int dimension)
 		{
 			int num = MathUtils.round(ResultPoint.distance(topLeft, topRight) / moduleSize);
@@ -56,7 +56,7 @@ namespace ZXing.QrCode.Internal
 			return true;
 		}
 
-		// Token: 0x06000433 RID: 1075 RVA: 0x000253EC File Offset: 0x000235EC
+		// Token: 0x0600043C RID: 1084 RVA: 0x00024634 File Offset: 0x00022834
 		private static PerspectiveTransform createTransform(ResultPoint topLeft, ResultPoint topRight, ResultPoint bottomLeft, ResultPoint alignmentPattern, int dimension)
 		{
 			float num = (float)dimension - 3.5f;
@@ -79,13 +79,13 @@ namespace ZXing.QrCode.Internal
 			return PerspectiveTransform.quadrilateralToQuadrilateral(3.5f, 3.5f, num, 3.5f, x, y, 3.5f, num, topLeft.X, topLeft.Y, topRight.X, topRight.Y, x2p, y2p, bottomLeft.X, bottomLeft.Y);
 		}
 
-		// Token: 0x06000430 RID: 1072 RVA: 0x0002522F File Offset: 0x0002342F
+		// Token: 0x06000439 RID: 1081 RVA: 0x00024477 File Offset: 0x00022677
 		public virtual DetectorResult detect()
 		{
 			return this.detect(null);
 		}
 
-		// Token: 0x06000431 RID: 1073 RVA: 0x00025238 File Offset: 0x00023438
+		// Token: 0x0600043A RID: 1082 RVA: 0x00024480 File Offset: 0x00022680
 		public virtual DetectorResult detect(IDictionary<DecodeHintType, object> hints)
 		{
 			this.resultPointCallback = ((hints == null || !hints.ContainsKey(DecodeHintType.NEED_RESULT_POINT_CALLBACK)) ? null : ((ResultPointCallback)hints[DecodeHintType.NEED_RESULT_POINT_CALLBACK]));
@@ -97,7 +97,7 @@ namespace ZXing.QrCode.Internal
 			return this.processFinderPatternInfo(finderPatternInfo);
 		}
 
-		// Token: 0x0600043A RID: 1082 RVA: 0x0002576C File Offset: 0x0002396C
+		// Token: 0x06000443 RID: 1091 RVA: 0x000249B4 File Offset: 0x00022BB4
 		protected AlignmentPattern findAlignmentInRegion(float overallEstModuleSize, int estAlignmentX, int estAlignmentY, float allowanceFactor)
 		{
 			int num = (int)(allowanceFactor * overallEstModuleSize);
@@ -112,7 +112,7 @@ namespace ZXing.QrCode.Internal
 			return new AlignmentPatternFinder(this.image, num2, num4, num3 - num2, num5 - num4, overallEstModuleSize, this.resultPointCallback).find();
 		}
 
-		// Token: 0x06000432 RID: 1074 RVA: 0x0002528C File Offset: 0x0002348C
+		// Token: 0x0600043B RID: 1083 RVA: 0x000244D4 File Offset: 0x000226D4
 		protected internal virtual DetectorResult processFinderPatternInfo(FinderPatternInfo info)
 		{
 			FinderPattern topLeft = info.TopLeft;
@@ -180,13 +180,13 @@ namespace ZXing.QrCode.Internal
 			return new DetectorResult(bitMatrix, points);
 		}
 
-		// Token: 0x06000434 RID: 1076 RVA: 0x00025494 File Offset: 0x00023694
+		// Token: 0x0600043D RID: 1085 RVA: 0x000246DC File Offset: 0x000228DC
 		private static BitMatrix sampleGrid(BitMatrix image, PerspectiveTransform transform, int dimension)
 		{
 			return GridSampler.Instance.sampleGrid(image, dimension, dimension, transform);
 		}
 
-		// Token: 0x06000439 RID: 1081 RVA: 0x0002567C File Offset: 0x0002387C
+		// Token: 0x06000442 RID: 1090 RVA: 0x000248C4 File Offset: 0x00022AC4
 		private float sizeOfBlackWhiteBlackRun(int fromX, int fromY, int toX, int toY)
 		{
 			bool flag = Math.Abs(toY - fromY) > Math.Abs(toX - fromX);
@@ -239,7 +239,7 @@ namespace ZXing.QrCode.Internal
 			return float.NaN;
 		}
 
-		// Token: 0x06000438 RID: 1080 RVA: 0x000255A4 File Offset: 0x000237A4
+		// Token: 0x06000441 RID: 1089 RVA: 0x000247EC File Offset: 0x000229EC
 		private float sizeOfBlackWhiteBlackRunBothWays(int fromX, int fromY, int toX, int toY)
 		{
 			float arg_C2_0 = this.sizeOfBlackWhiteBlackRun(fromX, fromY, toX, toY);
@@ -271,30 +271,30 @@ namespace ZXing.QrCode.Internal
 			return arg_C2_0 + this.sizeOfBlackWhiteBlackRun(fromX, fromY, num2, num3) - 1f;
 		}
 
-		// Token: 0x17000050 RID: 80
+		// Token: 0x17000053 RID: 83
 		protected internal virtual BitMatrix Image
 		{
-			// Token: 0x0600042E RID: 1070 RVA: 0x0002521F File Offset: 0x0002341F
+			// Token: 0x06000437 RID: 1079 RVA: 0x00024467 File Offset: 0x00022667
 			get
 			{
 				return this.image;
 			}
 		}
 
-		// Token: 0x17000051 RID: 81
+		// Token: 0x17000054 RID: 84
 		protected internal virtual ResultPointCallback ResultPointCallback
 		{
-			// Token: 0x0600042F RID: 1071 RVA: 0x00025227 File Offset: 0x00023427
+			// Token: 0x06000438 RID: 1080 RVA: 0x0002446F File Offset: 0x0002266F
 			get
 			{
 				return this.resultPointCallback;
 			}
 		}
 
-		// Token: 0x0400030B RID: 779
+		// Token: 0x04000308 RID: 776
 		private readonly BitMatrix image;
 
-		// Token: 0x0400030C RID: 780
+		// Token: 0x04000309 RID: 777
 		private ResultPointCallback resultPointCallback;
 	}
 }

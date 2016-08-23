@@ -3,10 +3,10 @@ using ZXing.Common;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200007F RID: 127
+	// Token: 0x02000081 RID: 129
 	public static class MatrixUtil
 	{
-		// Token: 0x0600048E RID: 1166 RVA: 0x00027A0C File Offset: 0x00025C0C
+		// Token: 0x06000497 RID: 1175 RVA: 0x00026C54 File Offset: 0x00024E54
 		static MatrixUtil()
 		{
 			// Note: this type is marked as 'beforefieldinit'.
@@ -88,7 +88,7 @@ namespace ZXing.QrCode.Internal
 			MatrixUtil.TYPE_INFO_COORDINATES = expr_44C;
 		}
 
-		// Token: 0x0600047C RID: 1148 RVA: 0x000273E4 File Offset: 0x000255E4
+		// Token: 0x06000485 RID: 1157 RVA: 0x0002662C File Offset: 0x0002482C
 		public static void buildMatrix(BitArray dataBits, ErrorCorrectionLevel ecLevel, Version version, int maskPattern, ByteMatrix matrix)
 		{
 			MatrixUtil.clearMatrix(matrix);
@@ -98,7 +98,7 @@ namespace ZXing.QrCode.Internal
 			MatrixUtil.embedDataBits(dataBits, maskPattern, matrix);
 		}
 
-		// Token: 0x06000482 RID: 1154 RVA: 0x00027668 File Offset: 0x00025868
+		// Token: 0x0600048B RID: 1163 RVA: 0x000268B0 File Offset: 0x00024AB0
 		public static int calculateBCHCode(int value, int poly)
 		{
 			int num = MatrixUtil.findMSBSet(poly);
@@ -110,13 +110,13 @@ namespace ZXing.QrCode.Internal
 			return value;
 		}
 
-		// Token: 0x0600047B RID: 1147 RVA: 0x000273DB File Offset: 0x000255DB
+		// Token: 0x06000484 RID: 1156 RVA: 0x00026623 File Offset: 0x00024823
 		public static void clearMatrix(ByteMatrix matrix)
 		{
 			matrix.clear(2);
 		}
 
-		// Token: 0x0600047D RID: 1149 RVA: 0x0002740F File Offset: 0x0002560F
+		// Token: 0x06000486 RID: 1158 RVA: 0x00026657 File Offset: 0x00024857
 		public static void embedBasicPatterns(Version version, ByteMatrix matrix)
 		{
 			MatrixUtil.embedPositionDetectionPatternsAndSeparators(matrix);
@@ -125,7 +125,7 @@ namespace ZXing.QrCode.Internal
 			MatrixUtil.embedTimingPatterns(matrix);
 		}
 
-		// Token: 0x06000487 RID: 1159 RVA: 0x000277E2 File Offset: 0x000259E2
+		// Token: 0x06000490 RID: 1168 RVA: 0x00026A2A File Offset: 0x00024C2A
 		private static void embedDarkDotAtLeftBottomCorner(ByteMatrix matrix)
 		{
 			if (matrix[8, matrix.Height - 8] == 0)
@@ -135,7 +135,7 @@ namespace ZXing.QrCode.Internal
 			matrix[8, matrix.Height - 8] = 1;
 		}
 
-		// Token: 0x06000480 RID: 1152 RVA: 0x00027548 File Offset: 0x00025748
+		// Token: 0x06000489 RID: 1161 RVA: 0x00026790 File Offset: 0x00024990
 		public static void embedDataBits(BitArray dataBits, int maskPattern, ByteMatrix matrix)
 		{
 			int num = 0;
@@ -190,7 +190,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x06000488 RID: 1160 RVA: 0x0002780C File Offset: 0x00025A0C
+		// Token: 0x06000491 RID: 1169 RVA: 0x00026A54 File Offset: 0x00024C54
 		private static void embedHorizontalSeparationPattern(int xStart, int yStart, ByteMatrix matrix)
 		{
 			for (int i = 0; i < 8; i++)
@@ -203,7 +203,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600048A RID: 1162 RVA: 0x00027884 File Offset: 0x00025A84
+		// Token: 0x06000493 RID: 1171 RVA: 0x00026ACC File Offset: 0x00024CCC
 		private static void embedPositionAdjustmentPattern(int xStart, int yStart, ByteMatrix matrix)
 		{
 			for (int i = 0; i < 5; i++)
@@ -215,7 +215,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600048B RID: 1163 RVA: 0x000278C0 File Offset: 0x00025AC0
+		// Token: 0x06000494 RID: 1172 RVA: 0x00026B08 File Offset: 0x00024D08
 		private static void embedPositionDetectionPattern(int xStart, int yStart, ByteMatrix matrix)
 		{
 			for (int i = 0; i < 7; i++)
@@ -227,7 +227,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600048C RID: 1164 RVA: 0x000278FC File Offset: 0x00025AFC
+		// Token: 0x06000495 RID: 1173 RVA: 0x00026B44 File Offset: 0x00024D44
 		private static void embedPositionDetectionPatternsAndSeparators(ByteMatrix matrix)
 		{
 			int num = MatrixUtil.POSITION_DETECTION_PATTERN[0].Length;
@@ -242,7 +242,7 @@ namespace ZXing.QrCode.Internal
 			MatrixUtil.embedVerticalSeparationPattern(7, matrix.Height - 7, matrix);
 		}
 
-		// Token: 0x06000486 RID: 1158 RVA: 0x0002778C File Offset: 0x0002598C
+		// Token: 0x0600048F RID: 1167 RVA: 0x000269D4 File Offset: 0x00024BD4
 		private static void embedTimingPatterns(ByteMatrix matrix)
 		{
 			for (int i = 8; i < matrix.Width - 8; i++)
@@ -259,7 +259,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600047E RID: 1150 RVA: 0x0002742C File Offset: 0x0002562C
+		// Token: 0x06000487 RID: 1159 RVA: 0x00026674 File Offset: 0x00024874
 		public static void embedTypeInfo(ErrorCorrectionLevel ecLevel, int maskPattern, ByteMatrix matrix)
 		{
 			BitArray bitArray = new BitArray();
@@ -286,7 +286,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x06000489 RID: 1161 RVA: 0x00027848 File Offset: 0x00025A48
+		// Token: 0x06000492 RID: 1170 RVA: 0x00026A90 File Offset: 0x00024C90
 		private static void embedVerticalSeparationPattern(int xStart, int yStart, ByteMatrix matrix)
 		{
 			for (int i = 0; i < 7; i++)
@@ -299,7 +299,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x06000481 RID: 1153 RVA: 0x00027648 File Offset: 0x00025848
+		// Token: 0x0600048A RID: 1162 RVA: 0x00026890 File Offset: 0x00024A90
 		public static int findMSBSet(int value_Renamed)
 		{
 			int num = 0;
@@ -311,13 +311,13 @@ namespace ZXing.QrCode.Internal
 			return num;
 		}
 
-		// Token: 0x06000485 RID: 1157 RVA: 0x00027785 File Offset: 0x00025985
+		// Token: 0x0600048E RID: 1166 RVA: 0x000269CD File Offset: 0x00024BCD
 		private static bool isEmpty(int value)
 		{
 			return value == 2;
 		}
 
-		// Token: 0x06000483 RID: 1155 RVA: 0x000276A4 File Offset: 0x000258A4
+		// Token: 0x0600048C RID: 1164 RVA: 0x000268EC File Offset: 0x00024AEC
 		public static void makeTypeInfoBits(ErrorCorrectionLevel ecLevel, int maskPattern, BitArray bits)
 		{
 			if (!QRCode.isValidMaskPattern(maskPattern))
@@ -337,7 +337,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x06000484 RID: 1156 RVA: 0x0002772C File Offset: 0x0002592C
+		// Token: 0x0600048D RID: 1165 RVA: 0x00026974 File Offset: 0x00024B74
 		public static void makeVersionInfoBits(Version version, BitArray bits)
 		{
 			bits.appendBits(version.VersionNumber, 6);
@@ -349,7 +349,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600048D RID: 1165 RVA: 0x00027988 File Offset: 0x00025B88
+		// Token: 0x06000496 RID: 1174 RVA: 0x00026BD0 File Offset: 0x00024DD0
 		private static void maybeEmbedPositionAdjustmentPatterns(Version version, ByteMatrix matrix)
 		{
 			if (version.VersionNumber < 2)
@@ -373,7 +373,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600047F RID: 1151 RVA: 0x000274CC File Offset: 0x000256CC
+		// Token: 0x06000488 RID: 1160 RVA: 0x00026714 File Offset: 0x00024914
 		public static void maybeEmbedVersionInfo(Version version, ByteMatrix matrix)
 		{
 			if (version.VersionNumber < 7)
@@ -395,7 +395,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x04000327 RID: 807
+		// Token: 0x04000324 RID: 804
 		private static readonly int[][] POSITION_ADJUSTMENT_PATTERN = new int[][]
 		{
 			new int[]
@@ -440,7 +440,7 @@ namespace ZXing.QrCode.Internal
 			}
 		};
 
-		// Token: 0x04000328 RID: 808
+		// Token: 0x04000325 RID: 805
 		private static readonly int[][] POSITION_ADJUSTMENT_PATTERN_COORDINATE_TABLE = new int[][]
 		{
 			new int[]
@@ -845,7 +845,7 @@ namespace ZXing.QrCode.Internal
 			}
 		};
 
-		// Token: 0x04000326 RID: 806
+		// Token: 0x04000323 RID: 803
 		private static readonly int[][] POSITION_DETECTION_PATTERN = new int[][]
 		{
 			new int[]
@@ -920,16 +920,16 @@ namespace ZXing.QrCode.Internal
 			}
 		};
 
-		// Token: 0x04000329 RID: 809
+		// Token: 0x04000326 RID: 806
 		private static readonly int[][] TYPE_INFO_COORDINATES;
 
-		// Token: 0x0400032C RID: 812
+		// Token: 0x04000329 RID: 809
 		private const int TYPE_INFO_MASK_PATTERN = 21522;
 
-		// Token: 0x0400032B RID: 811
+		// Token: 0x04000328 RID: 808
 		private const int TYPE_INFO_POLY = 1335;
 
-		// Token: 0x0400032A RID: 810
+		// Token: 0x04000327 RID: 807
 		private const int VERSION_INFO_POLY = 7973;
 	}
 }

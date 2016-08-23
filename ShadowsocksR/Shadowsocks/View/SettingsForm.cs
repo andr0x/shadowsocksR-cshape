@@ -11,7 +11,7 @@ namespace Shadowsocks.View
 	// Token: 0x0200000A RID: 10
 	public partial class SettingsForm : Form
 	{
-		// Token: 0x0600008E RID: 142 RVA: 0x0000A5C0 File Offset: 0x000087C0
+		// Token: 0x0600008E RID: 142 RVA: 0x0000A770 File Offset: 0x00008970
 		public SettingsForm(ShadowsocksController controller)
 		{
 			this.Font = SystemFonts.MessageBoxFont;
@@ -23,26 +23,26 @@ namespace Shadowsocks.View
 			this.LoadCurrentConfiguration();
 		}
 
-		// Token: 0x06000097 RID: 151 RVA: 0x00003051 File Offset: 0x00001251
+		// Token: 0x06000097 RID: 151 RVA: 0x00003141 File Offset: 0x00001341
 		private void CancelButton_Click(object sender, EventArgs e)
 		{
 			base.Close();
 		}
 
-		// Token: 0x06000091 RID: 145 RVA: 0x0000A941 File Offset: 0x00008B41
+		// Token: 0x06000091 RID: 145 RVA: 0x0000AAF1 File Offset: 0x00008CF1
 		private void controller_ConfigChanged(object sender, EventArgs e)
 		{
 			this.LoadCurrentConfiguration();
 		}
 
-		// Token: 0x06000095 RID: 149 RVA: 0x0000AD39 File Offset: 0x00008F39
+		// Token: 0x06000095 RID: 149 RVA: 0x0000AEE9 File Offset: 0x000090E9
 		private void LoadCurrentConfiguration()
 		{
 			this._modifiedConfiguration = this.controller.GetConfiguration();
 			this.LoadSelectedServer();
 		}
 
-		// Token: 0x06000094 RID: 148 RVA: 0x0000AB7C File Offset: 0x00008D7C
+		// Token: 0x06000094 RID: 148 RVA: 0x0000AD2C File Offset: 0x00008F2C
 		private void LoadSelectedServer()
 		{
 			this.checkShareOverLan.Checked = this._modifiedConfiguration.shareOverLan;
@@ -66,7 +66,7 @@ namespace Shadowsocks.View
 			this.CheckAutoBan.Checked = this._modifiedConfiguration.autoBan;
 		}
 
-		// Token: 0x06000096 RID: 150 RVA: 0x0000AD54 File Offset: 0x00008F54
+		// Token: 0x06000096 RID: 150 RVA: 0x0000AF04 File Offset: 0x00009104
 		private void OKButton_Click(object sender, EventArgs e)
 		{
 			if (this.SaveOldSelectedServer() == -1)
@@ -82,7 +82,7 @@ namespace Shadowsocks.View
 			base.Close();
 		}
 
-		// Token: 0x06000093 RID: 147 RVA: 0x0000A960 File Offset: 0x00008B60
+		// Token: 0x06000093 RID: 147 RVA: 0x0000AB10 File Offset: 0x00008D10
 		private int SaveOldSelectedServer()
 		{
 			try
@@ -121,20 +121,20 @@ namespace Shadowsocks.View
 			return -1;
 		}
 
-		// Token: 0x0600008F RID: 143 RVA: 0x0000A61E File Offset: 0x0000881E
+		// Token: 0x0600008F RID: 143 RVA: 0x0000A7CE File Offset: 0x000089CE
 		private void SettingsForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.controller.ConfigChanged -= new EventHandler(this.controller_ConfigChanged);
 		}
 
-		// Token: 0x06000092 RID: 146 RVA: 0x0000A949 File Offset: 0x00008B49
+		// Token: 0x06000092 RID: 146 RVA: 0x0000AAF9 File Offset: 0x00008CF9
 		private void ShowWindow()
 		{
 			base.Opacity = 1.0;
 			base.Show();
 		}
 
-		// Token: 0x06000090 RID: 144 RVA: 0x0000A638 File Offset: 0x00008838
+		// Token: 0x06000090 RID: 144 RVA: 0x0000A7E8 File Offset: 0x000089E8
 		private void UpdateTexts()
 		{
 			this.Text = string.Concat(new string[]
@@ -145,7 +145,7 @@ namespace Shadowsocks.View
 				":",
 				this.controller.GetCurrentConfiguration().localPort.ToString(),
 				I18N.GetString(" Version"),
-				"3.8.4.2 blue)"
+				"3.8.5.0 Beta)"
 			});
 			this.ListenGroup.Text = I18N.GetString(this.ListenGroup.Text);
 			this.checkShareOverLan.Text = I18N.GetString(this.checkShareOverLan.Text);

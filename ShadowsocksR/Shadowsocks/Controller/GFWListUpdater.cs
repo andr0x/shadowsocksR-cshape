@@ -9,10 +9,10 @@ using SimpleJson;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200003E RID: 62
+	// Token: 0x0200003C RID: 60
 	public class GFWListUpdater
 	{
-		// Token: 0x06000233 RID: 563 RVA: 0x00015B74 File Offset: 0x00013D74
+		// Token: 0x0600021E RID: 542 RVA: 0x000152E4 File Offset: 0x000134E4
 		private void http_DownloadBypassListCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
 			try
@@ -42,7 +42,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000230 RID: 560 RVA: 0x000158B4 File Offset: 0x00013AB4
+		// Token: 0x0600021B RID: 539 RVA: 0x00015024 File Offset: 0x00013224
 		private void http_DownloadGFWTemplateCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
 			try
@@ -71,7 +71,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000232 RID: 562 RVA: 0x00015AC0 File Offset: 0x00013CC0
+		// Token: 0x0600021D RID: 541 RVA: 0x00015230 File Offset: 0x00013430
 		private void http_DownloadPACCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
 			try
@@ -101,7 +101,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000231 RID: 561 RVA: 0x00015954 File Offset: 0x00013B54
+		// Token: 0x0600021C RID: 540 RVA: 0x000150C4 File Offset: 0x000132C4
 		private void http_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
 			try
@@ -157,7 +157,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000237 RID: 567 RVA: 0x00015DC8 File Offset: 0x00013FC8
+		// Token: 0x06000222 RID: 546 RVA: 0x00015538 File Offset: 0x00013738
 		public List<string> ParseResult(string response)
 		{
 			byte[] bytes = Convert.FromBase64String(response);
@@ -179,7 +179,7 @@ namespace Shadowsocks.Controller
 			return list;
 		}
 
-		// Token: 0x06000236 RID: 566 RVA: 0x00015D60 File Offset: 0x00013F60
+		// Token: 0x06000221 RID: 545 RVA: 0x000154D0 File Offset: 0x000136D0
 		public void UpdateBypassListFromDefault(Configuration config)
 		{
 			WebClient expr_05 = new WebClient();
@@ -188,7 +188,7 @@ namespace Shadowsocks.Controller
 			expr_05.DownloadStringAsync(new Uri("https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_bypass.action?rnd=" + this.random.Next().ToString()));
 		}
 
-		// Token: 0x06000234 RID: 564 RVA: 0x00015C28 File Offset: 0x00013E28
+		// Token: 0x0600021F RID: 543 RVA: 0x00015398 File Offset: 0x00013598
 		public void UpdatePACFromGFWList(Configuration config)
 		{
 			if (GFWListUpdater.gfwlist_template == null)
@@ -206,7 +206,7 @@ namespace Shadowsocks.Controller
 			expr_6D.DownloadStringAsync(new Uri("https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt?rnd=" + this.random.Next().ToString()));
 		}
 
-		// Token: 0x06000235 RID: 565 RVA: 0x00015CF8 File Offset: 0x00013EF8
+		// Token: 0x06000220 RID: 544 RVA: 0x00015468 File Offset: 0x00013668
 		public void UpdatePACFromGFWList(Configuration config, string url)
 		{
 			WebClient expr_05 = new WebClient();
@@ -216,62 +216,62 @@ namespace Shadowsocks.Controller
 		}
 
 		// Token: 0x14000002 RID: 2
-		// Token: 0x0600022E RID: 558 RVA: 0x00015844 File Offset: 0x00013A44
-		// Token: 0x0600022F RID: 559 RVA: 0x0001587C File Offset: 0x00013A7C
+		// Token: 0x06000219 RID: 537 RVA: 0x00014FB4 File Offset: 0x000131B4
+		// Token: 0x0600021A RID: 538 RVA: 0x00014FEC File Offset: 0x000131EC
 		[method: CompilerGenerated]
 		[CompilerGenerated]
 		public event ErrorEventHandler Error;
 
 		// Token: 0x14000001 RID: 1
-		// Token: 0x0600022C RID: 556 RVA: 0x000157D4 File Offset: 0x000139D4
-		// Token: 0x0600022D RID: 557 RVA: 0x0001580C File Offset: 0x00013A0C
+		// Token: 0x06000217 RID: 535 RVA: 0x00014F44 File Offset: 0x00013144
+		// Token: 0x06000218 RID: 536 RVA: 0x00014F7C File Offset: 0x0001317C
 		[method: CompilerGenerated]
 		[CompilerGenerated]
 		public event EventHandler<GFWListUpdater.ResultEventArgs> UpdateCompleted;
 
-		// Token: 0x040001B1 RID: 433
+		// Token: 0x040001A7 RID: 423
 		private static string BYPASS_FILE = PACServer.BYPASS_FILE;
 
-		// Token: 0x040001AF RID: 431
+		// Token: 0x040001A5 RID: 421
 		private const string BYPASS_LIST_URL = "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_bypass.action";
 
-		// Token: 0x040001B4 RID: 436
+		// Token: 0x040001AA RID: 426
 		private static string gfwlist_template = null;
 
-		// Token: 0x040001AE RID: 430
+		// Token: 0x040001A4 RID: 420
 		private const string GFWLIST_TEMPLATE_URL = "https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ss_gfw.pac";
 
-		// Token: 0x040001AD RID: 429
+		// Token: 0x040001A3 RID: 419
 		private const string GFWLIST_URL = "https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt";
 
-		// Token: 0x040001B5 RID: 437
+		// Token: 0x040001AB RID: 427
 		private Configuration lastConfig;
 
-		// Token: 0x040001B0 RID: 432
+		// Token: 0x040001A6 RID: 422
 		private static string PAC_FILE = PACServer.PAC_FILE;
 
-		// Token: 0x040001B6 RID: 438
+		// Token: 0x040001AC RID: 428
 		private Random random = new Random();
 
-		// Token: 0x040001B7 RID: 439
+		// Token: 0x040001AD RID: 429
 		public int update_type;
 
-		// Token: 0x040001B3 RID: 435
+		// Token: 0x040001A9 RID: 425
 		private static string USER_ABP_FILE = PACServer.USER_ABP_FILE;
 
-		// Token: 0x040001B2 RID: 434
+		// Token: 0x040001A8 RID: 424
 		private static string USER_RULE_FILE = PACServer.USER_RULE_FILE;
 
-		// Token: 0x020000A6 RID: 166
+		// Token: 0x020000A8 RID: 168
 		public class ResultEventArgs : EventArgs
 		{
-			// Token: 0x06000557 RID: 1367 RVA: 0x0002BCE3 File Offset: 0x00029EE3
+			// Token: 0x06000560 RID: 1376 RVA: 0x0002AF2B File Offset: 0x0002912B
 			public ResultEventArgs(bool success)
 			{
 				this.Success = success;
 			}
 
-			// Token: 0x0400043E RID: 1086
+			// Token: 0x0400043B RID: 1083
 			public bool Success;
 		}
 	}

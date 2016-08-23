@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000039 RID: 57
+	// Token: 0x02000037 RID: 55
 	public class SodiumEncryptor : IVEncryptor, IDisposable
 	{
-		// Token: 0x0600020F RID: 527 RVA: 0x00014B04 File Offset: 0x00012D04
+		// Token: 0x060001FA RID: 506 RVA: 0x00014274 File Offset: 0x00012474
 		public SodiumEncryptor(string method, string password) : base(method, password)
 		{
 			base.InitKey(method, password);
@@ -14,7 +14,7 @@ namespace Shadowsocks.Encryption
 			this._decryptBuf = new byte[65600];
 		}
 
-		// Token: 0x06000212 RID: 530 RVA: 0x00014B50 File Offset: 0x00012D50
+		// Token: 0x060001FD RID: 509 RVA: 0x000142C0 File Offset: 0x000124C0
 		protected override void cipherUpdate(bool isCipher, int length, byte[] buf, byte[] outbuf)
 		{
 			int num;
@@ -72,18 +72,18 @@ namespace Shadowsocks.Encryption
 			this._decryptIC = num2;
 		}
 
-		// Token: 0x06000215 RID: 533 RVA: 0x00009AEF File Offset: 0x00007CEF
+		// Token: 0x06000200 RID: 512 RVA: 0x00009C9F File Offset: 0x00007E9F
 		public override void Dispose()
 		{
 		}
 
-		// Token: 0x06000210 RID: 528 RVA: 0x00014B36 File Offset: 0x00012D36
+		// Token: 0x060001FB RID: 507 RVA: 0x000142A6 File Offset: 0x000124A6
 		protected override Dictionary<string, int[]> getCiphers()
 		{
 			return SodiumEncryptor._ciphers;
 		}
 
-		// Token: 0x06000214 RID: 532 RVA: 0x00014C63 File Offset: 0x00012E63
+		// Token: 0x060001FF RID: 511 RVA: 0x000143D3 File Offset: 0x000125D3
 		public override void ResetDecrypt()
 		{
 			this._decryptIVReceived = 0;
@@ -91,7 +91,7 @@ namespace Shadowsocks.Encryption
 			this._decryptBytesRemaining = 0;
 		}
 
-		// Token: 0x06000213 RID: 531 RVA: 0x00014C4B File Offset: 0x00012E4B
+		// Token: 0x060001FE RID: 510 RVA: 0x000143BB File Offset: 0x000125BB
 		public override void ResetEncrypt()
 		{
 			this._encryptIVSent = false;
@@ -99,25 +99,25 @@ namespace Shadowsocks.Encryption
 			this._encryptBytesRemaining = 0;
 		}
 
-		// Token: 0x06000211 RID: 529 RVA: 0x00014B3D File Offset: 0x00012D3D
+		// Token: 0x060001FC RID: 508 RVA: 0x000142AD File Offset: 0x000124AD
 		public static List<string> SupportedCiphers()
 		{
 			return new List<string>(SodiumEncryptor._ciphers.Keys);
 		}
 
-		// Token: 0x0400019C RID: 412
+		// Token: 0x04000192 RID: 402
 		private const int CIPHER_CHACHA20 = 2;
 
-		// Token: 0x0400019D RID: 413
+		// Token: 0x04000193 RID: 403
 		private const int CIPHER_CHACHA20_IETF = 3;
 
-		// Token: 0x0400019B RID: 411
+		// Token: 0x04000191 RID: 401
 		private const int CIPHER_SALSA20 = 1;
 
-		// Token: 0x0400019E RID: 414
+		// Token: 0x04000194 RID: 404
 		private const int SODIUM_BLOCK_SIZE = 64;
 
-		// Token: 0x040001A5 RID: 421
+		// Token: 0x0400019B RID: 411
 		private static Dictionary<string, int[]> _ciphers = new Dictionary<string, int[]>
 		{
 			{
@@ -149,22 +149,22 @@ namespace Shadowsocks.Encryption
 			}
 		};
 
-		// Token: 0x040001A4 RID: 420
+		// Token: 0x0400019A RID: 410
 		protected byte[] _decryptBuf;
 
-		// Token: 0x040001A0 RID: 416
+		// Token: 0x04000196 RID: 406
 		protected int _decryptBytesRemaining;
 
-		// Token: 0x040001A2 RID: 418
+		// Token: 0x04000198 RID: 408
 		protected ulong _decryptIC;
 
-		// Token: 0x040001A3 RID: 419
+		// Token: 0x04000199 RID: 409
 		protected byte[] _encryptBuf;
 
-		// Token: 0x0400019F RID: 415
+		// Token: 0x04000195 RID: 405
 		protected int _encryptBytesRemaining;
 
-		// Token: 0x040001A1 RID: 417
+		// Token: 0x04000197 RID: 407
 		protected ulong _encryptIC;
 	}
 }

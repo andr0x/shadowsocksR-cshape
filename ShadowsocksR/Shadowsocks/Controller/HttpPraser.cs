@@ -7,16 +7,16 @@ using Shadowsocks.Util;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000040 RID: 64
+	// Token: 0x0200003E RID: 62
 	internal class HttpPraser
 	{
-		// Token: 0x0600023C RID: 572 RVA: 0x00015EB4 File Offset: 0x000140B4
+		// Token: 0x06000227 RID: 551 RVA: 0x00015624 File Offset: 0x00013824
 		public HttpPraser(bool redir = false)
 		{
 			this.redir = redir;
 		}
 
-		// Token: 0x06000240 RID: 576 RVA: 0x00016118 File Offset: 0x00014318
+		// Token: 0x0600022B RID: 555 RVA: 0x00015888 File Offset: 0x00013A88
 		protected int AppendRequest(ref byte[] Packet, ref int PacketLength)
 		{
 			if (this.httpContentLength > 0)
@@ -54,7 +54,7 @@ namespace Shadowsocks.Controller
 			return Utils.FindStr(this.httpRequestBuffer, this.httpRequestBuffer.Length, m);
 		}
 
-		// Token: 0x06000243 RID: 579 RVA: 0x000163D0 File Offset: 0x000145D0
+		// Token: 0x0600022E RID: 558 RVA: 0x00015B40 File Offset: 0x00013D40
 		public int HandshakeReceive(byte[] _firstPacket, int _firstPacketLength, ref byte[] remoteHeaderSendBuffer)
 		{
 			remoteHeaderSendBuffer = null;
@@ -148,7 +148,7 @@ namespace Shadowsocks.Controller
 			return 0;
 		}
 
-		// Token: 0x06000242 RID: 578 RVA: 0x000162A0 File Offset: 0x000144A0
+		// Token: 0x0600022D RID: 557 RVA: 0x00015A10 File Offset: 0x00013C10
 		protected string HeaderDictToString(Dictionary<string, string> dict)
 		{
 			string str = "";
@@ -181,7 +181,7 @@ namespace Shadowsocks.Controller
 			return str + text + "\r\n";
 		}
 
-		// Token: 0x0600023F RID: 575 RVA: 0x00016050 File Offset: 0x00014250
+		// Token: 0x0600022A RID: 554 RVA: 0x000157C0 File Offset: 0x000139C0
 		public void HostToHandshakeBuffer(string host, int port, ref byte[] remoteHeaderSendBuffer)
 		{
 			if (this.redir)
@@ -218,13 +218,13 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000244 RID: 580 RVA: 0x000166CB File Offset: 0x000148CB
+		// Token: 0x0600022F RID: 559 RVA: 0x00015E3B File Offset: 0x0001403B
 		public string Http200()
 		{
 			return "HTTP/1.1 200 Connection Established\r\n\r\n";
 		}
 
-		// Token: 0x06000245 RID: 581 RVA: 0x000166D4 File Offset: 0x000148D4
+		// Token: 0x06000230 RID: 560 RVA: 0x00015E44 File Offset: 0x00014044
 		public string Http407()
 		{
 			string arg_16_0 = "HTTP/1.1 407 Proxy Authentication Required\r\nProxy-Authenticate: Basic realm=\"RRR\"\r\n";
@@ -232,7 +232,7 @@ namespace Shadowsocks.Controller
 			return arg_16_0 + "\r\n" + str + "\r\n";
 		}
 
-		// Token: 0x06000246 RID: 582 RVA: 0x000166FC File Offset: 0x000148FC
+		// Token: 0x06000231 RID: 561 RVA: 0x00015E6C File Offset: 0x0001406C
 		public string Http500()
 		{
 			string arg_16_0 = "HTTP/1.1 500 Internal Server Error\r\n";
@@ -240,7 +240,7 @@ namespace Shadowsocks.Controller
 			return arg_16_0 + "\r\n" + str + "\r\n";
 		}
 
-		// Token: 0x0600023D RID: 573 RVA: 0x00015EC4 File Offset: 0x000140C4
+		// Token: 0x06000228 RID: 552 RVA: 0x00015634 File Offset: 0x00013834
 		private static string ParseHostAndPort(string str, ref int port)
 		{
 			string result;
@@ -276,7 +276,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x06000241 RID: 577 RVA: 0x000161F8 File Offset: 0x000143F8
+		// Token: 0x0600022C RID: 556 RVA: 0x00015968 File Offset: 0x00013B68
 		protected Dictionary<string, string> ParseHttpHeader(string header)
 		{
 			Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -305,7 +305,7 @@ namespace Shadowsocks.Controller
 			return dictionary;
 		}
 
-		// Token: 0x0600023E RID: 574 RVA: 0x00015F50 File Offset: 0x00014150
+		// Token: 0x06000229 RID: 553 RVA: 0x000156C0 File Offset: 0x000138C0
 		protected string ParseURL(string url, string host, int port)
 		{
 			if (url.StartsWith("http://"))
@@ -343,28 +343,28 @@ namespace Shadowsocks.Controller
 			return url;
 		}
 
-		// Token: 0x040001C0 RID: 448
+		// Token: 0x040001B6 RID: 438
 		public string httpAuthPass;
 
-		// Token: 0x040001BF RID: 447
+		// Token: 0x040001B5 RID: 437
 		public string httpAuthUser;
 
-		// Token: 0x040001BE RID: 446
+		// Token: 0x040001B4 RID: 436
 		public int httpContentLength;
 
-		// Token: 0x040001C1 RID: 449
+		// Token: 0x040001B7 RID: 439
 		protected string httpHost;
 
-		// Token: 0x040001C2 RID: 450
+		// Token: 0x040001B8 RID: 440
 		protected int httpPort;
 
-		// Token: 0x040001BC RID: 444
+		// Token: 0x040001B2 RID: 434
 		public bool httpProxy;
 
-		// Token: 0x040001BD RID: 445
+		// Token: 0x040001B3 RID: 435
 		public byte[] httpRequestBuffer;
 
-		// Token: 0x040001C3 RID: 451
+		// Token: 0x040001B9 RID: 441
 		private bool redir;
 	}
 }

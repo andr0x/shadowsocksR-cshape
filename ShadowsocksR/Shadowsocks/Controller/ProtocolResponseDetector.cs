@@ -3,16 +3,16 @@ using Shadowsocks.Obfs;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200004E RID: 78
+	// Token: 0x0200004B RID: 75
 	internal class ProtocolResponseDetector
 	{
-		// Token: 0x060002A5 RID: 677 RVA: 0x00018D68 File Offset: 0x00016F68
+		// Token: 0x0600029C RID: 668 RVA: 0x00019200 File Offset: 0x00017400
 		public ProtocolResponseDetector()
 		{
 			this.Pass = false;
 		}
 
-		// Token: 0x060002A8 RID: 680 RVA: 0x00019008 File Offset: 0x00017208
+		// Token: 0x0600029F RID: 671 RVA: 0x000194A0 File Offset: 0x000176A0
 		protected void Finish()
 		{
 			this.send_buffer = null;
@@ -21,7 +21,7 @@ namespace Shadowsocks.Controller
 			this.Pass = true;
 		}
 
-		// Token: 0x060002A7 RID: 679 RVA: 0x00018F1C File Offset: 0x0001711C
+		// Token: 0x0600029E RID: 670 RVA: 0x000193B4 File Offset: 0x000175B4
 		public int OnRecv(byte[] recv_data, int length)
 		{
 			if (this.protocol == ProtocolResponseDetector.Protocol.UNKONWN || this.protocol == ProtocolResponseDetector.Protocol.NOTBEGIN)
@@ -60,7 +60,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x060002A6 RID: 678 RVA: 0x00018D90 File Offset: 0x00016F90
+		// Token: 0x0600029D RID: 669 RVA: 0x00019228 File Offset: 0x00017428
 		public void OnSend(byte[] send_data, int length)
 		{
 			if (this.protocol != ProtocolResponseDetector.Protocol.NOTBEGIN)
@@ -103,38 +103,38 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x1700001D RID: 29
+		// Token: 0x1700001F RID: 31
 		public bool Pass
 		{
-			// Token: 0x060002A3 RID: 675 RVA: 0x00018D57 File Offset: 0x00016F57
+			// Token: 0x0600029A RID: 666 RVA: 0x000191EF File Offset: 0x000173EF
 			get;
-			// Token: 0x060002A4 RID: 676 RVA: 0x00018D5F File Offset: 0x00016F5F
+			// Token: 0x0600029B RID: 667 RVA: 0x000191F7 File Offset: 0x000173F7
 			set;
 		}
 
-		// Token: 0x04000201 RID: 513
+		// Token: 0x040001FB RID: 507
 		protected ProtocolResponseDetector.Protocol protocol;
 
-		// Token: 0x04000203 RID: 515
+		// Token: 0x040001FD RID: 509
 		protected byte[] recv_buffer = new byte[0];
 
-		// Token: 0x04000202 RID: 514
+		// Token: 0x040001FC RID: 508
 		protected byte[] send_buffer = new byte[0];
 
-		// Token: 0x020000AD RID: 173
+		// Token: 0x020000AE RID: 174
 		public enum Protocol
 		{
-			// Token: 0x0400045D RID: 1117
+			// Token: 0x0400045A RID: 1114
 			UNKONWN = -1,
-			// Token: 0x0400045E RID: 1118
+			// Token: 0x0400045B RID: 1115
 			NOTBEGIN,
-			// Token: 0x0400045F RID: 1119
+			// Token: 0x0400045C RID: 1116
 			HTTP,
-			// Token: 0x04000460 RID: 1120
+			// Token: 0x0400045D RID: 1117
 			TLS,
-			// Token: 0x04000461 RID: 1121
+			// Token: 0x0400045E RID: 1118
 			SOCKS4 = 4,
-			// Token: 0x04000462 RID: 1122
+			// Token: 0x0400045F RID: 1119
 			SOCKS5
 		}
 	}

@@ -6,11 +6,10 @@ using Shadowsocks.Properties;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000042 RID: 66
+	// Token: 0x02000040 RID: 64
 	public class I18N
 	{
-		// Token: 0x06000256 RID: 598 RVA: 0x00016CA4 File Offset: 0x00014EA4
-		protected static Dictionary<string, string> Strings;
+		// Token: 0x06000241 RID: 577 RVA: 0x00016418 File Offset: 0x00014618
 		static I18N()
 		{
 			I18N.Strings = new Dictionary<string, string>();
@@ -33,7 +32,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000257 RID: 599 RVA: 0x00016D3A File Offset: 0x00014F3A
+		// Token: 0x06000242 RID: 578 RVA: 0x000164AE File Offset: 0x000146AE
 		public static string GetString(string key)
 		{
 			if (I18N.Strings.ContainsKey(key))
@@ -43,6 +42,7 @@ namespace Shadowsocks.Controller
 			return key;
 		}
 
-		// Token: 0x040001CA RID: 458
+		// Token: 0x040001C0 RID: 448
+		protected static Dictionary<string, string> Strings;
 	}
 }

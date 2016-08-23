@@ -49,71 +49,71 @@ namespace Shadowsocks.View
 		// Token: 0x04000063 RID: 99
 		public const int ULW_OPAQUE = 4;
 
-		// Token: 0x0200009E RID: 158
+		// Token: 0x020000A0 RID: 160
 		[StructLayout(LayoutKind.Sequential, Pack = 1)]
 		private struct ARGB
 		{
-			// Token: 0x0400042A RID: 1066
+			// Token: 0x04000427 RID: 1063
 			public byte Blue;
 
-			// Token: 0x0400042B RID: 1067
+			// Token: 0x04000428 RID: 1064
 			public byte Green;
 
-			// Token: 0x0400042C RID: 1068
+			// Token: 0x04000429 RID: 1065
 			public byte Red;
 
-			// Token: 0x0400042D RID: 1069
+			// Token: 0x0400042A RID: 1066
 			public byte Alpha;
 		}
 
-		// Token: 0x0200009F RID: 159
+		// Token: 0x020000A1 RID: 161
 		[StructLayout(LayoutKind.Sequential, Pack = 1)]
 		public struct BLENDFUNCTION
 		{
-			// Token: 0x0400042E RID: 1070
+			// Token: 0x0400042B RID: 1067
 			public byte BlendOp;
 
-			// Token: 0x0400042F RID: 1071
+			// Token: 0x0400042C RID: 1068
 			public byte BlendFlags;
 
-			// Token: 0x04000430 RID: 1072
+			// Token: 0x0400042D RID: 1069
 			public byte SourceConstantAlpha;
 
-			// Token: 0x04000431 RID: 1073
+			// Token: 0x0400042E RID: 1070
 			public byte AlphaFormat;
 		}
 
-		// Token: 0x0200009C RID: 156
+		// Token: 0x0200009E RID: 158
 		public struct Point
 		{
-			// Token: 0x0600054A RID: 1354 RVA: 0x0002BB3C File Offset: 0x00029D3C
+			// Token: 0x06000553 RID: 1363 RVA: 0x0002AD84 File Offset: 0x00028F84
 			public Point(int x, int y)
 			{
 				this.x = x;
 				this.y = y;
 			}
 
-			// Token: 0x04000426 RID: 1062
+			// Token: 0x04000423 RID: 1059
 			public int x;
 
-			// Token: 0x04000427 RID: 1063
+			// Token: 0x04000424 RID: 1060
 			public int y;
 		}
 
-		// Token: 0x0200009D RID: 157
+		// Token: 0x0200009F RID: 159
 		public struct Size
 		{
-			// Token: 0x0600054B RID: 1355 RVA: 0x0002BB4C File Offset: 0x00029D4C
+			// Token: 0x06000554 RID: 1364 RVA: 0x0002AD94 File Offset: 0x00028F94
 			public Size(int cx, int cy)
 			{
 				this.cx = cx;
 				this.cy = cy;
 			}
 
-			// Token: 0x04000428 RID: 1064
+			// Token: 0x04000425 RID: 1061
 			public int cx;
 
-			// Token: 0x04000429 RID: 1065
+			// Token: 0x04000426 RID: 1062
 			public int cy;
 		}
 	}

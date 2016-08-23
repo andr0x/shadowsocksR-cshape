@@ -1,76 +1,120 @@
-/*
-* Copyright 2007 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ZXing.Common
 {
-   /// <summary>
-   /// Encapsulates the result of decoding a matrix of bits. This typically
-   /// applies to 2D barcode formats. For now it contains the raw bytes obtained,
-   /// as well as a String interpretation of those bytes, if applicable.
-   /// <author>Sean Owen</author>
-   /// </summary>
-   public sealed class DecoderResult
-   {
-      public byte[] RawBytes { get; private set; }
+	// Token: 0x02000086 RID: 134
+	public sealed class DecoderResult
+	{
+		// Token: 0x060004E1 RID: 1249 RVA: 0x00027C12 File Offset: 0x00025E12
+		public DecoderResult(byte[] rawBytes, string text, IList<byte[]> byteSegments, string ecLevel) : this(rawBytes, text, byteSegments, ecLevel, -1, -1)
+		{
+		}
 
-      public String Text { get; private set; }
+		// Token: 0x060004E2 RID: 1250 RVA: 0x00027C24 File Offset: 0x00025E24
+		public DecoderResult(byte[] rawBytes, string text, IList<byte[]> byteSegments, string ecLevel, int saSequence, int saParity)
+		{
+			if (rawBytes == null && text == null)
+			{
+				throw new ArgumentException();
+			}
+			this.RawBytes = rawBytes;
+			this.Text = text;
+			this.ByteSegments = byteSegments;
+			this.ECLevel = ecLevel;
+			this.StructuredAppendParity = saParity;
+			this.StructuredAppendSequenceNumber = saSequence;
+		}
 
-      public IList<byte[]> ByteSegments { get; private set; }
+		// Token: 0x17000073 RID: 115
+		public IList<byte[]> ByteSegments
+		{
+			// Token: 0x060004D2 RID: 1234 RVA: 0x00027B82 File Offset: 0x00025D82
+			get;
+			// Token: 0x060004D3 RID: 1235 RVA: 0x00027B8A File Offset: 0x00025D8A
+			private set;
+		}
 
-      public String ECLevel { get; private set; }
+		// Token: 0x17000074 RID: 116
+		public string ECLevel
+		{
+			// Token: 0x060004D4 RID: 1236 RVA: 0x00027B93 File Offset: 0x00025D93
+			get;
+			// Token: 0x060004D5 RID: 1237 RVA: 0x00027B9B File Offset: 0x00025D9B
+			private set;
+		}
 
-      public bool StructuredAppend
-      {
-         get { return StructuredAppendParity >= 0 && StructuredAppendSequenceNumber >= 0; }
-      }
+		// Token: 0x17000078 RID: 120
+		public int Erasures
+		{
+			// Token: 0x060004DB RID: 1243 RVA: 0x00027BDF File Offset: 0x00025DDF
+			get;
+			// Token: 0x060004DC RID: 1244 RVA: 0x00027BE7 File Offset: 0x00025DE7
+			set;
+		}
 
-      public int ErrorsCorrected { get; set; }
+		// Token: 0x17000076 RID: 118
+		public int ErrorsCorrected
+		{
+			// Token: 0x060004D7 RID: 1239 RVA: 0x00027BBD File Offset: 0x00025DBD
+			get;
+			// Token: 0x060004D8 RID: 1240 RVA: 0x00027BC5 File Offset: 0x00025DC5
+			set;
+		}
 
-      public int StructuredAppendSequenceNumber { get; private set; }
+		// Token: 0x1700007A RID: 122
+		public object Other
+		{
+			// Token: 0x060004DF RID: 1247 RVA: 0x00027C01 File Offset: 0x00025E01
+			get;
+			// Token: 0x060004E0 RID: 1248 RVA: 0x00027C09 File Offset: 0x00025E09
+			set;
+		}
 
-      public int Erasures { get; set; }
+		// Token: 0x17000071 RID: 113
+		public byte[] RawBytes
+		{
+			// Token: 0x060004CE RID: 1230 RVA: 0x00027B60 File Offset: 0x00025D60
+			get;
+			// Token: 0x060004CF RID: 1231 RVA: 0x00027B68 File Offset: 0x00025D68
+			private set;
+		}
 
-      public int StructuredAppendParity { get; private set; }
+		// Token: 0x17000075 RID: 117
+		public bool StructuredAppend
+		{
+			// Token: 0x060004D6 RID: 1238 RVA: 0x00027BA4 File Offset: 0x00025DA4
+			get
+			{
+				return this.StructuredAppendParity >= 0 && this.StructuredAppendSequenceNumber >= 0;
+			}
+		}
 
-      /// <summary>
-      /// Miscellanseous data value for the various decoders
-      /// </summary>
-      /// <value>The other.</value>
-      public object Other { get; set; }
+		// Token: 0x17000079 RID: 121
+		public int StructuredAppendParity
+		{
+			// Token: 0x060004DD RID: 1245 RVA: 0x00027BF0 File Offset: 0x00025DF0
+			get;
+			// Token: 0x060004DE RID: 1246 RVA: 0x00027BF8 File Offset: 0x00025DF8
+			private set;
+		}
 
-      public DecoderResult(byte[] rawBytes, String text, IList<byte[]> byteSegments, String ecLevel)
-         : this(rawBytes, text, byteSegments, ecLevel, -1, -1)
-      {
-      }
+		// Token: 0x17000077 RID: 119
+		public int StructuredAppendSequenceNumber
+		{
+			// Token: 0x060004D9 RID: 1241 RVA: 0x00027BCE File Offset: 0x00025DCE
+			get;
+			// Token: 0x060004DA RID: 1242 RVA: 0x00027BD6 File Offset: 0x00025DD6
+			private set;
+		}
 
-      public DecoderResult(byte[] rawBytes, String text, IList<byte[]> byteSegments, String ecLevel, int saSequence, int saParity)
-      {
-         if (rawBytes == null && text == null)
-         {
-            throw new ArgumentException();
-         }
-         RawBytes = rawBytes;
-         Text = text;
-         ByteSegments = byteSegments;
-         ECLevel = ecLevel;
-         StructuredAppendParity = saParity;
-         StructuredAppendSequenceNumber = saSequence;
-      }
-   }
+		// Token: 0x17000072 RID: 114
+		public string Text
+		{
+			// Token: 0x060004D0 RID: 1232 RVA: 0x00027B71 File Offset: 0x00025D71
+			get;
+			// Token: 0x060004D1 RID: 1233 RVA: 0x00027B79 File Offset: 0x00025D79
+			private set;
+		}
+	}
 }

@@ -6,10 +6,10 @@ using ZXing.Common.ReedSolomon;
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x0200007D RID: 125
+	// Token: 0x0200007F RID: 127
 	public static class Encoder
 	{
-		// Token: 0x06000471 RID: 1137 RVA: 0x00026F50 File Offset: 0x00025150
+		// Token: 0x0600047A RID: 1146 RVA: 0x00026198 File Offset: 0x00024398
 		internal static void append8BitBytes(string content, BitArray bits, string encoding)
 		{
 			byte[] bytes;
@@ -29,7 +29,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x0600046F RID: 1135 RVA: 0x00026E8D File Offset: 0x0002508D
+		// Token: 0x06000478 RID: 1144 RVA: 0x000260D5 File Offset: 0x000242D5
 		internal static void appendBytes(string content, Mode mode, BitArray bits, string encoding)
 		{
 			if (mode.Equals(Mode.BYTE))
@@ -40,7 +40,7 @@ namespace ZXing.QrCode.Internal
 			throw new WriterException("Invalid mode: " + mode);
 		}
 
-		// Token: 0x0600046E RID: 1134 RVA: 0x00026E44 File Offset: 0x00025044
+		// Token: 0x06000477 RID: 1143 RVA: 0x0002608C File Offset: 0x0002428C
 		internal static void appendLengthInfo(int numLetters, Version version, Mode mode, BitArray bits)
 		{
 			int characterCountBits = mode.getCharacterCountBits(version);
@@ -51,13 +51,13 @@ namespace ZXing.QrCode.Internal
 			bits.appendBits(numLetters, characterCountBits);
 		}
 
-		// Token: 0x0600046D RID: 1133 RVA: 0x00026E32 File Offset: 0x00025032
+		// Token: 0x06000476 RID: 1142 RVA: 0x0002607A File Offset: 0x0002427A
 		internal static void appendModeInfo(Mode mode, BitArray bits)
 		{
 			bits.appendBits(mode.Bits, 4);
 		}
 
-		// Token: 0x06000470 RID: 1136 RVA: 0x00026EB8 File Offset: 0x000250B8
+		// Token: 0x06000479 RID: 1145 RVA: 0x00026100 File Offset: 0x00024300
 		internal static void appendNumericBytes(string content, BitArray bits)
 		{
 			int length = content.Length;
@@ -86,13 +86,13 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x06000461 RID: 1121 RVA: 0x00026835 File Offset: 0x00024A35
+		// Token: 0x0600046A RID: 1130 RVA: 0x00025A7D File Offset: 0x00023C7D
 		private static int calculateMaskPenalty(ByteMatrix matrix)
 		{
 			return MaskUtil.applyMaskPenaltyRule1(matrix) + MaskUtil.applyMaskPenaltyRule2(matrix) + MaskUtil.applyMaskPenaltyRule3(matrix) + MaskUtil.applyMaskPenaltyRule4(matrix);
 		}
 
-		// Token: 0x06000467 RID: 1127 RVA: 0x000269F0 File Offset: 0x00024BF0
+		// Token: 0x06000470 RID: 1136 RVA: 0x00025C38 File Offset: 0x00023E38
 		private static int chooseMaskPattern(BitArray bits, ErrorCorrectionLevel ecLevel, Version version, ByteMatrix matrix)
 		{
 			int num = 2147483647;
@@ -110,19 +110,19 @@ namespace ZXing.QrCode.Internal
 			return result;
 		}
 
-		// Token: 0x06000465 RID: 1125 RVA: 0x000269DE File Offset: 0x00024BDE
+		// Token: 0x0600046E RID: 1134 RVA: 0x00025C26 File Offset: 0x00023E26
 		public static Mode chooseMode(string content)
 		{
 			return Encoder.chooseMode(content, null);
 		}
 
-		// Token: 0x06000466 RID: 1126 RVA: 0x000269E7 File Offset: 0x00024BE7
+		// Token: 0x0600046F RID: 1135 RVA: 0x00025C2F File Offset: 0x00023E2F
 		private static Mode chooseMode(string content, string encoding)
 		{
 			return Mode.BYTE;
 		}
 
-		// Token: 0x06000468 RID: 1128 RVA: 0x00026A30 File Offset: 0x00024C30
+		// Token: 0x06000471 RID: 1137 RVA: 0x00025C78 File Offset: 0x00023E78
 		private static Version chooseVersion(int numInputBits, ErrorCorrectionLevel ecLevel)
 		{
 			for (int i = 1; i <= 40; i++)
@@ -140,13 +140,13 @@ namespace ZXing.QrCode.Internal
 			throw new WriterException("Data too big");
 		}
 
-		// Token: 0x06000462 RID: 1122 RVA: 0x00026852 File Offset: 0x00024A52
+		// Token: 0x0600046B RID: 1131 RVA: 0x00025A9A File Offset: 0x00023C9A
 		public static QRCode encode(string content, ErrorCorrectionLevel ecLevel)
 		{
 			return Encoder.encode(content, ecLevel, null);
 		}
 
-		// Token: 0x06000463 RID: 1123 RVA: 0x0002685C File Offset: 0x00024A5C
+		// Token: 0x0600046C RID: 1132 RVA: 0x00025AA4 File Offset: 0x00023CA4
 		public static QRCode encode(string content, ErrorCorrectionLevel ecLevel, IDictionary<EncodeHintType, object> hints)
 		{
 			string text = (hints == null || !hints.ContainsKey(EncodeHintType.CHARACTER_SET)) ? null : ((string)hints[EncodeHintType.CHARACTER_SET]);
@@ -185,7 +185,7 @@ namespace ZXing.QrCode.Internal
 			return qRCode;
 		}
 
-		// Token: 0x0600046C RID: 1132 RVA: 0x00026DCC File Offset: 0x00024FCC
+		// Token: 0x06000475 RID: 1141 RVA: 0x00026014 File Offset: 0x00024214
 		internal static byte[] generateECBytes(byte[] dataBytes, int numEcBytesInBlock)
 		{
 			int num = dataBytes.Length;
@@ -203,7 +203,7 @@ namespace ZXing.QrCode.Internal
 			return array2;
 		}
 
-		// Token: 0x06000464 RID: 1124 RVA: 0x000269C9 File Offset: 0x00024BC9
+		// Token: 0x0600046D RID: 1133 RVA: 0x00025C11 File Offset: 0x00023E11
 		internal static int getAlphanumericCode(int code)
 		{
 			if (code < Encoder.ALPHANUMERIC_TABLE.Length)
@@ -213,7 +213,7 @@ namespace ZXing.QrCode.Internal
 			return -1;
 		}
 
-		// Token: 0x0600046A RID: 1130 RVA: 0x00026B58 File Offset: 0x00024D58
+		// Token: 0x06000473 RID: 1139 RVA: 0x00025DA0 File Offset: 0x00023FA0
 		internal static void getNumDataBytesAndNumECBytesForBlockID(int numTotalBytes, int numDataBytes, int numRSBlocks, int blockID, int[] numDataBytesInBlock, int[] numECBytesInBlock)
 		{
 			if (blockID >= numRSBlocks)
@@ -250,7 +250,7 @@ namespace ZXing.QrCode.Internal
 			numECBytesInBlock[0] = num7;
 		}
 
-		// Token: 0x0600046B RID: 1131 RVA: 0x00026BF0 File Offset: 0x00024DF0
+		// Token: 0x06000474 RID: 1140 RVA: 0x00025E38 File Offset: 0x00024038
 		internal static BitArray interleaveWithECBytes(BitArray bits, int numTotalBytes, int numDataBytes, int numRSBlocks)
 		{
 			if (bits.SizeInBytes != numDataBytes)
@@ -322,7 +322,7 @@ namespace ZXing.QrCode.Internal
 			return bitArray;
 		}
 
-		// Token: 0x06000469 RID: 1129 RVA: 0x00026A80 File Offset: 0x00024C80
+		// Token: 0x06000472 RID: 1138 RVA: 0x00025CC8 File Offset: 0x00023EC8
 		internal static void terminateBits(int numDataBytes, BitArray bits)
 		{
 			int num = numDataBytes << 3;
@@ -361,7 +361,7 @@ namespace ZXing.QrCode.Internal
 			}
 		}
 
-		// Token: 0x04000320 RID: 800
+		// Token: 0x0400031D RID: 797
 		private static readonly int[] ALPHANUMERIC_TABLE = new int[]
 		{
 			-1,
@@ -462,7 +462,7 @@ namespace ZXing.QrCode.Internal
 			-1
 		};
 
-		// Token: 0x04000321 RID: 801
+		// Token: 0x0400031E RID: 798
 		internal static string DEFAULT_BYTE_MODE_ENCODING = "ISO-8859-1";
 	}
 }

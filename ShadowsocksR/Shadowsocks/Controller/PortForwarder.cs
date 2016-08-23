@@ -4,29 +4,29 @@ using System.Net.Sockets;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000047 RID: 71
+	// Token: 0x02000045 RID: 69
 	internal class PortForwarder : Listener.Service
 	{
-		// Token: 0x0600026F RID: 623 RVA: 0x0001797E File Offset: 0x00015B7E
+		// Token: 0x0600025A RID: 602 RVA: 0x00017102 File Offset: 0x00015302
 		public PortForwarder(int targetPort)
 		{
 			this._targetPort = targetPort;
 		}
 
-		// Token: 0x06000270 RID: 624 RVA: 0x0001798D File Offset: 0x00015B8D
+		// Token: 0x0600025B RID: 603 RVA: 0x00017111 File Offset: 0x00015311
 		public bool Handle(byte[] firstPacket, int length, Socket socket)
 		{
 			new PortForwarder.Handler().Start(firstPacket, length, socket, this._targetPort);
 			return true;
 		}
 
-		// Token: 0x040001E0 RID: 480
+		// Token: 0x040001D6 RID: 470
 		private int _targetPort;
 
-		// Token: 0x020000AB RID: 171
+		// Token: 0x020000AD RID: 173
 		private class Handler
 		{
-			// Token: 0x06000574 RID: 1396 RVA: 0x0002C854 File Offset: 0x0002AA54
+			// Token: 0x0600057D RID: 1405 RVA: 0x0002BA9C File Offset: 0x00029C9C
 			private void CheckClose()
 			{
 				if (this._localShutdown && this._remoteShutdown)
@@ -35,7 +35,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x06000575 RID: 1397 RVA: 0x0002C86C File Offset: 0x0002AA6C
+			// Token: 0x0600057E RID: 1406 RVA: 0x0002BAB4 File Offset: 0x00029CB4
 			public void Close()
 			{
 				lock (this)
@@ -72,7 +72,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x0600056D RID: 1389 RVA: 0x0002C53C File Offset: 0x0002A73C
+			// Token: 0x06000576 RID: 1398 RVA: 0x0002B784 File Offset: 0x00029984
 			private void ConnectCallback(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -91,7 +91,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x0600056E RID: 1390 RVA: 0x0002C584 File Offset: 0x0002A784
+			// Token: 0x06000577 RID: 1399 RVA: 0x0002B7CC File Offset: 0x000299CC
 			private void HandshakeReceive()
 			{
 				if (this._closed)
@@ -109,7 +109,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x06000571 RID: 1393 RVA: 0x0002C6F8 File Offset: 0x0002A8F8
+			// Token: 0x0600057A RID: 1402 RVA: 0x0002B940 File Offset: 0x00029B40
 			private void PipeConnectionReceiveCallback(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -137,7 +137,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x06000573 RID: 1395 RVA: 0x0002C7E8 File Offset: 0x0002A9E8
+			// Token: 0x0600057C RID: 1404 RVA: 0x0002BA30 File Offset: 0x00029C30
 			private void PipeConnectionSendCallback(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -156,7 +156,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x06000570 RID: 1392 RVA: 0x0002C674 File Offset: 0x0002A874
+			// Token: 0x06000579 RID: 1401 RVA: 0x0002B8BC File Offset: 0x00029ABC
 			private void PipeRemoteReceiveCallback(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -184,7 +184,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x06000572 RID: 1394 RVA: 0x0002C77C File Offset: 0x0002A97C
+			// Token: 0x0600057B RID: 1403 RVA: 0x0002B9C4 File Offset: 0x00029BC4
 			private void PipeRemoteSendCallback(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -203,7 +203,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x0600056C RID: 1388 RVA: 0x0002C4A8 File Offset: 0x0002A6A8
+			// Token: 0x06000575 RID: 1397 RVA: 0x0002B6F0 File Offset: 0x000298F0
 			public void Start(byte[] firstPacket, int length, Socket socket, int targetPort)
 			{
 				this._firstPacket = firstPacket;
@@ -225,7 +225,7 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x0600056F RID: 1391 RVA: 0x0002C5E4 File Offset: 0x0002A7E4
+			// Token: 0x06000578 RID: 1400 RVA: 0x0002B82C File Offset: 0x00029A2C
 			private void StartPipe(IAsyncResult ar)
 			{
 				if (this._closed)
@@ -245,34 +245,34 @@ namespace Shadowsocks.Controller
 				}
 			}
 
-			// Token: 0x0400045B RID: 1115
+			// Token: 0x04000458 RID: 1112
 			private byte[] connetionRecvBuffer = new byte[16384];
 
-			// Token: 0x04000459 RID: 1113
+			// Token: 0x04000456 RID: 1110
 			public const int RecvSize = 16384;
 
-			// Token: 0x0400045A RID: 1114
+			// Token: 0x04000457 RID: 1111
 			private byte[] remoteRecvBuffer = new byte[16384];
 
-			// Token: 0x04000456 RID: 1110
+			// Token: 0x04000453 RID: 1107
 			private bool _closed;
 
-			// Token: 0x04000452 RID: 1106
+			// Token: 0x0400044F RID: 1103
 			private byte[] _firstPacket;
 
-			// Token: 0x04000453 RID: 1107
+			// Token: 0x04000450 RID: 1104
 			private int _firstPacketLength;
 
-			// Token: 0x04000454 RID: 1108
+			// Token: 0x04000451 RID: 1105
 			private Socket _local;
 
-			// Token: 0x04000457 RID: 1111
+			// Token: 0x04000454 RID: 1108
 			private bool _localShutdown;
 
-			// Token: 0x04000455 RID: 1109
+			// Token: 0x04000452 RID: 1106
 			private Socket _remote;
 
-			// Token: 0x04000458 RID: 1112
+			// Token: 0x04000455 RID: 1109
 			private bool _remoteShutdown;
 		}
 	}

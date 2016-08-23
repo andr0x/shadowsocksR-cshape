@@ -7,10 +7,10 @@ using Shadowsocks.Properties;
 
 namespace Shadowsocks.Encryption
 {
-	// Token: 0x02000036 RID: 54
+	// Token: 0x02000034 RID: 52
 	public class PolarSSL
 	{
-		// Token: 0x060001F5 RID: 501 RVA: 0x00014670 File Offset: 0x00012870
+		// Token: 0x060001E0 RID: 480 RVA: 0x00013DE0 File Offset: 0x00011FE0
 		static PolarSSL()
 		{
 			string text = Path.Combine(Application.StartupPath, "temp");
@@ -33,55 +33,55 @@ namespace Shadowsocks.Encryption
 			}
 		}
 
-		// Token: 0x060001FA RID: 506
+		// Token: 0x060001E5 RID: 485
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern int aes_crypt_cfb128(IntPtr ctx, int mode, int length, ref int iv_off, byte[] iv, byte[] input, byte[] output);
 
-		// Token: 0x060001F8 RID: 504
+		// Token: 0x060001E3 RID: 483
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void aes_free(IntPtr ctx);
 
-		// Token: 0x060001F7 RID: 503
+		// Token: 0x060001E2 RID: 482
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void aes_init(IntPtr ctx);
 
-		// Token: 0x060001F9 RID: 505
+		// Token: 0x060001E4 RID: 484
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern int aes_setkey_enc(IntPtr ctx, byte[] key, int keysize);
 
-		// Token: 0x060001FE RID: 510
+		// Token: 0x060001E9 RID: 489
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern int arc4_crypt(IntPtr ctx, int length, byte[] input, byte[] output);
 
-		// Token: 0x060001FC RID: 508
+		// Token: 0x060001E7 RID: 487
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void arc4_free(IntPtr ctx);
 
-		// Token: 0x060001FB RID: 507
+		// Token: 0x060001E6 RID: 486
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void arc4_init(IntPtr ctx);
 
-		// Token: 0x060001FD RID: 509
+		// Token: 0x060001E8 RID: 488
 		[DllImport("libsscrypto", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void arc4_setup(IntPtr ctx, byte[] key, int keysize);
 
-		// Token: 0x060001F6 RID: 502
+		// Token: 0x060001E1 RID: 481
 		[DllImport("Kernel32.dll")]
 		private static extern IntPtr LoadLibrary(string path);
 
-		// Token: 0x04000190 RID: 400
+		// Token: 0x04000186 RID: 390
 		public const int AES_CTX_SIZE = 280;
 
-		// Token: 0x04000192 RID: 402
+		// Token: 0x04000188 RID: 392
 		public const int AES_DECRYPT = 0;
 
-		// Token: 0x04000191 RID: 401
+		// Token: 0x04000187 RID: 391
 		public const int AES_ENCRYPT = 1;
 
-		// Token: 0x04000193 RID: 403
+		// Token: 0x04000189 RID: 393
 		public const int ARC4_CTX_SIZE = 264;
 
-		// Token: 0x0400018F RID: 399
+		// Token: 0x04000185 RID: 389
 		private const string DLLNAME = "libsscrypto";
 	}
 }

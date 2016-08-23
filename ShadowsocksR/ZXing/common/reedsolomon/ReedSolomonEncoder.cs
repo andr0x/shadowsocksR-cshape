@@ -1,84 +1,70 @@
-/*
-* Copyright 2008 ZXing authors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*      http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ZXing.Common.ReedSolomon
 {
-   /// <summary>
-   /// Implements Reed-Solomon encoding, as the name implies.
-   /// </summary>
-   /// <author>Sean Owen</author>
-   /// <author>William Rucklidge</author>
-   public sealed class ReedSolomonEncoder
-   {
-      private readonly GenericGF field;
-      private readonly IList<GenericGFPoly> cachedGenerators;
+	// Token: 0x02000091 RID: 145
+	public sealed class ReedSolomonEncoder
+	{
+		// Token: 0x0600052B RID: 1323 RVA: 0x0002995D File Offset: 0x00027B5D
+		public ReedSolomonEncoder(GenericGF field)
+		{
+			this.field = field;
+			this.cachedGenerators = new List<GenericGFPoly>();
+			this.cachedGenerators.Add(new GenericGFPoly(field, new int[]
+			{
+				1
+			}));
+		}
 
-      public ReedSolomonEncoder(GenericGF field)
-      {
-         this.field = field;
-         this.cachedGenerators = new List<GenericGFPoly>();
-         cachedGenerators.Add(new GenericGFPoly(field, new int[] { 1 }));
-      }
+		// Token: 0x0600052C RID: 1324 RVA: 0x00029994 File Offset: 0x00027B94
+		private GenericGFPoly buildGenerator(int degree)
+		{
+			if (degree >= this.cachedGenerators.Count)
+			{
+				GenericGFPoly genericGFPoly = this.cachedGenerators[this.cachedGenerators.Count - 1];
+				for (int i = this.cachedGenerators.Count; i <= degree; i++)
+				{
+					GenericGFPoly genericGFPoly2 = genericGFPoly.multiply(new GenericGFPoly(this.field, new int[]
+					{
+						1,
+						this.field.exp(i - 1 + this.field.GeneratorBase)
+					}));
+					this.cachedGenerators.Add(genericGFPoly2);
+					genericGFPoly = genericGFPoly2;
+				}
+			}
+			return this.cachedGenerators[degree];
+		}
 
-      private GenericGFPoly buildGenerator(int degree)
-      {
-         if (degree >= cachedGenerators.Count)
-         {
-            var lastGenerator = cachedGenerators[cachedGenerators.Count - 1];
-            for (int d = cachedGenerators.Count; d <= degree; d++)
-            {
-               var nextGenerator = lastGenerator.multiply(new GenericGFPoly(field, new int[] { 1, field.exp(d - 1 + field.GeneratorBase) }));
-               cachedGenerators.Add(nextGenerator);
-               lastGenerator = nextGenerator;
-            }
-         }
-         return cachedGenerators[degree];
-      }
+		// Token: 0x0600052D RID: 1325 RVA: 0x00029A34 File Offset: 0x00027C34
+		public void encode(int[] toEncode, int ecBytes)
+		{
+			if (ecBytes == 0)
+			{
+				throw new ArgumentException("No error correction bytes");
+			}
+			int num = toEncode.Length - ecBytes;
+			if (num <= 0)
+			{
+				throw new ArgumentException("No data bytes provided");
+			}
+			GenericGFPoly other = this.buildGenerator(ecBytes);
+			int[] array = new int[num];
+			Array.Copy(toEncode, 0, array, 0, num);
+			int[] coefficients = new GenericGFPoly(this.field, array).multiplyByMonomial(ecBytes, 1).divide(other)[1].Coefficients;
+			int num2 = ecBytes - coefficients.Length;
+			for (int i = 0; i < num2; i++)
+			{
+				toEncode[num + i] = 0;
+			}
+			Array.Copy(coefficients, 0, toEncode, num + num2, coefficients.Length);
+		}
 
-      public void encode(int[] toEncode, int ecBytes)
-      {
-         if (ecBytes == 0)
-         {
-            throw new ArgumentException("No error correction bytes");
-         }
-         var dataBytes = toEncode.Length - ecBytes;
-         if (dataBytes <= 0)
-         {
-            throw new ArgumentException("No data bytes provided");
-         }
+		// Token: 0x04000377 RID: 887
+		private readonly IList<GenericGFPoly> cachedGenerators;
 
-         var generator = buildGenerator(ecBytes);
-         var infoCoefficients = new int[dataBytes];
-         Array.Copy(toEncode, 0, infoCoefficients, 0, dataBytes);
-
-         var info = new GenericGFPoly(field, infoCoefficients);
-         info = info.multiplyByMonomial(ecBytes, 1);
-
-         var remainder = info.divide(generator)[1];
-         var coefficients = remainder.Coefficients;
-         var numZeroCoefficients = ecBytes - coefficients.Length;
-         for (var i = 0; i < numZeroCoefficients; i++)
-         {
-            toEncode[dataBytes + i] = 0;
-         }
-
-         Array.Copy(coefficients, 0, toEncode, dataBytes + numZeroCoefficients, coefficients.Length);
-      }
-   }
+		// Token: 0x04000376 RID: 886
+		private readonly GenericGF field;
+	}
 }

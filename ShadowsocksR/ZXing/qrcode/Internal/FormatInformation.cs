@@ -2,10 +2,10 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000071 RID: 113
+	// Token: 0x02000073 RID: 115
 	internal sealed class FormatInformation
 	{
-		// Token: 0x0600040C RID: 1036 RVA: 0x000228CC File Offset: 0x00020ACC
+		// Token: 0x06000415 RID: 1045 RVA: 0x00021B14 File Offset: 0x0001FD14
 		static FormatInformation()
 		{
 			// Note: this type is marked as 'beforefieldinit'.
@@ -191,14 +191,14 @@ namespace ZXing.QrCode.Internal
 			};
 		}
 
-		// Token: 0x06000404 RID: 1028 RVA: 0x00022714 File Offset: 0x00020914
+		// Token: 0x0600040D RID: 1037 RVA: 0x0002195C File Offset: 0x0001FB5C
 		private FormatInformation(int formatInfo)
 		{
 			this.errorCorrectionLevel = ErrorCorrectionLevel.forBits(formatInfo >> 3 & 3);
 			this.dataMask = (byte)(formatInfo & 7);
 		}
 
-		// Token: 0x06000406 RID: 1030 RVA: 0x000227B4 File Offset: 0x000209B4
+		// Token: 0x0600040F RID: 1039 RVA: 0x000219FC File Offset: 0x0001FBFC
 		internal static FormatInformation decodeFormatInformation(int maskedFormatInfo1, int maskedFormatInfo2)
 		{
 			FormatInformation formatInformation = FormatInformation.doDecodeFormatInformation(maskedFormatInfo1, maskedFormatInfo2);
@@ -209,7 +209,7 @@ namespace ZXing.QrCode.Internal
 			return FormatInformation.doDecodeFormatInformation(maskedFormatInfo1 ^ 21522, maskedFormatInfo2 ^ 21522);
 		}
 
-		// Token: 0x06000407 RID: 1031 RVA: 0x000227E4 File Offset: 0x000209E4
+		// Token: 0x06000410 RID: 1040 RVA: 0x00021A2C File Offset: 0x0001FC2C
 		private static FormatInformation doDecodeFormatInformation(int maskedFormatInfo1, int maskedFormatInfo2)
 		{
 			int num = 2147483647;
@@ -246,7 +246,7 @@ namespace ZXing.QrCode.Internal
 			return null;
 		}
 
-		// Token: 0x0600040B RID: 1035 RVA: 0x00022890 File Offset: 0x00020A90
+		// Token: 0x06000414 RID: 1044 RVA: 0x00021AD8 File Offset: 0x0001FCD8
 		public override bool Equals(object o)
 		{
 			if (!(o is FormatInformation))
@@ -257,52 +257,52 @@ namespace ZXing.QrCode.Internal
 			return this.errorCorrectionLevel == formatInformation.errorCorrectionLevel && this.dataMask == formatInformation.dataMask;
 		}
 
-		// Token: 0x0600040A RID: 1034 RVA: 0x0002287A File Offset: 0x00020A7A
+		// Token: 0x06000413 RID: 1043 RVA: 0x00021AC2 File Offset: 0x0001FCC2
 		public override int GetHashCode()
 		{
 			return this.errorCorrectionLevel.ordinal() << 3 | (int)this.dataMask;
 		}
 
-		// Token: 0x06000405 RID: 1029 RVA: 0x00022738 File Offset: 0x00020938
+		// Token: 0x0600040E RID: 1038 RVA: 0x00021980 File Offset: 0x0001FB80
 		internal static int numBitsDiffering(int a, int b)
 		{
 			a ^= b;
 			return FormatInformation.BITS_SET_IN_HALF_BYTE[a & 15] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 4 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 8 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 12 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 16 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 20 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 24 & 15u)] + FormatInformation.BITS_SET_IN_HALF_BYTE[(int)((uint)a >> 28 & 15u)];
 		}
 
-		// Token: 0x17000048 RID: 72
+		// Token: 0x1700004B RID: 75
 		internal byte DataMask
 		{
-			// Token: 0x06000409 RID: 1033 RVA: 0x00022872 File Offset: 0x00020A72
+			// Token: 0x06000412 RID: 1042 RVA: 0x00021ABA File Offset: 0x0001FCBA
 			get
 			{
 				return this.dataMask;
 			}
 		}
 
-		// Token: 0x17000047 RID: 71
+		// Token: 0x1700004A RID: 74
 		internal ErrorCorrectionLevel ErrorCorrectionLevel
 		{
-			// Token: 0x06000408 RID: 1032 RVA: 0x0002286A File Offset: 0x00020A6A
+			// Token: 0x06000411 RID: 1041 RVA: 0x00021AB2 File Offset: 0x0001FCB2
 			get
 			{
 				return this.errorCorrectionLevel;
 			}
 		}
 
-		// Token: 0x040002EA RID: 746
+		// Token: 0x040002E7 RID: 743
 		private static readonly int[] BITS_SET_IN_HALF_BYTE;
 
-		// Token: 0x040002EC RID: 748
+		// Token: 0x040002E9 RID: 745
 		private readonly byte dataMask;
 
-		// Token: 0x040002EB RID: 747
+		// Token: 0x040002E8 RID: 744
 		private readonly ErrorCorrectionLevel errorCorrectionLevel;
 
-		// Token: 0x040002E9 RID: 745
+		// Token: 0x040002E6 RID: 742
 		private static readonly int[][] FORMAT_INFO_DECODE_LOOKUP;
 
-		// Token: 0x040002E8 RID: 744
+		// Token: 0x040002E5 RID: 741
 		private const int FORMAT_INFO_MASK_QR = 21522;
 	}
 }

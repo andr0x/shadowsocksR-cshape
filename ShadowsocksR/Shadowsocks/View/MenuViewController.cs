@@ -18,7 +18,7 @@ namespace Shadowsocks.View
 	// Token: 0x02000004 RID: 4
 	public class MenuViewController
 	{
-		// Token: 0x0600001E RID: 30 RVA: 0x000057EC File Offset: 0x000039EC
+		// Token: 0x0600001E RID: 30 RVA: 0x0000592C File Offset: 0x00003B2C
 		public MenuViewController(ShadowsocksController controller)
 		{
 			this.controller = controller;
@@ -50,27 +50,26 @@ namespace Shadowsocks.View
 			this.timerDelayCheckUpdate.Start();
 		}
 
-		// Token: 0x0600003B RID: 59 RVA: 0x000066E2 File Offset: 0x000048E2
+		// Token: 0x0600003B RID: 59 RVA: 0x00006822 File Offset: 0x00004A22
 		private void AboutItem_Click(object sender, EventArgs e)
 		{
-		   
 			Process.Start("https://github.com/breakwa11/shadowsocks-rss");
 		}
 
-		// Token: 0x0600004C RID: 76 RVA: 0x00006904 File Offset: 0x00004B04
+		// Token: 0x0600004C RID: 76 RVA: 0x00006A44 File Offset: 0x00004C44
 		private void AServerItem_Click(object sender, EventArgs e)
 		{
 			MenuItem menuItem = (MenuItem)sender;
 			this.controller.SelectServerIndex((int)menuItem.Tag);
 		}
 
-		// Token: 0x0600004D RID: 77 RVA: 0x0000692E File Offset: 0x00004B2E
+		// Token: 0x0600004D RID: 77 RVA: 0x00006A6E File Offset: 0x00004C6E
 		private void CheckUpdate_Click(object sender, EventArgs e)
 		{
 			this.updateChecker.CheckUpdate(this.controller.GetCurrentConfiguration());
 		}
 
-		// Token: 0x06000034 RID: 52 RVA: 0x000065B7 File Offset: 0x000047B7
+		// Token: 0x06000034 RID: 52 RVA: 0x000066F7 File Offset: 0x000048F7
 		private void configForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.configForm = null;
@@ -78,47 +77,47 @@ namespace Shadowsocks.View
 			this.ShowFirstTimeBalloon();
 		}
 
-		// Token: 0x06000037 RID: 55 RVA: 0x000065E2 File Offset: 0x000047E2
+		// Token: 0x06000037 RID: 55 RVA: 0x00006722 File Offset: 0x00004922
 		private void Config_Click(object sender, EventArgs e)
 		{
 			this.ShowConfigForm(false);
 		}
 
-		// Token: 0x06000025 RID: 37 RVA: 0x00006033 File Offset: 0x00004233
+		// Token: 0x06000025 RID: 37 RVA: 0x00006173 File Offset: 0x00004373
 		private void controller_ConfigChanged(object sender, EventArgs e)
 		{
 			this.LoadCurrentConfiguration();
 			this.UpdateTrayIcon();
 		}
 
-		// Token: 0x06000027 RID: 39 RVA: 0x00006074 File Offset: 0x00004274
+		// Token: 0x06000027 RID: 39 RVA: 0x000061B4 File Offset: 0x000043B4
 		private void controller_EnableGlobalChanged(object sender, EventArgs e)
 		{
 			this.globalModeItem.Checked = this.controller.GetConfiguration().global;
 			this.PACModeItem.Checked = !this.globalModeItem.Checked;
 		}
 
-		// Token: 0x06000026 RID: 38 RVA: 0x00006041 File Offset: 0x00004241
+		// Token: 0x06000026 RID: 38 RVA: 0x00006181 File Offset: 0x00004381
 		private void controller_EnableStatusChanged(object sender, EventArgs e)
 		{
 			this.enableItem.Checked = this.controller.GetConfiguration().enabled;
 			this.modeItem.Enabled = this.enableItem.Checked;
 		}
 
-		// Token: 0x06000020 RID: 32 RVA: 0x000059EF File Offset: 0x00003BEF
+		// Token: 0x06000020 RID: 32 RVA: 0x00005B2F File Offset: 0x00003D2F
 		private void controller_Errored(object sender, ErrorEventArgs e)
 		{
 			MessageBox.Show(e.GetException().ToString(), string.Format(I18N.GetString("Shadowsocks Error: {0}"), e.GetException().Message));
 		}
 
-		// Token: 0x06000028 RID: 40 RVA: 0x000060AC File Offset: 0x000042AC
+		// Token: 0x06000028 RID: 40 RVA: 0x000061EC File Offset: 0x000043EC
 		private void controller_FileReadyToOpen(object sender, ShadowsocksController.PathEventArgs e)
 		{
 			string arguments = "/select, " + e.Path;
 			Process.Start("explorer.exe", arguments);
 		}
 
-		// Token: 0x0600002B RID: 43 RVA: 0x00006140 File Offset: 0x00004340
+		// Token: 0x0600002B RID: 43 RVA: 0x00006280 File Offset: 0x00004480
 		private void controller_UpdatePACFromGFWListCompleted(object sender, GFWListUpdater.ResultEventArgs e)
 		{
 			GFWListUpdater gFWListUpdater = (GFWListUpdater)sender;
@@ -130,7 +129,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600002A RID: 42 RVA: 0x00006109 File Offset: 0x00004309
+		// Token: 0x0600002A RID: 42 RVA: 0x00006249 File Offset: 0x00004449
 		private void controller_UpdatePACFromGFWListError(object sender, ErrorEventArgs e)
 		{
 			GFWListUpdater arg_06_0 = (GFWListUpdater)sender;
@@ -138,7 +137,7 @@ namespace Shadowsocks.View
 			Logging.LogUsefulException(e.GetException());
 		}
 
-		// Token: 0x06000051 RID: 81 RVA: 0x00006A30 File Offset: 0x00004C30
+		// Token: 0x06000051 RID: 81 RVA: 0x00006B70 File Offset: 0x00004D70
 		private void CopyAddress_Click(object sender, EventArgs e)
 		{
 			IDataObject dataObject = Clipboard.GetDataObject();
@@ -146,7 +145,10 @@ namespace Shadowsocks.View
 			{
 				string[] array = ((string)dataObject.GetData(DataFormats.Text)).Split(new string[]
 				{
-					"\r\n"
+					"\r",
+					"\n",
+					"\t",
+					" "
 				}, StringSplitOptions.RemoveEmptyEntries);
 				for (int i = 0; i < array.Length; i++)
 				{
@@ -157,19 +159,19 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000023 RID: 35 RVA: 0x00005C0A File Offset: 0x00003E0A
+		// Token: 0x06000023 RID: 35 RVA: 0x00005D4A File Offset: 0x00003F4A
 		private MenuItem CreateMenuGroup(string text, MenuItem[] items)
 		{
 			return new MenuItem(I18N.GetString(text), items);
 		}
 
-		// Token: 0x06000022 RID: 34 RVA: 0x00005BFC File Offset: 0x00003DFC
+		// Token: 0x06000022 RID: 34 RVA: 0x00005D3C File Offset: 0x00003F3C
 		private MenuItem CreateMenuItem(string text, EventHandler click)
 		{
 			return new MenuItem(I18N.GetString(text), click);
 		}
 
-		// Token: 0x06000050 RID: 80 RVA: 0x000069E8 File Offset: 0x00004BE8
+		// Token: 0x06000050 RID: 80 RVA: 0x00006B28 File Offset: 0x00004D28
 		private void DisconnectCurrent_Click(object sender, EventArgs e)
 		{
 			Configuration currentConfiguration = this.controller.GetCurrentConfiguration();
@@ -179,7 +181,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600003C RID: 60 RVA: 0x000066F0 File Offset: 0x000048F0
+		// Token: 0x0600003C RID: 60 RVA: 0x00006830 File Offset: 0x00004A30
 		private void DonateItem_Click(object sender, EventArgs e)
 		{
 			this._notifyIcon.BalloonTipTitle = I18N.GetString("Why donate?");
@@ -188,19 +190,19 @@ namespace Shadowsocks.View
 			this._notifyIcon.ShowBalloonTip(0);
 		}
 
-		// Token: 0x06000045 RID: 69 RVA: 0x00006893 File Offset: 0x00004A93
+		// Token: 0x06000045 RID: 69 RVA: 0x000069D3 File Offset: 0x00004BD3
 		private void EditPACFileItem_Click(object sender, EventArgs e)
 		{
 			this.controller.TouchPACFile();
 		}
 
-		// Token: 0x0600004B RID: 75 RVA: 0x000068F5 File Offset: 0x00004AF5
+		// Token: 0x0600004B RID: 75 RVA: 0x00006A35 File Offset: 0x00004C35
 		private void EditUserRuleFileForGFWListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.TouchUserRuleFile();
 		}
 
-		// Token: 0x0600003F RID: 63 RVA: 0x0000678E File Offset: 0x0000498E
+		// Token: 0x0600003F RID: 63 RVA: 0x000068CE File Offset: 0x00004ACE
 		private void EnableItem_Click(object sender, EventArgs e)
 		{
 			this.controller.ToggleEnable(!this.enableItem.Checked);
@@ -210,13 +212,13 @@ namespace Shadowsocks.View
 		[DllImport("user32.dll")]
 		private static extern short GetAsyncKeyState(Keys vKey);
 
-		// Token: 0x06000040 RID: 64 RVA: 0x000067A9 File Offset: 0x000049A9
+		// Token: 0x06000040 RID: 64 RVA: 0x000068E9 File Offset: 0x00004AE9
 		private void GlobalModeItem_Click(object sender, EventArgs e)
 		{
 			this.controller.ToggleGlobal(true);
 		}
 
-		// Token: 0x06000044 RID: 68 RVA: 0x00006828 File Offset: 0x00004A28
+		// Token: 0x06000044 RID: 68 RVA: 0x00006968 File Offset: 0x00004B68
 		private void HttpWhiteListItem_Click(object sender, EventArgs e)
 		{
 			this.httpWhiteListItem.Checked = !this.httpWhiteListItem.Checked;
@@ -228,7 +230,7 @@ namespace Shadowsocks.View
 			this.controller.ToggleBypass(this.httpWhiteListItem.Checked);
 		}
 
-		// Token: 0x0600002F RID: 47 RVA: 0x000062E8 File Offset: 0x000044E8
+		// Token: 0x0600002F RID: 47 RVA: 0x00006428 File Offset: 0x00004628
 		private void LoadCurrentConfiguration()
 		{
 			Configuration configuration = this.controller.GetConfiguration();
@@ -242,7 +244,7 @@ namespace Shadowsocks.View
 			this.httpWhiteListItem.Checked = configuration.bypassWhiteList;
 		}
 
-		// Token: 0x06000024 RID: 36 RVA: 0x00005C18 File Offset: 0x00003E18
+		// Token: 0x06000024 RID: 36 RVA: 0x00005D58 File Offset: 0x00003F58
 		private void LoadMenu()
 		{
 			this.contextMenu1 = new ContextMenu(new MenuItem[]
@@ -296,13 +298,13 @@ namespace Shadowsocks.View
 			this.UpdateItem.Visible = false;
 		}
 
-		// Token: 0x0600002E RID: 46 RVA: 0x000062CE File Offset: 0x000044CE
+		// Token: 0x0600002E RID: 46 RVA: 0x0000640E File Offset: 0x0000460E
 		private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
 		{
 			this._notifyIcon.BalloonTipClicked -= new EventHandler(this.notifyIcon1_BalloonTipClicked);
 		}
 
-		// Token: 0x0600003E RID: 62 RVA: 0x00006740 File Offset: 0x00004940
+		// Token: 0x0600003E RID: 62 RVA: 0x00006880 File Offset: 0x00004A80
 		private void notifyIcon1_Click(object sender, MouseEventArgs e)
 		{
 			if (e.Button != MouseButtons.Left)
@@ -322,25 +324,25 @@ namespace Shadowsocks.View
 			this.ShowConfigForm(false);
 		}
 
-		// Token: 0x06000055 RID: 85 RVA: 0x00006ED5 File Offset: 0x000050D5
+		// Token: 0x06000055 RID: 85 RVA: 0x0000702D File Offset: 0x0000522D
 		private void openURLFromQRCode(object sender, FormClosedEventArgs e)
 		{
 			Process.Start(this._urlToOpen);
 		}
 
-		// Token: 0x06000041 RID: 65 RVA: 0x000067B7 File Offset: 0x000049B7
+		// Token: 0x06000041 RID: 65 RVA: 0x000068F7 File Offset: 0x00004AF7
 		private void PACModeItem_Click(object sender, EventArgs e)
 		{
 			this.controller.ToggleGlobal(false);
 		}
 
-		// Token: 0x06000052 RID: 82 RVA: 0x00006A9B File Offset: 0x00004C9B
+		// Token: 0x06000052 RID: 82 RVA: 0x00006BF3 File Offset: 0x00004DF3
 		private void QRCodeItem_Click(object sender, EventArgs e)
 		{
 			new QRCodeForm(this.controller.GetSSLinkForCurrentServer()).Show();
 		}
 
-		// Token: 0x06000039 RID: 57 RVA: 0x000065F4 File Offset: 0x000047F4
+		// Token: 0x06000039 RID: 57 RVA: 0x00006734 File Offset: 0x00004934
 		private void Quit_Click(object sender, EventArgs e)
 		{
 			this.controller.Stop();
@@ -364,7 +366,7 @@ namespace Shadowsocks.View
 			Application.Exit();
 		}
 
-		// Token: 0x06000053 RID: 83 RVA: 0x00006AB4 File Offset: 0x00004CB4
+		// Token: 0x06000053 RID: 83 RVA: 0x00006C0C File Offset: 0x00004E0C
 		private void ScanQRCodeItem_Click(object sender, EventArgs e)
 		{
 			Screen[] allScreens = Screen.AllScreens;
@@ -441,44 +443,42 @@ namespace Shadowsocks.View
 				}
 			}
 			MessageBox.Show(I18N.GetString("No QRCode found. Try to zoom in or move it to the center of the screen."));
-             
-           
 		}
 
-		// Token: 0x06000042 RID: 66 RVA: 0x000067C5 File Offset: 0x000049C5
+		// Token: 0x06000042 RID: 66 RVA: 0x00006905 File Offset: 0x00004B05
 		private void SelectRandomItem_Click(object sender, EventArgs e)
 		{
 			this.SelectRandomItem.Checked = !this.SelectRandomItem.Checked;
 			this.controller.ToggleSelectRandom(this.SelectRandomItem.Checked);
 		}
 
-		// Token: 0x06000043 RID: 67 RVA: 0x000067F6 File Offset: 0x000049F6
+		// Token: 0x06000043 RID: 67 RVA: 0x00006936 File Offset: 0x00004B36
 		private void SelectSameHostForSameTargetItem_Click(object sender, EventArgs e)
 		{
 			this.sameHostForSameTargetItem.Checked = !this.sameHostForSameTargetItem.Checked;
 			this.controller.ToggleSameHostForSameTargetRandom(this.sameHostForSameTargetItem.Checked);
 		}
 
-		// Token: 0x06000036 RID: 54 RVA: 0x000065D9 File Offset: 0x000047D9
+		// Token: 0x06000036 RID: 54 RVA: 0x00006719 File Offset: 0x00004919
 		private void serverLogForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.serverLogForm = null;
 		}
 
-		// Token: 0x06000035 RID: 53 RVA: 0x000065CB File Offset: 0x000047CB
+		// Token: 0x06000035 RID: 53 RVA: 0x0000670B File Offset: 0x0000490B
 		private void settingsForm_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.settingsForm = null;
 			Utils.ReleaseMemory();
 		}
 
-		// Token: 0x06000038 RID: 56 RVA: 0x000065EB File Offset: 0x000047EB
+		// Token: 0x06000038 RID: 56 RVA: 0x0000672B File Offset: 0x0000492B
 		private void Setting_Click(object sender, EventArgs e)
 		{
 			this.ShowSettingForm();
 		}
 
-		// Token: 0x06000029 RID: 41 RVA: 0x000060D6 File Offset: 0x000042D6
+		// Token: 0x06000029 RID: 41 RVA: 0x00006216 File Offset: 0x00004416
 		private void ShowBalloonTip(string title, string content, ToolTipIcon icon, int timeout)
 		{
 			this._notifyIcon.BalloonTipTitle = title;
@@ -487,7 +487,7 @@ namespace Shadowsocks.View
 			this._notifyIcon.ShowBalloonTip(timeout);
 		}
 
-		// Token: 0x06000031 RID: 49 RVA: 0x00006444 File Offset: 0x00004644
+		// Token: 0x06000031 RID: 49 RVA: 0x00006584 File Offset: 0x00004784
 		private void ShowConfigForm(bool addNode)
 		{
 			if (this.configForm != null)
@@ -502,7 +502,7 @@ namespace Shadowsocks.View
 			this.configForm.FormClosed += new FormClosedEventHandler(this.configForm_FormClosed);
 		}
 
-		// Token: 0x0600003A RID: 58 RVA: 0x00006684 File Offset: 0x00004884
+		// Token: 0x0600003A RID: 58 RVA: 0x000067C4 File Offset: 0x000049C4
 		private void ShowFirstTimeBalloon()
 		{
 			if (this._isFirstRun)
@@ -515,7 +515,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600004E RID: 78 RVA: 0x00006948 File Offset: 0x00004B48
+		// Token: 0x0600004E RID: 78 RVA: 0x00006A88 File Offset: 0x00004C88
 		private void ShowLogItem_Click(object sender, EventArgs e)
 		{
 			try
@@ -540,7 +540,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000033 RID: 51 RVA: 0x00006528 File Offset: 0x00004728
+		// Token: 0x06000033 RID: 51 RVA: 0x00006668 File Offset: 0x00004868
 		private void ShowServerLogForm()
 		{
 			if (this.serverLogForm != null)
@@ -563,13 +563,13 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600004F RID: 79 RVA: 0x000069E0 File Offset: 0x00004BE0
+		// Token: 0x0600004F RID: 79 RVA: 0x00006B20 File Offset: 0x00004D20
 		private void ShowServerLogItem_Click(object sender, EventArgs e)
 		{
 			this.ShowServerLogForm();
 		}
 
-		// Token: 0x06000032 RID: 50 RVA: 0x000064BC File Offset: 0x000046BC
+		// Token: 0x06000032 RID: 50 RVA: 0x000065FC File Offset: 0x000047FC
 		private void ShowSettingForm()
 		{
 			if (this.settingsForm != null)
@@ -584,13 +584,13 @@ namespace Shadowsocks.View
 			this.settingsForm.FormClosed += new FormClosedEventHandler(this.settingsForm_FormClosed);
 		}
 
-		// Token: 0x06000054 RID: 84 RVA: 0x00006ECC File Offset: 0x000050CC
+		// Token: 0x06000054 RID: 84 RVA: 0x00007024 File Offset: 0x00005224
 		private void splash_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.ShowConfigForm(true);
 		}
 
-		// Token: 0x0600001F RID: 31 RVA: 0x0000596C File Offset: 0x00003B6C
+		// Token: 0x0600001F RID: 31 RVA: 0x00005AAC File Offset: 0x00003CAC
 		private void timer_Elapsed(object sender, ElapsedEventArgs e)
 		{
 			this.updateChecker.CheckUpdate(this.controller.GetConfiguration());
@@ -604,7 +604,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x0600002C RID: 44 RVA: 0x000061C0 File Offset: 0x000043C0
+		// Token: 0x0600002C RID: 44 RVA: 0x00006300 File Offset: 0x00004500
 		private void updateChecker_NewVersionFound(object sender, EventArgs e)
 		{
 			if (this.updateChecker.LatestVersionNumber == null || this.updateChecker.LatestVersionNumber.Length == 0)
@@ -627,43 +627,43 @@ namespace Shadowsocks.View
 			this._isFirstRun = false;
 		}
 
-		// Token: 0x0600002D RID: 45 RVA: 0x000062BB File Offset: 0x000044BB
+		// Token: 0x0600002D RID: 45 RVA: 0x000063FB File Offset: 0x000045FB
 		private void UpdateItem_Clicked(object sender, EventArgs e)
 		{
 			Process.Start(this.updateChecker.LatestVersionURL);
 		}
 
-		// Token: 0x0600004A RID: 74 RVA: 0x000068E3 File Offset: 0x00004AE3
+		// Token: 0x0600004A RID: 74 RVA: 0x00006A23 File Offset: 0x00004C23
 		private void UpdatePACFromCNIPListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.UpdatePACFromOnlinePac("https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_cnip.pac");
 		}
 
-		// Token: 0x06000049 RID: 73 RVA: 0x000068D1 File Offset: 0x00004AD1
+		// Token: 0x06000049 RID: 73 RVA: 0x00006A11 File Offset: 0x00004C11
 		private void UpdatePACFromCNOnlyListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.UpdatePACFromOnlinePac("https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_r_white.pac");
 		}
 
-		// Token: 0x06000048 RID: 72 RVA: 0x000068BF File Offset: 0x00004ABF
+		// Token: 0x06000048 RID: 72 RVA: 0x000069FF File Offset: 0x00004BFF
 		private void UpdatePACFromCNWhiteListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.UpdatePACFromOnlinePac("https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_white.pac");
 		}
 
-		// Token: 0x06000046 RID: 70 RVA: 0x000068A0 File Offset: 0x00004AA0
+		// Token: 0x06000046 RID: 70 RVA: 0x000069E0 File Offset: 0x00004BE0
 		private void UpdatePACFromGFWListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.UpdatePACFromGFWList();
 		}
 
-		// Token: 0x06000047 RID: 71 RVA: 0x000068AD File Offset: 0x00004AAD
+		// Token: 0x06000047 RID: 71 RVA: 0x000069ED File Offset: 0x00004BED
 		private void UpdatePACFromLanIPListItem_Click(object sender, EventArgs e)
 		{
 			this.controller.UpdatePACFromOnlinePac("https://raw.githubusercontent.com/breakwa11/gfw_whitelist/master/ssr/ss_lanip.pac");
 		}
 
-		// Token: 0x06000030 RID: 48 RVA: 0x00006384 File Offset: 0x00004584
+		// Token: 0x06000030 RID: 48 RVA: 0x000064C4 File Offset: 0x000046C4
 		private void UpdateServersMenu()
 		{
 			Menu.MenuItemCollection menuItems = this.ServersItem.MenuItems;
@@ -685,7 +685,7 @@ namespace Shadowsocks.View
 			}
 		}
 
-		// Token: 0x06000021 RID: 33 RVA: 0x00005A1C File Offset: 0x00003C1C
+		// Token: 0x06000021 RID: 33 RVA: 0x00005B5C File Offset: 0x00003D5C
 		private void UpdateTrayIcon()
 		{
 			Graphics expr_0A = Graphics.FromHwnd(IntPtr.Zero);
@@ -735,7 +735,7 @@ namespace Shadowsocks.View
 			}
 			bitmap = bitmap2;
 			this._notifyIcon.Icon = Icon.FromHandle(bitmap.GetHicon());
-			string text = "ShadowsocksR 3.8.4.2\n" + (enabled ? (I18N.GetString("System Proxy On: ") + (global ? I18N.GetString("Global") : I18N.GetString("PAC"))) : string.Format(I18N.GetString("Running: Port {0}"), configuration.localPort)) + "\n" + configuration.GetCurrentServer(null, false, false).FriendlyName();
+			string text = "ShadowsocksR 3.8.5.0 Beta\n" + (enabled ? (I18N.GetString("System Proxy On: ") + (global ? I18N.GetString("Global") : I18N.GetString("PAC"))) : string.Format(I18N.GetString("Running: Port {0}"), configuration.localPort)) + "\n" + configuration.GetCurrentServer(null, false, false).FriendlyName();
 			this._notifyIcon.Text = text.Substring(0, Math.Min(63, text.Length));
 		}
 

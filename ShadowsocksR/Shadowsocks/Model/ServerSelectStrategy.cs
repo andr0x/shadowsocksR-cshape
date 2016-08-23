@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Shadowsocks.Model
 {
-	// Token: 0x02000025 RID: 37
+	// Token: 0x02000023 RID: 35
 	public class ServerSelectStrategy
 	{
-		// Token: 0x06000169 RID: 361 RVA: 0x00011250 File Offset: 0x0000F450
+		// Token: 0x06000155 RID: 341 RVA: 0x0001088C File Offset: 0x0000EA8C
 		private double Algorithm2(ServerSpeedLog serverSpeedLog)
 		{
 			if (serverSpeedLog.ErrorContinurousTimes > 30L)
@@ -39,7 +39,7 @@ namespace Shadowsocks.Model
 			return num2;
 		}
 
-		// Token: 0x0600016A RID: 362 RVA: 0x00011310 File Offset: 0x0000F510
+		// Token: 0x06000156 RID: 342 RVA: 0x0001094C File Offset: 0x0000EB4C
 		private double Algorithm3(ServerSpeedLog serverSpeedLog)
 		{
 			if (serverSpeedLog.ErrorContinurousTimes > 30L)
@@ -68,7 +68,7 @@ namespace Shadowsocks.Model
 			return num2;
 		}
 
-		// Token: 0x06000168 RID: 360 RVA: 0x0001120C File Offset: 0x0000F40C
+		// Token: 0x06000154 RID: 340 RVA: 0x00010848 File Offset: 0x0000EA48
 		private int lowerBound(List<double> data, double target)
 		{
 			int i = 0;
@@ -88,7 +88,7 @@ namespace Shadowsocks.Model
 			return i;
 		}
 
-		// Token: 0x0600016B RID: 363 RVA: 0x000113C4 File Offset: 0x0000F5C4
+		// Token: 0x06000157 RID: 343 RVA: 0x00010A00 File Offset: 0x0000EC00
 		public int Select(List<Server> configs, int curIndex, int algorithm, bool forceChange = false)
 		{
 			if (this.randomGennarator == null)
@@ -204,51 +204,51 @@ namespace Shadowsocks.Model
 			return -1;
 		}
 
-		// Token: 0x0400010F RID: 271
+		// Token: 0x04000104 RID: 260
 		private int lastSelectIndex;
 
-		// Token: 0x04000110 RID: 272
+		// Token: 0x04000105 RID: 261
 		private DateTime lastSelectTime;
 
-		// Token: 0x04000111 RID: 273
+		// Token: 0x04000106 RID: 262
 		private int lastUserSelectIndex;
 
-		// Token: 0x0400010E RID: 270
+		// Token: 0x04000103 RID: 259
 		private Random randomGennarator;
 
-		// Token: 0x020000A1 RID: 161
+		// Token: 0x020000A3 RID: 163
 		private enum SelectAlgorithm
 		{
-			// Token: 0x04000435 RID: 1077
+			// Token: 0x04000432 RID: 1074
 			OneByOne,
-			// Token: 0x04000436 RID: 1078
+			// Token: 0x04000433 RID: 1075
 			Random,
-			// Token: 0x04000437 RID: 1079
+			// Token: 0x04000434 RID: 1076
 			LowLatency,
-			// Token: 0x04000438 RID: 1080
+			// Token: 0x04000435 RID: 1077
 			LowException,
-			// Token: 0x04000439 RID: 1081
+			// Token: 0x04000436 RID: 1078
 			SelectedFirst,
-			// Token: 0x0400043A RID: 1082
+			// Token: 0x04000437 RID: 1079
 			Timer,
-			// Token: 0x0400043B RID: 1083
+			// Token: 0x04000438 RID: 1080
 			LowExceptionInGroup
 		}
 
-		// Token: 0x020000A2 RID: 162
+		// Token: 0x020000A4 RID: 164
 		private struct ServerIndex
 		{
-			// Token: 0x0600054E RID: 1358 RVA: 0x0002BBBC File Offset: 0x00029DBC
+			// Token: 0x06000557 RID: 1367 RVA: 0x0002AE04 File Offset: 0x00029004
 			public ServerIndex(int i, Server s)
 			{
 				this.index = i;
 				this.server = s;
 			}
 
-			// Token: 0x0400043C RID: 1084
+			// Token: 0x04000439 RID: 1081
 			public int index;
 
-			// Token: 0x0400043D RID: 1085
+			// Token: 0x0400043A RID: 1082
 			public Server server;
 		}
 	}

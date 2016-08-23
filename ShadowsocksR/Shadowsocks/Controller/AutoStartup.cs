@@ -4,10 +4,10 @@ using Microsoft.Win32;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x0200003C RID: 60
+	// Token: 0x0200003A RID: 58
 	internal class AutoStartup
 	{
-		// Token: 0x06000224 RID: 548 RVA: 0x00015554 File Offset: 0x00013754
+		// Token: 0x0600020F RID: 527 RVA: 0x00014CC4 File Offset: 0x00012EC4
 		public static bool Check()
 		{
 			RegistryKey registryKey = null;
@@ -51,7 +51,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x06000223 RID: 547 RVA: 0x000154C0 File Offset: 0x000136C0
+		// Token: 0x0600020E RID: 526 RVA: 0x00014C30 File Offset: 0x00012E30
 		public static bool Set(bool enabled)
 		{
 			RegistryKey registryKey = null;
@@ -93,7 +93,7 @@ namespace Shadowsocks.Controller
 			return result;
 		}
 
-		// Token: 0x040001AC RID: 428
+		// Token: 0x040001A2 RID: 418
 		private static string Key = "ShadowsocksR_" + Application.StartupPath.GetHashCode();
 	}
 }

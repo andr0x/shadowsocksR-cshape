@@ -12,10 +12,10 @@ using Shadowsocks.Properties;
 
 namespace Shadowsocks.Controller
 {
-	// Token: 0x02000041 RID: 65
+	// Token: 0x0200003F RID: 63
 	internal class HttpProxyRunner
 	{
-		// Token: 0x06000247 RID: 583 RVA: 0x00016724 File Offset: 0x00014924
+		// Token: 0x06000232 RID: 562 RVA: 0x00015E94 File Offset: 0x00014094
 		static HttpProxyRunner()
 		{
 			HttpProxyRunner._subPath = "temp";
@@ -40,19 +40,19 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600024F RID: 591
+		// Token: 0x0600023A RID: 570
 		[DllImport("user32.dll")]
 		public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
-		// Token: 0x06000250 RID: 592
+		// Token: 0x0600023B RID: 571
 		[DllImport("user32.dll")]
 		public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
 
-		// Token: 0x06000251 RID: 593
+		// Token: 0x0600023C RID: 572
 		[DllImport("user32.dll")]
 		public static extern bool GetClientRect(IntPtr hWnd, out HttpProxyRunner.RECT lpRect);
 
-		// Token: 0x0600024E RID: 590 RVA: 0x00016B0C File Offset: 0x00014D0C
+		// Token: 0x06000239 RID: 569 RVA: 0x00016280 File Offset: 0x00014480
 		private int GetFreePort()
 		{
 			int num = 60000;
@@ -85,13 +85,13 @@ namespace Shadowsocks.Controller
 			throw new Exception("No free port found.");
 		}
 
-		// Token: 0x06000249 RID: 585 RVA: 0x000167FC File Offset: 0x000149FC
+		// Token: 0x06000234 RID: 564 RVA: 0x00015F6C File Offset: 0x0001416C
 		public bool HasExited()
 		{
 			return this._process == null || this._process.HasExited;
 		}
 
-		// Token: 0x0600024A RID: 586 RVA: 0x00016814 File Offset: 0x00014A14
+		// Token: 0x06000235 RID: 565 RVA: 0x00015F84 File Offset: 0x00014184
 		public static void Kill()
 		{
 			Process[] processesByName = Process.GetProcessesByName(HttpProxyRunner._exeNameNoExt);
@@ -130,7 +130,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000253 RID: 595 RVA: 0x00016BBC File Offset: 0x00014DBC
+		// Token: 0x0600023E RID: 574 RVA: 0x00016330 File Offset: 0x00014530
 		public void RefreshTrayArea()
 		{
 			IntPtr hwndParent = HttpProxyRunner.FindWindowEx(HttpProxyRunner.FindWindowEx(HttpProxyRunner.FindWindow("Shell_TrayWnd", null), IntPtr.Zero, "TrayNotifyWnd", null), IntPtr.Zero, "SysPager", null);
@@ -143,7 +143,7 @@ namespace Shadowsocks.Controller
 			HttpProxyRunner.RefreshTrayArea(intPtr);
 		}
 
-		// Token: 0x06000254 RID: 596 RVA: 0x00016C58 File Offset: 0x00014E58
+		// Token: 0x0600023F RID: 575 RVA: 0x000163CC File Offset: 0x000145CC
 		private static void RefreshTrayArea(IntPtr windowHandle)
 		{
 			HttpProxyRunner.RECT rECT;
@@ -157,7 +157,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600024C RID: 588 RVA: 0x000169D8 File Offset: 0x00014BD8
+		// Token: 0x06000237 RID: 567 RVA: 0x0001614C File Offset: 0x0001434C
 		public void Restart()
 		{
 			this._process = new Process();
@@ -177,11 +177,11 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x06000252 RID: 594
+		// Token: 0x0600023D RID: 573
 		[DllImport("user32.dll")]
 		public static extern IntPtr SendMessage(IntPtr hWnd, uint msg, int wParam, int lParam);
 
-		// Token: 0x0600024B RID: 587 RVA: 0x000168A4 File Offset: 0x00014AA4
+		// Token: 0x06000236 RID: 566 RVA: 0x00016014 File Offset: 0x00014214
 		public void Start(Configuration configuration)
 		{
 			configuration.GetCurrentServer(null, false, false);
@@ -189,16 +189,17 @@ namespace Shadowsocks.Controller
 			{
 				HttpProxyRunner.Kill();
 				string text = Resources.privoxy_conf;
-				bool arg_D3_0 = configuration.bypassWhiteList;
+				bool arg_D9_0 = configuration.bypassWhiteList;
 				this._runningPort = this.GetFreePort();
 				text = text.Replace("__SOCKS_PORT__", configuration.localPort.ToString());
-				text = text.Replace("__POLIPO_BIND_PORT__", this._runningPort.ToString());
-				text = text.Replace("__KEEP_ALIVE_TIMEOUT__", (configuration.TTL * 2).ToString());
-				text = text.Replace("__POLIPO_BIND_IP__", "127.0.0.1");
+				text = text.Replace("__PRIVOXY_BIND_PORT__", this._runningPort.ToString());
+				text = text.Replace("__KEEP_ALIVE_TIMEOUT__", "3600");
+				text = text.Replace("__CONNECTION_SHARING__", "1");
+				text = text.Replace("__PRIVOXY_BIND_IP__", "127.0.0.1");
 				text = text.Replace("__BYPASS_ACTION__", "actionsfile " + HttpProxyRunner._subPath + "/bypass.action");
 				FileManager.ByteArrayToFile(HttpProxyRunner.runningPath + "/privoxy.conf", Encoding.UTF8.GetBytes(text));
 				string text2 = "{+forward-override{forward .}}\n0.*.*.*/\n10.*.*.*/\n127.*.*.*/\n192.168.*.*/\n172.1[6-9].*.*/\n172.2[0-9].*.*/\n172.3[0-1].*.*/\n169.254.*.*/\n::1/\nfc00::/\nfe80::/\nlocalhost/\n";
-				if (arg_D3_0)
+				if (arg_D9_0)
 				{
 					string path = Path.Combine(Application.StartupPath, PACServer.BYPASS_FILE);
 					if (File.Exists(path))
@@ -211,7 +212,7 @@ namespace Shadowsocks.Controller
 			}
 		}
 
-		// Token: 0x0600024D RID: 589 RVA: 0x00016AA8 File Offset: 0x00014CA8
+		// Token: 0x06000238 RID: 568 RVA: 0x0001621C File Offset: 0x0001441C
 		public void Stop()
 		{
 			if (this._process != null)
@@ -236,44 +237,44 @@ namespace Shadowsocks.Controller
 		// Token: 0x1700001B RID: 27
 		public int RunningPort
 		{
-			// Token: 0x06000248 RID: 584 RVA: 0x000167F4 File Offset: 0x000149F4
+			// Token: 0x06000233 RID: 563 RVA: 0x00015F64 File Offset: 0x00014164
 			get
 			{
 				return this._runningPort;
 			}
 		}
 
-		// Token: 0x040001C5 RID: 453
+		// Token: 0x040001BB RID: 443
 		private static string runningPath;
 
-		// Token: 0x040001C9 RID: 457
+		// Token: 0x040001BF RID: 447
 		private static string _exeName;
 
-		// Token: 0x040001C8 RID: 456
+		// Token: 0x040001BE RID: 446
 		private static string _exeNameNoExt;
 
-		// Token: 0x040001C4 RID: 452
+		// Token: 0x040001BA RID: 442
 		private Process _process;
 
-		// Token: 0x040001C6 RID: 454
+		// Token: 0x040001BC RID: 444
 		private int _runningPort;
 
-		// Token: 0x040001C7 RID: 455
+		// Token: 0x040001BD RID: 445
 		private static string _subPath;
 
-		// Token: 0x020000A8 RID: 168
+		// Token: 0x020000AA RID: 170
 		public struct RECT
 		{
-			// Token: 0x0400044C RID: 1100
+			// Token: 0x04000449 RID: 1097
 			public int left;
 
-			// Token: 0x0400044D RID: 1101
+			// Token: 0x0400044A RID: 1098
 			public int top;
 
-			// Token: 0x0400044E RID: 1102
+			// Token: 0x0400044B RID: 1099
 			public int right;
 
-			// Token: 0x0400044F RID: 1103
+			// Token: 0x0400044C RID: 1100
 			public int bottom;
 		}
 	}

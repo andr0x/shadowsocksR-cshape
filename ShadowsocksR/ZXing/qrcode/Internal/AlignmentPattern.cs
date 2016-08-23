@@ -2,16 +2,16 @@
 
 namespace ZXing.QrCode.Internal
 {
-	// Token: 0x02000075 RID: 117
+	// Token: 0x02000077 RID: 119
 	public sealed class AlignmentPattern : ResultPoint
 	{
-		// Token: 0x06000424 RID: 1060 RVA: 0x00024CA6 File Offset: 0x00022EA6
+		// Token: 0x0600042D RID: 1069 RVA: 0x00023EEE File Offset: 0x000220EE
 		internal AlignmentPattern(float posX, float posY, float estimatedModuleSize) : base(posX, posY)
 		{
 			this.estimatedModuleSize = estimatedModuleSize;
 		}
 
-		// Token: 0x06000425 RID: 1061 RVA: 0x00024CB8 File Offset: 0x00022EB8
+		// Token: 0x0600042E RID: 1070 RVA: 0x00023F00 File Offset: 0x00022100
 		internal bool aboutEquals(float moduleSize, float i, float j)
 		{
 			if (Math.Abs(i - this.Y) <= moduleSize && Math.Abs(j - this.X) <= moduleSize)
@@ -22,7 +22,7 @@ namespace ZXing.QrCode.Internal
 			return false;
 		}
 
-		// Token: 0x06000426 RID: 1062 RVA: 0x00024D0C File Offset: 0x00022F0C
+		// Token: 0x0600042F RID: 1071 RVA: 0x00023F54 File Offset: 0x00022154
 		internal AlignmentPattern combineEstimate(float i, float j, float newModuleSize)
 		{
 			float arg_2E_0 = (this.X + j) / 2f;
@@ -31,7 +31,7 @@ namespace ZXing.QrCode.Internal
 			return new AlignmentPattern(arg_2E_0, posY, num);
 		}
 
-		// Token: 0x04000301 RID: 769
+		// Token: 0x040002FE RID: 766
 		private float estimatedModuleSize;
 	}
 }
